@@ -1,7 +1,6 @@
-App Engine Java Guestbook
-Copyright (C) 2010-2012 Google Inc.
+Codelot: Virtual Coding Kingdom
 
-## Sample guestbook for use with App Engine Java.
+## A Java Spring MVC Webapp running on Google Appengine
 
 Requires [Apache Maven](http://maven.apache.org) 3.0 or greater, and JDK 6+ in order to run.
 
