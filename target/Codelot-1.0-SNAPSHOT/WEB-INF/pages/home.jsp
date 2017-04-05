@@ -35,7 +35,7 @@
 
     </div>
   </nav>
-  <div id="Home" class="hero-section">
+  <div id="Home" class="section hero-section">
     <div class="hero-wrap">
       <div class="hero-left">
         <h1 class="heading-1"><strong>Learn to code</strong></h1>
@@ -46,13 +46,14 @@
       </div>
     </div>
   </div>
-  <div class="logos-section">
+
+  <div class="section logos-section">
     <div>
       <p class="paragraph-5">Student information can go down here, along with contact and social media.</p>
     </div>
   </div>
 
-  <div id="About" class="class-section">
+  <div id="About" class="section class-section">
     <div class="a wrap-2">
       <div class="left-1">
         <h2 class="heading-2">What is Codelot?</h2>
@@ -73,7 +74,7 @@
     </div>
   </div>
 
-  <div id="FAQ" class="section-3">
+  <div id="FAQ" class="section section-3">
     <div class="wrap-3">
       <h2 class="heading-5">Frequently Asked Questions</h2>
       <ul>
