@@ -22,7 +22,7 @@ public class HomeController {
 
     @RequestMapping("/profileCreation")
     public ModelAndView profileCreation() {
-        ModelAndView model = new ModelAndView("WEB-INF/pages/createProfile");
+        ModelAndView model = new ModelAndView("WEB-INF/pages/languageSelection");
         return model;
     }
 }
