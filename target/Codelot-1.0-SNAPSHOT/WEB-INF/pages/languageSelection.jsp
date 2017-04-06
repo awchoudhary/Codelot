@@ -17,12 +17,12 @@
         <form method="post">
             <button style="padding: 10px;" title="Sign Out" type="submit" onclick="form.action='/signout';">Sign Out</button>
         </form>
-        <%--<div>--%>
-            <%--<p></p><img src="${avatar}" height="50px" width="40px"></p>--%>
-            <%--<p>${fullName}</p>--%>
-            <%--<p>${username}</p>--%>
-            <%--<p>${email}</p>--%>
-        <%--</div>--%>
+        <div>
+            <p></p><img src="${avatar}" height="50px" width="40px"></p>
+            <p>${fullName}</p>
+            <p>${username}</p>
+            <p>${email}</p>
+        </div>
     <%--</div>--%>
     <div>
         <script type="text/javascript" src="../../scripts/phaser.min.js"></script>
