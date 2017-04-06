@@ -1,7 +1,7 @@
 /**
  * Created by ramroop on 4/5/17.
  */
-import com.codelot.Beans.User;
+import com.codelot.Beans.CodelotUser;
 import com.googlecode.objectify.ObjectifyService;
 
 import javax.servlet.ServletContextEvent;
@@ -9,8 +9,7 @@ import javax.servlet.ServletContextListener;
 
 public class OfyHelper implements  ServletContextListener {
     public void contextInitialized(ServletContextEvent event) {
-        ObjectifyService.register(User.class);
-
+        ObjectifyService.register(CodelotUser.class);
     }
 
     public void contextDestroyed(ServletContextEvent event) {
