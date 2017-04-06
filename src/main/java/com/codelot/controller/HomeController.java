@@ -137,7 +137,7 @@ public class HomeController {
     }
 
     @RequestMapping("/mapSelect")
-    public ModelAndView mapselect() {
+    public ModelAndView mapSelect() {
         ModelAndView model = new ModelAndView("WEB-INF/pages/MapSelect");
         return model;
 
