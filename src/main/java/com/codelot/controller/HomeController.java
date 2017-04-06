@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+
 /**
  * Created by awaeschoudhary on 3/31/17.
  */
@@ -20,19 +25,9 @@ public class HomeController {
 
     @RequestMapping(value = "/")
     public ModelAndView home(){
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
-
         //if there is no logged in user, redirect to homepage
-        if(user == null){
-            ModelAndView model = new ModelAndView("WEB-INF/pages/home");
-            return model;
-        }
-        else{
-            //redirect to map select page if there is a logged in user
-            ModelAndView model = new ModelAndView("WEB-INF/pages/languageSelection");
-            return model;
-        }
+        ModelAndView model = new ModelAndView("WEB-INF/pages/home");
+        return model;
     }
 
     @RequestMapping("/profileCreationPage")
@@ -43,50 +38,149 @@ public class HomeController {
         return model;
     }
 
-    @RequestMapping("/profileCreation1")
-    public ModelAndView profileCreation2(){
-        ModelAndView model = new ModelAndView("WEB-INF/pages/profileCreationPage");
-        return model;
-    }
     @RequestMapping("/profileCreation2")
     public ModelAndView profileCreation2(@RequestParam("fullname") String fullname,
-        @RequestParam("age") int age,
-        @RequestParam("username") String username,
-        @RequestParam("avatar") String avatar) {
+                                         @RequestParam("age") int age,
+                                         @RequestParam("username") String username,
+                                         @RequestParam("avatar") String avatar) {
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();
-            CodelotUser newUser = new CodelotUser(fullname, age, username, avatar);
-            newUser.setUser(user.getEmail(), user.getUserId());
-            ObjectifyService.ofy().save().entity(newUser).now();
+        CodelotUser newUser = new CodelotUser(fullname, age, username, avatar);
+        newUser.setUser(user.getEmail(), user.getUserId());
+        ObjectifyService.ofy().save().entity(newUser).now();
 
-            return languageSelection(username);
-        }
-
-    @RequestMapping(value = "/profile")
-    public String profile(){
-        return "WEB-INF/pages/Profile";
+        return languageSelection(newUser.getId());
     }
 
     @RequestMapping(value = "/signin")
-    public ModelAndView signin(){
+    public ModelAndView signin() {
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+        if (user == null){
+            ModelAndView model = new ModelAndView("redirect:" + userService.createLoginURL("/signin1"));
+            return model;
+        }
+        //ModelAndView model = new ModelAndView("redirect:" + userService.createLoginURL("/signin1"));
+        List<CodelotUser> users = ObjectifyService.ofy()
+                .load()
+                .type(CodelotUser.class)
+                .filter("user_id",user.getUserId())
+                .list();
+        if (user != null && users.size()>=1){
+            return languageSelection(users.get(0).getId());
+        }
+        else if (user != null && users.size()<=0){
+            return signin1();
+        }
+        else{
+            return home();
+        }
+    }
+
+    @RequestMapping(value = "/signin1")
+    public ModelAndView signin1(){
         //redirect to google auth page. On signing in, user should be redirected to mapselect
         UserService userService = UserServiceFactory.getUserService();
-        ModelAndView model = new ModelAndView("redirect:" + userService.createLoginURL("/"));
-        return model;
+        User user = userService.getCurrentUser();
+
+        //check to see if user already in database, if not need to create profile
+        List<CodelotUser> users = ObjectifyService.ofy()
+                .load()
+                .type(CodelotUser.class)
+                .filter("user_id",user.getUserId())
+                .list();
+
+        //Get all the users
+        System.out.println(user.getEmail());
+        System.out.println(user.getUserId());
+        //If user already registered dont direct them
+        if (users.size()>=1) {
+            return languageSelection(users.get(0).getId());
+        }
+        //if user not already registered profile creation page
+        else{
+            ModelAndView model = new ModelAndView("WEB-INF/pages/profileCreationPage");
+            return model;
+        }
     }
 
     @RequestMapping("/signout")
     public ModelAndView signout () {
-            UserService userService = UserServiceFactory.getUserService();
-            ModelAndView model = new ModelAndView("redirect:" + userService.createLogoutURL("/"));
-            return model;
+        UserService userService = UserServiceFactory.getUserService();
+        ModelAndView model = new ModelAndView("redirect:" + userService.createLogoutURL("/"));
+        return model;
     }
 
     @RequestMapping("/languageSelection")
-    public ModelAndView languageSelection(String username) {
-        ModelAndView model = new ModelAndView("WEB-INF/pages/languageSelection");
-
-        //model.addObject("avatarPath", )
+    public ModelAndView languageSelection(Long id) {
+        CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(id).now();
+        ModelAndView model = new ModelAndView("WEB-INF/pages/mapSelect");
+        model.addObject("fullName", c_user.getFullname());
+        model.addObject("username", c_user.getUsername());
+        model.addObject("avatar", c_user.avatarImage);
+        model.addObject("email", c_user.getUser_email());
+        model.addObject("age", c_user.getAge());
         return model;
+    }
+
+    @RequestMapping("/map")
+    public ModelAndView map() {
+        ModelAndView model = new ModelAndView("WEB-INF/pages/map");
+        return model;
+    }
+
+    @RequestMapping("/changeSettings1")
+    public ModelAndView changeSettings1() {
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+
+        List<CodelotUser> users = ObjectifyService.ofy()
+                .load()
+                .type(CodelotUser.class)
+                .filter("user_id",user.getUserId())
+                .list();
+
+        long userId = users.get(0).getId();
+
+        //Load values for user
+        CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(userId).now();
+        ModelAndView model = new ModelAndView("WEB-INF/pages/changeSettings");
+        model.addObject("fullName", c_user.getFullname());
+        model.addObject("username", c_user.getUsername());
+        model.addObject("avatar", c_user.avatarImage);
+        model.addObject("email", c_user.getUser_email());
+        model.addObject("age", c_user.getAge());
+
+        return model;
+    }
+
+    @RequestMapping("/changeSettings2")
+    public ModelAndView changeSettings2(@RequestParam("fullname") String fullname,
+                                        @RequestParam("age") int age,
+                                        @RequestParam("username") String username,
+                                        @RequestParam("avatar") String avatar) {
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+
+        List<CodelotUser> users = ObjectifyService.ofy()
+                .load()
+                .type(CodelotUser.class)
+                .filter("user_id",user.getUserId())
+                .list();
+
+        long userId = users.get(0).getId();
+
+        //Load values for user
+        CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(userId).now();
+
+        // set new values
+        c_user.setAge(age);
+        c_user.setAvatarImage(avatar);
+        c_user.setFullname(fullname);
+        c_user.setUsername(username);
+
+        ObjectifyService.ofy().save().entity(c_user).now();
+
+        return languageSelection(c_user.getId());
     }
 }
