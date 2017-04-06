@@ -1,0 +1,43 @@
+body {
+    background-color: #34363b!important;
+}
+
+.formWrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+}
+
+#createProfile {
+    border: 2px solid #ccc;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 20px;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+    width: 500px;
+}
+
+.formTitle {
+    font-weight: bold;
+}
+
+.createTable {
+    width: 90%;
+}
+
+.createTable td {
+    padding: 5px;
+}
+
+.createTable label {
+    text-align: right;
+    width: 100%;
+}
+
+#avatar-td {
+    text-align: right;
+}
