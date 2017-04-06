@@ -133,5 +133,13 @@ public class HomeController {
         model.addObject("avatar", c_user.avatarImage);
         model.addObject("email", c_user.getUser_email());
         return model;
+
+    }
+
+    @RequestMapping("/mapSelect")
+    public ModelAndView mapSelect() {
+        ModelAndView model = new ModelAndView("WEB-INF/pages/MapSelect");
+        return model;
+
     }
 }
