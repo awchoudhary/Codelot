@@ -84,8 +84,7 @@ public class HomeController {
         //If user already registered dont direct them
         if (users.size()>=1) {
 
-            ModelAndView model = new ModelAndView("WEB-INF/pages/languageSelection");
-            return model;
+            return languageSelection(users.get(0).getId());
         }
         //if user not already registered profile creation page
         else{
@@ -127,18 +126,19 @@ public class HomeController {
     @RequestMapping("/languageSelection")
     public ModelAndView languageSelection(Long id) {
         CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(id).now();
-        ModelAndView model = new ModelAndView("WEB-INF/pages/languageSelection");
+        ModelAndView model = new ModelAndView("WEB-INF/pages/mapSelect");
         model.addObject("fullName", c_user.getFullname());
         model.addObject("username", c_user.getUsername());
         model.addObject("avatar", c_user.avatarImage);
         model.addObject("email", c_user.getUser_email());
+        model.addObject("age", c_user.getAge());
         return model;
 
     }
 
-    @RequestMapping("/mapSelect")
-    public ModelAndView mapSelect() {
-        ModelAndView model = new ModelAndView("WEB-INF/pages/MapSelect");
+    @RequestMapping("/map")
+    public ModelAndView map() {
+        ModelAndView model = new ModelAndView("WEB-INF/pages/map");
         return model;
 
     }

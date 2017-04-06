@@ -117,7 +117,7 @@ p {
     display: table;
 }
 
-.nav-links > a {
+.nav-links a {
     height: 100%;
     padding: 20px;
     font-size: 16px;
@@ -125,7 +125,7 @@ p {
     display: table-cell;
 }
 
-.nav-links > a:hover {
+.nav-links a:hover {
     color: #cccccc;
     cursor: pointer;
     text-decoration: none;
@@ -1122,6 +1122,9 @@ p {
   -ms-flex-align: center;
   align-items: center;
   background-color: #f9bac5;
+}
+
+.wood-bg {
   background-image: -webkit-linear-gradient(270deg, hsla(43, 54%, 61%, .79), hsla(43, 54%, 61%, .79)), url('../images/wood.jpg');
   background-image: linear-gradient(180deg, hsla(43, 54%, 61%, .79), hsla(43, 54%, 61%, .79)), url('../images/wood.jpg');
   background-position: 0px 0px, 0px 0px;
@@ -1781,22 +1784,34 @@ p {
   align-items: stretch;
 }
 
+.content-wrapper {
+
+}
+
 .column-3 {
   height: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
   border: 2px solid #cbcbcb;
   background-image: -webkit-linear-gradient(270deg, #34363b, #34363b);
   background-image: linear-gradient(180deg, #34363b, #34363b);
   font-style: italic;
   text-align: center;
+  display: table-cell;
+  width: 19.5%;
 }
 
 .column-4 {
-  display: inline-block;
+  display: table-cell;
   border: 2px solid #cbcbcb;
-  background-image: -webkit-linear-gradient(270deg, hsla(43, 54%, 61%, .79), hsla(43, 54%, 61%, .79));
-  background-image: linear-gradient(180deg, hsla(43, 54%, 61%, .79), hsla(43, 54%, 61%, .79));
+  width: 80%;
+  text-align: center;
+  padding: 20px;
+}
+
+.content-row {
+    text-align: center;
+    display: table;
+    margin-top: 70px;
 }
 
 .image-2 {
@@ -1816,16 +1831,9 @@ p {
   display: block;
 }
 
-.column-5 {
-  text-align: center;
-}
-
-.column-6 {
-  text-align: center;
-}
-
-.column-7 {
-  text-align: center;
+.mapWrapper {
+    text-align: center;
+    display: inline-block;
 }
 
 .image-3 {

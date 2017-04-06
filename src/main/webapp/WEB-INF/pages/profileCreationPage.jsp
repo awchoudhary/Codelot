@@ -47,7 +47,7 @@
 
             </td>
             </tr>
-            <tr><td><input type="submit" value="Add"/></td></tr>
+            <tr><td><input type="submit" value="Create"/></td></tr>
 
         </table>
     </form>
