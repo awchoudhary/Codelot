@@ -3,90 +3,92 @@
     <head>
         <title>Codelot</title>
         <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
+
         <link rel="stylesheet" type="text/css" href="../stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 
         <link rel="icon" type="image/png" href="../images/CodelotShield.png" />
         <script src="../scripts/jquery-3.2.0.min.js"></script>
+        <script src="../scripts/bootstrap.min.js"></script>
+
 
         <script>
+            $(function() {
 
+            });
         </script>
 
     </head>
     <body>
-      <form method="post">
-        <button title="Sign Out" type="submit" onclick="form.action='/signout';">Sign Out</button>
-      </form>
       <nav class="navbar nav-main navbar-fixed-top">
         <div class="nav-container">
             <a class="logo" href="#">
                 <img sizes="131px" src="../images/CodelotLogo.png" width="131">
             </a>
             <div class="nav-links">
-                <a>Home</a>
-                <a>FAQ</a>
+                <a href="/">Home</a>
+                <a role="button" data-toggle="modal" data-target="#faqModal">FAQ</a>
                 <a>Settings</a>
-                <a>Signout</a>
+                <form method="post">
+                    <a onclick="form.action='/signout'">Signout</a>
+                </form>
             </div>
 
 
         </div>
       </nav>
-        <div class="hero-section">
-            <div class="hero-wrap">
-              <div class="hero-left">
-                <h1 class="heading-1"><strong>Learn to code</strong></h1>
-                <p class="subhead-1">Info about website goes here and it will be an informative paragraph that gives the user an idea of what they're getting themselves into when clicking the play button.</p><a class="button w-button"><strong>Play</strong></a>
+      <div class="content-wrapper">
+        <div class="content-row">
+          <div class="column-4 wood-bg w-col w-col-10">
+            <h1 class="heading-6"><strong>Choose a language</strong></h1>
+            <div class="row w-row">
+              <div class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
+                <div class="caption-1">Java-Ville</div>
               </div>
-              <div class="hero-right"><img src="images/RPGScreenshot.png" width="331">
-                <p class="caption-1">Replaced with screenshot of application</p>
+              <div class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
+                <div class="caption-1">JavaScript-Cove</div>
               </div>
-            </div>
-          </div>
-          <div class="logos-section">
-            <div>
-              <p class="paragraph-5">Student information can go down here, along with contact and social media.</p>
-            </div>
-          </div>
-          <div class="class-section">
-            <div class="a wrap-2">
-              <div class="left-1">
-                <h2 class="heading-2">What is Codelot?</h2>
-                <p class="paragraph-2">Brief description of Codelot. Here the user can find information about the Codelot experience and what we offer. This is going to be in paragraph form.</p>
-              </div>
-              <div class="right-1"><img class="screenshot" src="images/RPGScreenshot.png" width="300">
-                <p class="caption-2">Image from Codelot.</p>
+              <div class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
+                <div class="caption-1">Python-Valley</div>
               </div>
             </div>
-            <div class="b wrap-2">
-              <div class="left-2"><img class="screenshot" src="images/RPGScreenshot.png" width="300">
-                <p class="caption-3">Image from Codelot.</p>
+            <div class="div-block"><a class="button w-button"><strong>Enter</strong></a>
+            </div>
+          </div>
+          <div class="column-3 w-col w-col-2">
+            <div class="buttonblock">
+              <div class="text-block"><strong>About Java</strong>
               </div>
-              <div class="right-2">
-                <h2 class="heading-2">Virtual Coding Kingdom</h2>
-                <p class="paragraph-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus aliquet neque, sit amet pretium velit mattis ac. Aenean laoreet urna ac ex tempus, vitae bibendum enim consequat. Nulla facilisi.&nbsp;</p>
+              <p class="paragraph-6">Here goes information about each languages they are selected.
+                <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="footer-bottom">
+          <div class="footer-bottom-wrap">
+            <div class="legal">Information about the group and other footer content. Design made using Webflow.</div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+          <div class="modal fade" id="faqModal" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">FAQ</h4>
+                </div>
+                <div class="modal-body">
+                  <p>FAQ content goes here</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
               </div>
+
             </div>
           </div>
-          <div class="section-3">
-            <div class="wrap-3">
-              <h2 class="heading-5">Frequently Asked Questions</h2>
-              <ul>
-                <li>Question 1 - click to expand</li>
-                <li>Question 2</li>
-                <li>Question 3</li>
-              </ul>
-            </div>
-          </div>
-          <div class="footer-bottom">
-            <div class="footer-bottom-wrap">
-              <div class="legal">Information about the group and other footer content. Design made using Webflow.</div>
-            </div>
-          </div>
-          <div class="w-embed">
-            <style>
-              .xxx { background: rgba(0,0,0,0.05); }
-            </style>
-          </div>
-      </body>
+    </body>
 </html>
