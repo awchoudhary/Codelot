@@ -17,27 +17,69 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
-    @RequestMapping("/")
+
+    @RequestMapping(value = "/")
     public ModelAndView home(){
-        ModelAndView model = new ModelAndView("WEB-INF/pages/home");
-        return model;
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+
+        //if there is no logged in user, redirect to homepage
+        if(user == null){
+            ModelAndView model = new ModelAndView("WEB-INF/pages/home");
+            return model;
+        }
+        else{
+            //redirect to map select page if there is a logged in user
+            ModelAndView model = new ModelAndView("WEB-INF/pages/languageSelection");
+            return model;
+        }
     }
 
     @RequestMapping("/profileCreationPage")
     public ModelAndView profileCreationPage() {
-        ModelAndView model = new ModelAndView("WEB-INF/pages/profileCreationPage");
+        //redirect to google auth page. On signing up, user is redirected to profile page
+        UserService userService = UserServiceFactory.getUserService();
+        ModelAndView model = new ModelAndView("redirect:" + userService.createLoginURL("/profileCreation1"));
         return model;
     }
 
-    @RequestMapping("/profileCreation")
-    public ModelAndView profileCreation(@RequestParam("fullname") String fullname,
-                                        @RequestParam("age") int age,
-                                        @RequestParam("username") String username,
-                                        @RequestParam("avatar") String avatar) {
-        CodelotUser newUser = new CodelotUser(fullname, age, username, avatar);
-        ObjectifyService.ofy().save().entity(newUser).now();
+    @RequestMapping("/profileCreation1")
+    public ModelAndView profileCreation2(){
+        ModelAndView model = new ModelAndView("WEB-INF/pages/profileCreationPage");
+        return model;
+    }
+    @RequestMapping("/profileCreation2")
+    public ModelAndView profileCreation2(@RequestParam("fullname") String fullname,
+        @RequestParam("age") int age,
+        @RequestParam("username") String username,
+        @RequestParam("avatar") String avatar) {
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+            CodelotUser newUser = new CodelotUser(fullname, age, username, avatar);
+            newUser.setUser(user.getEmail(), user.getUserId());
+            ObjectifyService.ofy().save().entity(newUser).now();
 
-        return languageSelection(username);
+            return languageSelection(username);
+        }
+
+    @RequestMapping(value = "/profile")
+    public String profile(){
+        return "WEB-INF/pages/Profile";
+    }
+
+    @RequestMapping(value = "/signin")
+    public ModelAndView signin(){
+        //redirect to google auth page. On signing in, user should be redirected to mapselect
+        UserService userService = UserServiceFactory.getUserService();
+        ModelAndView model = new ModelAndView("redirect:" + userService.createLoginURL("/"));
+        return model;
+    }
+
+    @RequestMapping("/signout")
+    public ModelAndView signout () {
+            UserService userService = UserServiceFactory.getUserService();
+            ModelAndView model = new ModelAndView("redirect:" + userService.createLogoutURL("/"));
+            return model;
     }
 
     @RequestMapping("/languageSelection")

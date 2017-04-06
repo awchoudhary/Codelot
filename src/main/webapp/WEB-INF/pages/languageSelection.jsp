@@ -12,6 +12,9 @@
 
 </head>
 <body>
+<form method="post">
+    <button title="Sign Out" type="submit" onclick="form.action='/signout';">Sign Out</button>
+</form>
 <script type="text/javascript" src="../../scripts/phaser.min.js"></script>
 <script type="text/javascript" src="../../scripts/main.js"></script>
 

@@ -25,13 +25,9 @@ public class CodelotUser {
         this.avatarImage = avatarImage;
     }
 
-    public void setUser (String fullname, int age, String username, String avatarImage) {//String email, String user_id)
-        //this.email = user_email --> will be gmail
-        //this.user_id = user.id
-        this.fullname = fullname;
-        this.age = age;
-        this.username = username;
-        this.avatarImage = avatarImage;
+    public void setUser (String email, String user_id) {
+        this.user_email = user_email;
+        this.user_id = user_id;
     }
 
     public Long getId() {

@@ -22,7 +22,7 @@
 
     </head>
     <body>
-    <nav class="navbar nav-main navbar-fixed-top">
+      <nav class="navbar nav-main navbar-fixed-top">
         <div class="nav-container">
             <a class="logo" href="#">
                 <img sizes="131px" src="../images/CodelotLogo.png" width="131">
@@ -31,33 +31,23 @@
                 <a>Home</a>
                 <a>About</a>
                 <a>FAQ</a>
-                <form method="post">
-                    <button title="Profile Creation"
-                            type="submit" value="(profileCreationPage)"
-                            onclick="form.action='/profileCreationPage';">
-                        <a>Sign Up</a>
-                    </button>
-                    <a>Log In/Log Out</a>
-                </form>
             </div>
         </div>
     </nav>
 
-    <div id="Home" class="hero-section">
-        <div class="hero-wrap">
-            <div class="hero-left">
-                <h1 class="heading-1"><strong>Learn to code</strong></h1>
-                <p class="subhead-1">Info about website goes here and it will be an informative paragraph that gives the user an idea of what they are getting themselves into when clicking the play button.</p>
-                <form method="post">
-                    <button class="button w-button" title="Language Selection"
-                            type="submit" value="(languageselection)" onclick="form.action='/languageSelection';">Play</button>
-                </form>
-            </div>
-            <div class="hero-right"><img sizes="(max-width: 479px) 80vw, (max-width: 767px) 69vw, (max-width: 991px) 40vw, 331px" src="images/RPGScreenshot.png" srcset="images/RPGScreenshot-p-500x380.png 500w, images/RPGScreenshot.png 646w" width="331">
-                <p class="caption-1">Replaced with screenshot of application</p>
-            </div>
-        </div>
-    </div>
+      <div id="Home" class="section hero-section">
+          <div class="hero-wrap">
+              <div class="hero-left">
+                  <h1 class="heading-1"><strong>Learn to code</strong></h1>
+                  <p class="subhead-1">Info about website goes here and it will be an informative paragraph that gives the user an idea of what they are getting themselves into when clicking the play button.</p>
+                  <a class="button w-button" onclick="location.href='/profileCreationPage'"><strong>Sign Up</strong></a>
+                  <a class="button w-button" onclick="location.href='/signin'"><strong>Sign In</strong></a>
+              </div>
+              <div class="hero-right"><img sizes="(max-width: 479px) 80vw, (max-width: 767px) 69vw, (max-width: 991px) 40vw, 331px" src="images/RPGScreenshot.png" srcset="images/RPGScreenshot-p-500x380.png 500w, images/RPGScreenshot.png 646w" width="331">
+                  <p class="caption-1">Replaced with screenshot of application</p>
+              </div>
+          </div>
+      </div>
     <div class="logos-section">
         <div>
             <p class="paragraph-5">Student information can go down here, along with contact and social media.</p>

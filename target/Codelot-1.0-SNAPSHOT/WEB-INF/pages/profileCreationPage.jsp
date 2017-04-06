@@ -13,7 +13,7 @@
 <body>
 <h2>Create Profile</h2>
     <div id="createProfile">
-        <form action="/profileCreation" method="post">
+        <form action="/profileCreation2" method="post">
             <table>
                 <tr>
                     <td>Full Name</td>
