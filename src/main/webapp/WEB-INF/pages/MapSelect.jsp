@@ -13,7 +13,9 @@
 
         <script>
             $(function() {
-
+                $("#signoutLink").click(function() {
+                    $("#submitSignout").click();
+                });
             });
         </script>
 
@@ -25,12 +27,12 @@
                 <img sizes="131px" src="../images/CodelotLogo.png" width="131">
             </a>
             <div class="nav-links">
-                <a href="/">Home</a>
                 <a role="button" data-toggle="modal" data-target="#faqModal">FAQ</a>
                 <a>Settings</a>
-                <form method="post">
+                <form id="signoutForm" method="post">
                     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-                    <button class="btn btn-link" title="Sign Out" type="submit" onclick="form.action='/signout';">Signout</button>
+                    <a id="signoutLink">Signout</a>
+                    <button style="display:none" id="submitSignout" title="Sign Out" type="submit" onclick="form.action='/signout';">Signout</button>
                 </form>
             </div>
         </div>

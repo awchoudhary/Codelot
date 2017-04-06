@@ -117,7 +117,7 @@ p {
     display: table;
 }
 
-.nav-links a {
+.nav-links a, nav-links button {
     height: 100%;
     padding: 20px;
     font-size: 16px;
@@ -125,7 +125,7 @@ p {
     display: table-cell;
 }
 
-.nav-links a:hover {
+.nav-links a:hover, nav-links button:hover {
     color: #cccccc;
     cursor: pointer;
     text-decoration: none;
@@ -1811,6 +1811,7 @@ p {
 .content-row {
     text-align: center;
     display: table;
+    width: 100%;
     margin-top: 70px;
 }
 

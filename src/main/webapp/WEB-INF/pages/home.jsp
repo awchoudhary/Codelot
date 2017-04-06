@@ -40,8 +40,7 @@
           <div class="hero-left">
             <h1 class="heading-1"><strong>Learn to code</strong></h1>
             <p class="subhead-1">Info about website goes here and it will be an informative paragraph that gives the user an idea of what they are getting themselves into when clicking the play button.</p>
-            <a class="button w-button" onclick="location.href='/profileCreationPage'"><strong>Sign Up</strong></a>
-            <a class="button w-button" onclick="location.href='/signin'"><strong>Sign In</strong></a>
+            <a class="button w-button" onclick="location.href='/signin'"><strong>Play</strong></a>
           </div>
         </div>
       </div>
