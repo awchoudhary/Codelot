@@ -9,28 +9,34 @@
 <html>
 <head>
     <title>Create Profile</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+
+    <link rel="icon" type="image/png" href="../images/CodelotShield.png" />
+    <script src="../scripts/jquery-3.2.0.min.js"></script>
 
 </head>
+
 <body>
 <h2>Create Profile</h2>
 <div id="createProfile">
     <form action="/profileCreation2" method="post">
-        <table>
+        <table class="form-group">
             <tr>
-                <td>Full Name</td>
-                <td><input type="text" name="fullname"/></td>
+                <td><label for="name">Full Name:</label></td>
+                <td><input type="text" class="form-control" id="name" name="fullname"/></td>
             </tr>
             <tr>
-                <td>Age</td>
-                <td><input type="number" name="age"/></td>
+                <td><label for="age">Age:</label></td>
+                <td><input type="number" class="form-control" id="age" name="age"/></td>
             </tr>
             <tr>
-                <td>Username</td>
-                <td><input type="text" name="username"/></td>
+                <td><label for="username">Username:</label></td>
+                <td><input type="text" id="username" name="username"/></td>
             </tr>
-            <td>Avatar</td>
+            <td><label for="avtr">Avatar:</label></td>
             <td>
-                <select name="avatar" id="avtr" onchange="switchImage();" >
+                <select class="form-control" name="avatar" id="avtr" onchange="switchImage();" >
                     <option  value="../../images/duck.png">Duck</option>
                     <option  value="../../images/clown.png">Clown</option>
                     <option  value="../../images/wabbit.png">Rabbit</option>
