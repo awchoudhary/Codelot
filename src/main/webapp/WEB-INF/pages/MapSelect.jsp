@@ -29,11 +29,10 @@
                 <a role="button" data-toggle="modal" data-target="#faqModal">FAQ</a>
                 <a>Settings</a>
                 <form method="post">
-                    <a onclick="form.action='/signout'">Signout</a>
+                    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+                    <button class="btn btn-link" title="Sign Out" type="submit" onclick="form.action='/signout';">Signout</button>
                 </form>
             </div>
-
-
         </div>
       </nav>
       <div class="content-wrapper">
@@ -51,15 +50,22 @@
                 <div class="caption-1">Python-Valley</div>
               </div>
             </div>
-            <div class="div-block"><a class="button w-button"><strong>Enter</strong></a>
+            <div class="div-block">
+                <form method="post">
+                <button title="Map" type="submit" class="button w-button" onclick="form.action='/map';">
+                    <strong>Enter</strong></button>
+                </form>
             </div>
           </div>
           <div class="column-3 w-col w-col-2">
             <div class="buttonblock">
-              <div class="text-block"><strong>About Java</strong>
-              </div>
-              <p class="paragraph-6">Here goes information about each languages they are selected.
-                <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+                <div class="text-block">
+                    <p><strong>${username}</strong></p>
+                    <p><img src="${avatar}" height="80px" width="65px"></p>
+                    <p>${fullName}</p>
+                    <p>${age}</p>
+                    <p>${email}</p>
+                  </div>
             </div>
           </div>
         </div>
