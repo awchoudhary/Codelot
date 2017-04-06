@@ -30,8 +30,8 @@
                     <td>Avatar</td>
                     <td>
                         <select name="avatar">
-                            <option style="background-image:url(../../images/duck.png);" value="avatar1"></option>
-                            <option style="background-image:url(../../images/clown.png);" value="avatar2"></option>
+                            <option value="../../images/duck.png">Duck</option>
+                            <option value="../../images/clown.png">Clown</option>
                         </select>
                     </td>
                 </tr>

@@ -43,7 +43,7 @@
                   <a class="button w-button" onclick="location.href='/profileCreationPage'"><strong>Sign Up</strong></a>
                   <a class="button w-button" onclick="location.href='/signin'"><strong>Sign In</strong></a>
               </div>
-              <div class="hero-right"><img sizes="(max-width: 479px) 80vw, (max-width: 767px) 69vw, (max-width: 991px) 40vw, 331px" src="images/RPGScreenshot.png" srcset="images/RPGScreenshot-p-500x380.png 500w, images/RPGScreenshot.png 646w" width="331">
+              <div class="hero-right"><img sizes="(max-width: 479px) 80vw, (max-width: 767px) 69vw, (max-width: 991px) 40vw, 331px" src="../../images/RPGScreenshot-p-500x380.png" srcset="images/RPGScreenshot-p-500x380.png 500w, images/RPGScreenshot.png 646w" width="331">
                   <p class="caption-1">Replaced with screenshot of application</p>
               </div>
           </div>
