@@ -43,6 +43,7 @@
             <a class="button w-button" onclick="location.href='/profileCreationPage'"><strong>Sign Up</strong></a>
             <a class="button w-button" onclick="location.href='/signin'"><strong>Sign In</strong></a>
           </div>
+        </div>
       </div>
     <div class="logos-section">
         <div>

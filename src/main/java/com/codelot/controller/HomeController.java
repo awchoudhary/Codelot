@@ -127,11 +127,18 @@ public class HomeController {
     @RequestMapping("/languageSelection")
     public ModelAndView languageSelection(Long id) {
         CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(id).now();
-        ModelAndView model = new ModelAndView("WEB-INF/pages/MapSelect");
+        ModelAndView model = new ModelAndView("WEB-INF/pages/languageSelection");
         model.addObject("fullName", c_user.getFullname());
         model.addObject("username", c_user.getUsername());
         model.addObject("avatar", c_user.avatarImage);
         model.addObject("email", c_user.getUser_email());
+        return model;
+
+    }
+
+    @RequestMapping("/mapSelect")
+    public ModelAndView mapselect() {
+        ModelAndView model = new ModelAndView("WEB-INF/pages/MapSelect");
         return model;
 
     }
