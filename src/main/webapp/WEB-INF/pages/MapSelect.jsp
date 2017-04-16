@@ -27,6 +27,8 @@
 
 </head>
 <body>
+
+<%-- Navigation Bar --%>
 <nav class="navbar nav-main navbar-fixed-top">
     <div class="nav-container">
         <a class="logo" href="#">
@@ -49,8 +51,12 @@
         </div>
     </div>
 </nav>
+
+<%-- Main Content --%>
 <div class="content-wrapper">
     <div class="content-row">
+
+        <%-- Map Selection Pane --%>
         <div class="column-4 wood-bg w-col w-col-10">
             <h1 class="heading-6"><strong>Choose a language</strong></h1>
             <div class="row w-row">
@@ -71,6 +77,8 @@
                 </form>
             </div>
         </div>
+
+        <%-- Avatar Information --%>
         <div class="column-3 w-col w-col-2">
             <div class="buttonblock">
                 <div class="text-block">
