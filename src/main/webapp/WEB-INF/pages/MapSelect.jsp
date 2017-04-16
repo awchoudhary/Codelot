@@ -12,6 +12,21 @@
 
 
     <script>
+        var languages = {
+            java        :   {
+                                name : "Java",
+                                desc : "Java Description"
+                            },
+            javascript  :   {
+                                name : "JavaScript",
+                                desc : "JavaScript Description"
+                            },
+            python      :   {
+                                name : "Python",
+                                desc : "Python Description"
+                            }
+        };
+
         $(function() {
             $("#signoutLink").click(function() {
                 $("#submitSignout").click();
@@ -22,11 +37,47 @@
             $("#homeLink").click(function() {
                 $("#submitHome").click();
             });
+
+            $(".mapWrapper").click(selectMap);
         });
+
+        function selectMap() {
+            var selected = $(this);
+
+            if (selected.hasClass("selectedMap")) {
+                selected.removeClass("selectedMap");
+                setAbout();
+                return;
+            }
+
+            $(".mapWrapper").each(function() {
+                $(this).removeClass("selectedMap");
+            });
+
+            selected.addClass("selectedMap");
+            var language = languages[selected.attr("id")];
+
+            setAbout(language.name, language.desc);
+        }
+
+        function setAbout(name, desc) {
+            if(!name)
+                $("#aboutLanguage").text("");
+            else
+                $("#aboutLanguage").text("About " + name);
+
+
+            if(!desc)
+                $("#languageDescription").text("");
+            else
+                $("#languageDescription").text(desc);
+        }
     </script>
 
 </head>
 <body>
+
+<%-- Navigation Bar --%>
 <nav class="navbar nav-main navbar-fixed-top">
     <div class="nav-container">
         <a class="logo" href="#">
@@ -49,18 +100,22 @@
         </div>
     </div>
 </nav>
+
+<%-- Main Content --%>
 <div class="content-wrapper">
     <div class="content-row">
+
+        <%-- Map Selection Pane --%>
         <div class="column-4 wood-bg w-col w-col-10">
             <h1 class="heading-6"><strong>Choose a language</strong></h1>
             <div class="row w-row">
-                <div class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
+                <div id="java" class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
                     <div class="caption-1">Java-Ville</div>
                 </div>
-                <div class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
+                <div id="javascript" class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
                     <div class="caption-1">JavaScript-Cove</div>
                 </div>
-                <div class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
+                <div id="python" class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
                     <div class="caption-1">Python-Valley</div>
                 </div>
             </div>
@@ -71,6 +126,8 @@
                 </form>
             </div>
         </div>
+
+        <%-- Avatar Information --%>
         <div class="column-3 w-col w-col-2">
             <div class="buttonblock">
                 <div class="text-block">
@@ -79,6 +136,13 @@
                     <p>${fullName}</p>
                     <p>${age}</p>
                     <p>${email}</p>
+                </div>
+            </div>
+            <hr />
+            <div class="buttonblock">
+                <div class="text-block">
+                    <h2 id="aboutLanguage"></h2>
+                    <p id="languageDescription"></p>
                 </div>
             </div>
         </div>
