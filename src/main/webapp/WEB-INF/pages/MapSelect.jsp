@@ -22,7 +22,24 @@
             $("#homeLink").click(function() {
                 $("#submitHome").click();
             });
+
+            $(".mapWrapper").click(selectMap);
         });
+
+        function selectMap() {
+            var selected = $(this);
+
+            if (selected.hasClass("selectedMap")) {
+                selected.removeClass("selectedMap");
+                return;
+            }
+
+            $(".mapWrapper").each(function() {
+                $(this).removeClass("selectedMap");
+            });
+
+            selected.addClass("selectedMap");
+        }
     </script>
 
 </head>
@@ -60,13 +77,13 @@
         <div class="column-4 wood-bg w-col w-col-10">
             <h1 class="heading-6"><strong>Choose a language</strong></h1>
             <div class="row w-row">
-                <div class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
+                <div id="java" class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
                     <div class="caption-1">Java-Ville</div>
                 </div>
-                <div class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
+                <div id="javascript" class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
                     <div class="caption-1">JavaScript-Cove</div>
                 </div>
-                <div class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
+                <div id="python" class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
                     <div class="caption-1">Python-Valley</div>
                 </div>
             </div>
