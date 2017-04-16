@@ -34,7 +34,7 @@
             $("#settingsLink").click(function() {
                 $("#submitSettings").click();
             });
-            $("#homeLink").click(function() {
+            $("#homeLink, #logolink").click(function() {
                 $("#submitHome").click();
             });
 
@@ -80,7 +80,7 @@
 <%-- Navigation Bar --%>
 <nav class="navbar nav-main navbar-fixed-top">
     <div class="nav-container">
-        <a class="logo" href="#">
+        <a id="logolink" class="logo" href="#">
             <img sizes="131px" src="../images/CodelotLogo.png" width="131">
         </a>
         <div class="nav-links">
