@@ -6,9 +6,9 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.ObjectifyService;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -188,12 +188,12 @@ public class HomeController {
         return "WEB-INF/pages/TaskPage";
     }
 
-    @RequestMapping("/execute")
-    public ModelAndView execute(@RequestParam("source") String source) throws IOException {
-        ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
+    @RequestMapping(value = "/execute", method = RequestMethod.POST, produces="application/json")
+    public @ResponseBody String execute(@RequestBody String source) throws IOException {
+        //parse parameter to get source
+        JSONObject obj = new JSONObject(source);
+        String sourceText = obj.getString("source");
         CompilerService service = new CompilerService();
-        String response = service.execute(source);
-        model.addObject("response", response);
-        return model;
+        return service.execute(sourceText);
     }
 }

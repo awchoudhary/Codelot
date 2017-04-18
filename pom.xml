@@ -71,6 +71,13 @@
             <artifactId>spring-webmvc</artifactId>
             <version>4.1.4.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160810</version>
+        </dependency>
+
+
         <!-- [START Objectify_Dependencies] -->
         <dependency>
             <groupId>com.google.guava</groupId>
