@@ -1,18 +1,17 @@
 package com.codelot.controller;
 
 import com.codelot.Beans.CodelotUser;
+import com.codelot.services.CompilerService;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -182,5 +181,19 @@ public class HomeController {
         ObjectifyService.ofy().save().entity(c_user).now();
 
         return languageSelection(c_user.getId());
+    }
+
+    @RequestMapping("/TaskPage")
+    public String taskPage(){
+        return "WEB-INF/pages/TaskPage";
+    }
+
+    @RequestMapping("/execute")
+    public ModelAndView execute(@RequestParam("source") String source) throws IOException {
+        ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
+        CompilerService service = new CompilerService();
+        String response = service.execute(source);
+        model.addObject("response", response);
+        return model;
     }
 }

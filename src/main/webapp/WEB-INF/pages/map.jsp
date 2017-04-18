@@ -17,6 +17,9 @@
         <button style="padding: 10px; color: black" title="Home" type="submit" onclick="form.action='/';">Go to Home</button>
     </form>
     </p>
+    <form method="post">
+        <button style="padding: 10px; color: black" title="Task" type="submit" onclick="form.action='/TaskPage';">Task</button>
+    </form>
     <script type="text/javascript" src="../../scripts/phaser.min.js"></script>
     <script type="text/javascript" src="../../scripts/main.js"></script>
 </div>

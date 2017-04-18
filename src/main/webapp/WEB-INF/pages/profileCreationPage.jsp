@@ -44,7 +44,7 @@
                     <select class="form-control" name="avatar" id="avtr" onchange="switchImage();" >
                         <option  value="../../images/duck.png">Duck</option>
                         <option  value="../../images/clown.png">Clown</option>
-                        <option  value="../../images/wabbit.png">Rabbit</option>
+                        <option  value="../../images/Magician.gif">Rabbit</option>
                     </select>
                 </td>
                 </tr>
