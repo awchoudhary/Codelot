@@ -124,7 +124,24 @@ public class HomeController {
 
     @RequestMapping("/map")
     public ModelAndView map() {
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+
+        //check to see if user already in database, if not need to create profile
+        List<CodelotUser> users = ObjectifyService.ofy()
+                .load()
+                .type(CodelotUser.class)
+                .filter("user_id",user.getUserId())
+                .list();
+        long userid = users.get(0).getId();
+
+        CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(userid).now();
         ModelAndView model = new ModelAndView("WEB-INF/pages/map");
+        model.addObject("fullName", c_user.getFullname());
+        model.addObject("username", c_user.getUsername());
+        model.addObject("avatar", c_user.avatarImage);
+        model.addObject("email", c_user.getUser_email());
+        model.addObject("age", c_user.getAge());
         return model;
     }
 
