@@ -1,6 +1,8 @@
 package com.codelot.controller;
 
+import com.codelot.Beans.Building;
 import com.codelot.Beans.CodelotUser;
+import com.codelot.Beans.Floor;
 import com.codelot.services.CompilerService;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -51,10 +55,31 @@ public class HomeController {
         return languageSelection(newUser.getId());
     }
 
+    public User getGoogleUser(){
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+        return user;
+    }
+
+    public CodelotUser getCodelotUser(){
+        User user = getGoogleUser();
+        //check to see if user already in database, if not need to create profile
+        List<CodelotUser> users = ObjectifyService.ofy()
+                .load()
+                .type(CodelotUser.class)
+                .filter("user_id",user.getUserId())
+                .list();
+        long userid = users.get(0).getId();
+
+        CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(userid).now();
+        return c_user;
+    }
+
     @RequestMapping(value = "/signin")
     public ModelAndView signin() {
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();
+
         if (user == null){
             ModelAndView model = new ModelAndView("redirect:" + userService.createLoginURL("/signin1"));
             return model;
@@ -79,8 +104,7 @@ public class HomeController {
     @RequestMapping(value = "/signin1")
     public ModelAndView signin1(){
         //redirect to google auth page. On signing in, user should be redirected to mapselect
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
+        User user = getGoogleUser();
 
         //check to see if user already in database, if not need to create profile
         List<CodelotUser> users = ObjectifyService.ofy()
@@ -124,18 +148,8 @@ public class HomeController {
 
     @RequestMapping("/map")
     public ModelAndView map() {
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
+        CodelotUser c_user = getCodelotUser();
 
-        //check to see if user already in database, if not need to create profile
-        List<CodelotUser> users = ObjectifyService.ofy()
-                .load()
-                .type(CodelotUser.class)
-                .filter("user_id",user.getUserId())
-                .list();
-        long userid = users.get(0).getId();
-
-        CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(userid).now();
         ModelAndView model = new ModelAndView("WEB-INF/pages/map");
         model.addObject("fullName", c_user.getFullname());
         model.addObject("username", c_user.getUsername());
@@ -147,19 +161,9 @@ public class HomeController {
 
     @RequestMapping("/changeSettings1")
     public ModelAndView changeSettings1() {
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
-
-        List<CodelotUser> users = ObjectifyService.ofy()
-                .load()
-                .type(CodelotUser.class)
-                .filter("user_id",user.getUserId())
-                .list();
-
-        long userId = users.get(0).getId();
-
         //Load values for user
-        CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(userId).now();
+        CodelotUser c_user = getCodelotUser();
+
         ModelAndView model = new ModelAndView("WEB-INF/pages/changeSettings");
         model.addObject("fullName", c_user.getFullname());
         model.addObject("username", c_user.getUsername());
@@ -175,19 +179,8 @@ public class HomeController {
                                         @RequestParam("age") int age,
                                         @RequestParam("username") String username,
                                         @RequestParam("avatar") String avatar) {
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
-
-        List<CodelotUser> users = ObjectifyService.ofy()
-                .load()
-                .type(CodelotUser.class)
-                .filter("user_id",user.getUserId())
-                .list();
-
-        long userId = users.get(0).getId();
-
         //Load values for user
-        CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(userId).now();
+        CodelotUser c_user = getCodelotUser();
 
         // set new values
         c_user.setAge(age);
@@ -211,6 +204,60 @@ public class HomeController {
         JSONObject obj = new JSONObject(source);
         String sourceText = obj.getString("source");
         CompilerService service = new CompilerService();
+
         return service.execute(sourceText);
+    }
+
+    @RequestMapping("/getJavaTasksPage")
+    public ModelAndView javaTasks() {
+        //Load values for user
+        CodelotUser c_user = getCodelotUser();
+        List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
+        int currFlr = c_user.getJavaCodelot().getCurrentBuilding();
+        String task = floors.get(currFlr).getTaskDescription();
+        ArrayList<String> hints = floors.get(currFlr).getHints();
+        List<String> attempts = new ArrayList<>(floors.get(currFlr).getAttempts());
+
+        ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
+        model.addObject("floors", floors);
+        model.addObject("taskDesc", task);
+        model.addObject("hints", hints);
+        model.addObject("attempts", attempts);
+
+        return model;
+    }
+
+    @RequestMapping("/getJavaTask")
+    public ModelAndView javaTasks(@RequestParam("floorNum") int floorNum) {
+        //Load values for user
+        CodelotUser c_user = getCodelotUser();
+        List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
+        String warning = "";
+        String task = floors.get(floorNum).getTaskDescription();
+        ArrayList<String> hints = floors.get(floorNum).getHints();
+        List<String> attempts = new ArrayList<>(floors.get(floorNum).getAttempts());
+
+        System.out.println(floorNum+": "+floors.get(floorNum).isLocked());
+
+        if (floors.get(floorNum).isLocked() == true) {
+            warning = "Floor " + (floorNum+1) + " is locked. Please pass through all lower floors to access this one.";
+            int currFlr = c_user.getJavaCodelot().getCurrentBuilding();
+            task = floors.get(currFlr).getTaskDescription();
+            hints = floors.get(currFlr).getHints();
+            attempts = new ArrayList<>(floors.get(currFlr).getAttempts());
+        }
+
+        for (String hint: hints) {
+            System.out.println(hint);
+        }
+
+        ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
+        model.addObject("floors", floors);
+        model.addObject("taskDesc", task);
+        model.addObject("warning", warning);
+        model.addObject("hints", hints);
+        model.addObject("attempts", attempts);
+
+        return model;
     }
 }

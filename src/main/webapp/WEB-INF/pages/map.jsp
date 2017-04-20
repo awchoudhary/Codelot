@@ -67,7 +67,7 @@
                         onclick="form.action='/signout';">Signout</button>
                 <a id="taskLink">Task</a>
                 <button style="display:none" id="submitTask" title="Task" type="submit"
-                    onclick="form.action='/TaskPage';">Task</button>
+                    onclick="form.action='/getJavaTasksPage';">Task</button>
             </form>
         </div>
     </div>
