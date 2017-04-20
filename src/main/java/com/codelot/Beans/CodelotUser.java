@@ -13,6 +13,9 @@ public class CodelotUser {
     public int age;
     public String username;
     public String avatarImage;
+    private JavaCodelot javaCodelot;
+    private PythonCodelot pythonCodelot;
+    private JavaScriptCodelot javaScriptCodelot;
 
     public CodelotUser() {}
 
@@ -23,6 +26,9 @@ public class CodelotUser {
         this.age = age;
         this.username = username;
         this.avatarImage = avatarImage;
+        javaCodelot = new JavaCodelot();
+        pythonCodelot = new PythonCodelot();
+        javaScriptCodelot = new JavaScriptCodelot();
     }
 
     public void setUser (String email, String user_id) {
@@ -72,5 +78,17 @@ public class CodelotUser {
 
     public void setAvatarImage(String avatarImage) {
         this.avatarImage = avatarImage;
+    }
+
+    public JavaCodelot getJavaCodelot() {
+        return javaCodelot;
+    }
+
+    public PythonCodelot getPythonCodelot() {
+        return pythonCodelot;
+    }
+
+    public JavaScriptCodelot getJavaScriptCodelot() {
+        return javaScriptCodelot;
     }
 }
