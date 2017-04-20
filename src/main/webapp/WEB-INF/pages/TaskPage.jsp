@@ -6,65 +6,16 @@
     <title>Task Page</title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
     <link rel="stylesheet" type="text/css" href="../stylesheets/map.css" />
-
+    <link rel="stylesheet" type="text/css" href="../stylesheets/task.css" />
 
     <link rel="stylesheet" type="text/css" href="../stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 
     <link rel="icon" type="image/png" href="../images/CodelotShield.png" />
     <script src="../scripts/jquery-3.2.0.min.js"></script>
-    <script src="../scripts/bootstrap.min.js"></script>
+    <script src="../stylesheets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
     <style>
-        .leftcol {
-            width:170px;
-            height:auto;
-            float:left;
-        }
 
-        .floorIcon {
-            width:930px
-            height:auto;
-            float:left;
-        }
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content */
-        .modal-content {
-            /*background-color: #fefefe;*/
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            color: black;
-        }
-
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
     </style>
 
     <script>
@@ -85,9 +36,24 @@
             $("#homeLink, #logolink").click(function() {
                 $("#submitHome").click();
             });
-            $("#taskLink").click(function() {
-                $("#submitTask").click();
+            $("#mapLink").click(function() {
+                $("#submitMap").click();
             });
+
+            $("#lessonLink").click(function(){
+                $("#startTask").text("Close");
+                $("#lessonModal").modal();
+            });
+
+            $("#hintLink").click(function() {
+                $("#hintModal").modal();
+            });
+
+            $("#attemptLink").click(function() {
+                $("#attemptModal").modal();
+            });
+
+            $("#lessonModal").modal();
         });
 
         function execute(){
@@ -143,12 +109,14 @@
                     <a id="homeLink">Home</a>
                     <button style="display:none" id="submitHome" title="Home" type="submit"
                             onclick="form.action='/';">Home</button>
-                    <a id="taskLink">Return to Map</a>
-                    <button style="display:none" id="submitTask" title="Task" type="submit"
-                            onclick="form.action='/map';">Task</button>
-                    <a id="settingsLink">Settings</a>
-                    <button style="display:none" id="submitSettings" title="Settings" type="submit"
-                            onclick="form.action='/changeSettings1';">Settings</button>
+                    <a id="mapLink">Quit</a>
+                    <button style="display:none" id="submitMap" title="Map" type="submit"
+                            onclick="form.action='/map';">Map</button>
+                    <a id="lessonLink">Review Lesson</a>
+                    <a id="hintLink">Hint</a>
+                    <a id="attemptLink">Attempts</a>
+
+
                 </form>
             </div>
         </div>
@@ -157,24 +125,6 @@
         <div class="content-row">
             <%-- Main Pane --%>
             <div class="column-4 wood-bg w-col w-col-10">
-                <%--left column--%>
-                <div class="leftcol" id="flrs">
-                    <table>
-                    <c:forEach var="floor" items="${floors}">
-                        <tr>
-                            <td>
-                                <form id="floorsForm" method="post">
-                                <div class=floorIcon">
-                                    <button class="button w-button" title="Floor" type="submit"
-                                            onclick="form.action='/getJavaTask';">Floor ${floor.index+1}</button>
-                                    <input type="hidden" value="${floor.index}" name="floorNum"/>
-                                </div>
-                                </form>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </table>
-                </div>
 
                 <%--center content--%>
                 <div id="taskDescription">
@@ -192,75 +142,23 @@
             <%-- right column --%>
             <div class="column-3 w-col w-col-2">
                 <div class="buttonblock">
-                    <div class="text-block">
-                        <div id="hintSection">
-                        <button class="button w-button" id="hint_btn" title="hint">Hints</button>
-                        <div id="hintModal" class="modal">
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <h4>Hints</h4>
-                                <ol>
-                                    <c:forEach var="hnt" items="${hints}">
-                                        <li>${hnt}</li>
-                                    </c:forEach>
-                                </ol>
-                            </div>
-
-                            <script>
-                                //        hint modal
-                                var hintModal = document.getElementById("hintModal");
-                                var hintbtn = document.getElementById("hint_btn");
-                                var btn_span = document.getElementsByClassName("close")[0];
-
-                                hintbtn.onclick = function() {
-                                    hintModal.style.display = "block";
-                                }
-                                btn_span.onclick = function() {
-                                    hintModal.style.display = "none";
-                                }
-                                window.onclick = function(event) {
-                                    if (event.target == hintModal) {
-                                        hintModal.style.display = "none";
-                                    }
-                                }
-                            </script>
-                        </div>
-                        </div>
-
-                        <button class="button w-button" id="attempts_btn" title="attempts">Attemps</button>
-                        <div id="attModal" class="modal">
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <h4>Previous Attemps</h4>
-                                <ol>
-                                    <c:forEach var="attempt" items="${attempts}">
-                                        <li>${attempt}</li>
-                                    </c:forEach>
-                                </ol>
-                            </div>
-
-                            <script>
-                                //        attempts modal
-                                var attModal = document.getElementById("attModal");
-                                var attbtn = document.getElementById("attempts_btn");
-                                var btn_span = document.getElementsByClassName("close")[1];
-
-                                attbtn.onclick = function() {
-                                    attModal.style.display = "block";
-                                }
-                                btn_span.onclick = function() {
-                                    attModal.style.display = "none";
-                                }
-                                window.onclick = function(event) {
-                                    if (event.target == attModal) {
-                                        attModal.style.display = "none";
-                                    }
-                                }
-                            </script>
-                        </div>
-
+                    <div class="text-block" id="flrs">
+                        <table id="floorsTable">
+                            <c:forEach var="floor" items="${floors}">
+                                <tr>
+                                    <td>
+                                        <form id="floorsForm" method="post">
+                                            <div class="floorWrapper">
+                                                <a class="floor" onclick="$('#Floor${floor.index}').click();">Floor ${floor.index+1}</a>
+                                                <button style="display:none" id="Floor${floor.index}" title="Floor" type="submit"
+                                                        onclick="form.action='/getJavaTask';">Floor ${floor.index+1}</a>
+                                                <input type="hidden" value="${floor.index}" name="floorNum"/>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
                     </div>
                 </div>
                 <hr />
@@ -268,12 +166,98 @@
                 <%-- Progress information --%>
                 <div class="buttonblock">
                     <div class="text-block">
-                        <button class="button w-button" id="review" title="Review">Review</button>
+
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+
+    <div class="footer-bottom">
+        <div class="footer-bottom-wrap">
+            <div class="legal">Information about the group and other footer content. Design made using Webflow.</div>
+        </div>
+    </div>
+
+    <%-- Modals --%>
+
+    <!-- Lesson Modal -->
+    <div class="modal fade" id="lessonModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Lesson</h4>
+            </div>
+            <div class="modal-body">
+              <p>${taskDesc}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="startTask" class="btn btn-default" data-dismiss="modal">Start</button>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <!-- Hints Modal -->
+    <div id="hintModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Hints</h4>
+                </div>
+
+                <div class="modal-body">
+                    <ol>
+                      <c:forEach var="hnt" items="${hints}">
+                          <li>${hnt}</li>
+                      </c:forEach>
+                    </ol>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attempts Modal -->
+    <div id="attemptModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Previous Attempts</h4>
+                </div>
+
+                <div class="modal-body">
+                    <ol>
+                        <c:forEach var="attempt" items="${attempts}">
+                            <li>${attempt}</li>
+                        </c:forEach>
+                    </ol>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
 </body>
 </html>
