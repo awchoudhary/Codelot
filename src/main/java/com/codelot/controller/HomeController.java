@@ -205,6 +205,14 @@ public class HomeController {
         String sourceText = obj.getString("source");
         CompilerService service = new CompilerService();
 
+        // add input as an attempt
+        CodelotUser c_user = getCodelotUser();
+        List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
+        int currFlr = c_user.getJavaCodelot().getBuildings().get(0).getCurrentFloor();
+        floors.get(currFlr).addAttempt(sourceText);
+        ObjectifyService.ofy().save().entity(c_user).now();
+
+
         return service.execute(sourceText);
     }
 
@@ -213,7 +221,8 @@ public class HomeController {
         //Load values for user
         CodelotUser c_user = getCodelotUser();
         List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
-        int currFlr = c_user.getJavaCodelot().getCurrentBuilding();
+        int currFlr = c_user.getJavaCodelot().getBuildings().get(c_user.getJavaCodelot().getCurrentBuilding()).getCurrentFloor();
+        String lesson = floors.get(currFlr).getLesson();
         String task = floors.get(currFlr).getTaskDescription();
         ArrayList<String> hints = floors.get(currFlr).getHints();
         List<String> attempts = new ArrayList<>(floors.get(currFlr).getAttempts());
@@ -223,6 +232,7 @@ public class HomeController {
         model.addObject("taskDesc", task);
         model.addObject("hints", hints);
         model.addObject("attempts", attempts);
+        model.addObject("lesson", lesson);
 
         return model;
     }
@@ -233,22 +243,33 @@ public class HomeController {
         CodelotUser c_user = getCodelotUser();
         List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
         String warning = "";
+        String lesson = floors.get(floorNum).getLesson();
         String task = floors.get(floorNum).getTaskDescription();
         ArrayList<String> hints = floors.get(floorNum).getHints();
         List<String> attempts = new ArrayList<>(floors.get(floorNum).getAttempts());
-
-        System.out.println(floorNum+": "+floors.get(floorNum).isLocked());
+        if (attempts.isEmpty() == false){
+            System.out.println(attempts.get(0));
+        }
+        if (floors.get(floorNum).getAttempts().isEmpty() == false){
+            System.out.println(floors.get(floorNum).getAttempts().get(0));
+        }
 
         if (floors.get(floorNum).isLocked() == true) {
-            warning = "Floor " + (floorNum+1) + " is locked. Please pass through all lower floors to access this one.";
-            int currFlr = c_user.getJavaCodelot().getCurrentBuilding();
+            warning = "Floor " + (floorNum + 1) + " is locked. Please pass through all lower floors to access this one.";
+            int currFlr = c_user.getJavaCodelot().getBuildings().get(0).getCurrentFloor();
+            lesson = floors.get(currFlr).getLesson();
             task = floors.get(currFlr).getTaskDescription();
             hints = floors.get(currFlr).getHints();
             attempts = new ArrayList<>(floors.get(currFlr).getAttempts());
-        }
 
-        for (String hint: hints) {
-            System.out.println(hint);
+            if (floors.get(currFlr).getAttempts().isEmpty() == false){
+                System.out.println(floors.get(currFlr).getAttempts().get(0));
+            }
+        }
+        else{
+            // update current floor
+            c_user.getJavaCodelot().getBuildings().get(0).setCurrentFloor(floorNum);
+            ObjectifyService.ofy().save().entity(c_user).now();
         }
 
         ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
@@ -257,6 +278,7 @@ public class HomeController {
         model.addObject("warning", warning);
         model.addObject("hints", hints);
         model.addObject("attempts", attempts);
+        model.addObject("lesson", lesson);
 
         return model;
     }

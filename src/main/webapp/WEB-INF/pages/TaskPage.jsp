@@ -125,7 +125,7 @@
         <div class="content-row">
             <%-- Main Pane --%>
             <div class="column-4 wood-bg w-col w-col-10">
-
+                <h3>Basics</h3>
                 <%--center content--%>
                 <div id="taskDescription">
                     <h5>${warning}</h5>
@@ -139,37 +139,28 @@
                 </div>
             </div>
 
-            <%-- right column --%>
-            <div class="column-3 w-col w-col-2">
-                <div class="buttonblock">
-                    <div class="text-block" id="flrs">
-                        <table id="floorsTable">
-                            <c:forEach var="floor" items="${floors}">
-                                <tr>
-                                    <td>
-                                        <form id="floorsForm" method="post">
-                                            <div class="floorWrapper">
-                                                <a class="floor" onclick="$('#Floor${floor.index}').click();">Floor ${floor.index+1}</a>
-                                                <button style="display:none" id="Floor${floor.index}" title="Floor" type="submit"
-                                                        onclick="form.action='/getJavaTask';">Floor ${floor.index+1}</a>
-                                                <input type="hidden" value="${floor.index}" name="floorNum"/>
-                                            </div>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </table>
+                <%-- right column --%>
+                <div class="column-3 w-col w-col-2">
+                    <div class="buttonblock">
+                        <div class="text-block" id="flrs">
+                            <table id="floorsTable">
+                                <c:forEach var="floor" items="${floors}">
+                                    <tr>
+                                        <td>
+                                            <form id="floorsForm" method="post">
+                                                <div class="floorWrapper">
+                                                    <a class="floor" onclick="$('#Floor${floor.index}').click();">Floor ${floor.index+1}</a>
+                                                    <button style="display:none" id="Floor${floor.index}" title="Floor" type="submit"
+                                                            onclick="form.action='/getJavaTask';">Floor ${floor.index+1}</button></a>
+                                                        <input type="hidden" value="${floor.index}" name="floorNum"/>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <hr />
-
-                <%-- Progress information --%>
-                <div class="buttonblock">
-                    <div class="text-block">
-
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
@@ -193,7 +184,7 @@
               <h4 class="modal-title">Lesson</h4>
             </div>
             <div class="modal-body">
-              <p>${taskDesc}</p>
+              <p>${lesson}</p>
             </div>
             <div class="modal-footer">
               <button type="button" id="startTask" class="btn btn-default" data-dismiss="modal">Start</button>
