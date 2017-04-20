@@ -28,7 +28,7 @@ public class JavaCodelot extends Language{
 
         Floor flr1 = new Floor();
         flr1.setTaskDescription("Lets learn one of the most essential aspects of Java: how to print!\n " +
-                "Type in 'System.out.println();' with the name of your favorite movie" +
+                "Type in 'System.out.println();' with the name of your favorite movie " +
                 "in between quotes in between the two parentheses. Then click Execute.");
         bldg1.getFloors().add(flr1);
         flr1.setIndex(bldg1.getFloors().indexOf(flr1));

@@ -194,7 +194,7 @@
                 <div class="buttonblock">
                     <div class="text-block">
                         <div id="hintSection">
-                        <button class="button w-button" id="hint_btn" title="hint">View Hints</button>
+                        <button class="button w-button" id="hint_btn" title="hint">Hints</button>
                         <div id="hintModal" class="modal">
                             <!-- Modal content -->
                             <div class="modal-content">

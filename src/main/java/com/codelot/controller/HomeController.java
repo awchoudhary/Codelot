@@ -240,7 +240,7 @@ public class HomeController {
         System.out.println(floorNum+": "+floors.get(floorNum).isLocked());
 
         if (floors.get(floorNum).isLocked() == true) {
-            warning = "Floor "+floorNum+" is locked. Please pass through all lower floors to access this one.";
+            warning = "Floor " + (floorNum+1) + " is locked. Please pass through all lower floors to access this one.";
             int currFlr = c_user.getJavaCodelot().getCurrentBuilding();
             task = floors.get(currFlr).getTaskDescription();
             hints = floors.get(currFlr).getHints();
