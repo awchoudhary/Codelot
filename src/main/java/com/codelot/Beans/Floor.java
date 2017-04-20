@@ -10,6 +10,7 @@ public class Floor {
     private boolean locked;
     private boolean currentlyOn;
     String taskDescription;
+    String lesson;
     String skeletonCode;
     private String correctOutput;
     LinkedList<String> attempts = new LinkedList<String>();
@@ -87,5 +88,13 @@ public class Floor {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public String getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(String lesson) {
+        this.lesson = lesson;
     }
 }

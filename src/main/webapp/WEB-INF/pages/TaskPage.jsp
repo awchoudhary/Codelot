@@ -208,7 +208,7 @@
                             </div>
 
                             <script>
-                                //        hint modal
+                                // hint modal
                                 var hintModal = document.getElementById("hintModal");
                                 var hintbtn = document.getElementById("hint_btn");
                                 var btn_span = document.getElementsByClassName("close")[0];
@@ -228,6 +228,7 @@
                         </div>
                         </div>
 
+                        <div id="attSection">
                         <button class="button w-button" id="attempts_btn" title="attempts">Attemps</button>
                         <div id="attModal" class="modal">
                             <!-- Modal content -->
@@ -242,7 +243,7 @@
                             </div>
 
                             <script>
-                                //        attempts modal
+                                // attempts modal
                                 var attModal = document.getElementById("attModal");
                                 var attbtn = document.getElementById("attempts_btn");
                                 var btn_span = document.getElementsByClassName("close")[1];
@@ -260,6 +261,7 @@
                                 }
                             </script>
                         </div>
+                        </div>
 
                     </div>
                 </div>
@@ -268,7 +270,37 @@
                 <%-- Progress information --%>
                 <div class="buttonblock">
                     <div class="text-block">
-                        <button class="button w-button" id="review" title="Review">Review</button>
+
+                        <div id="lessonSection">
+                            <button class="button w-button" id="lesson_btn" title="lesson">Lesson</button>
+                            <div id="lessonModal" class="modal">
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <h4>Review Lesson</h4>
+                                    <p>${lesson}</p>
+                                </div>
+
+                                <script>
+                                    // attempts modal
+                                    var lessonModal = document.getElementById("lessonModal");
+                                    var lessonbtn = document.getElementById("lesson_btn");
+                                    var btn_span = document.getElementsByClassName("close")[2];
+
+                                    lessonbtn.onclick = function() {
+                                        lessonModal.style.display = "block";
+                                    }
+                                    btn_span.onclick = function() {
+                                        lessonModal.style.display = "none";
+                                    }
+                                    window.onclick = function(event) {
+                                        if (event.target == lessonModal) {
+                                            lessonModal.style.display = "none";
+                                        }
+                                    }
+                                </script>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
