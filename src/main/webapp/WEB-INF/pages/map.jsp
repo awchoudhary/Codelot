@@ -17,10 +17,11 @@
 
     <link rel="icon" type="image/png" href="../images/CodelotShield.png" />
     <script src="../scripts/jquery-3.2.0.min.js"></script>
-    <script src="../scripts/bootstrap.min.js"></script>
+    <script src="../stylesheets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="../../scripts/phaser.min.js"></script>
-    <script type="text/javascript" src="../../scripts/main.js"></script>
+    <script type="text/javascript" src="../scripts/tether.min.js"></script>
+    <script type="text/javascript" src="../scripts/phaser.min.js"></script>
+    <script type="text/javascript" src="../scripts/main.js"></script>
 
     <script>
         $(function() {
@@ -39,8 +40,6 @@
             $("#taskLink").click(function() {
                 $("#submitTask").click();
             });
-
-            $(".mapWrapper").click(selectMap);
         });
     </script>
 </head>
@@ -108,6 +107,7 @@
     </div>
 
 </div>
+
 <div class="footer-bottom">
     <div class="footer-bottom-wrap">
         <div class="legal">Information about the group and other footer content. Design made using Webflow.</div>

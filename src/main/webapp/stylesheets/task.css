@@ -1,0 +1,30 @@
+.leftcol {
+    width:170px;
+    height:auto;
+    float:left;
+}
+
+#floorsTable {
+    width: 100%;
+}
+
+.floorWrapper {
+    text-align: center;
+}
+
+.floor {
+    background-color: white;
+    color: black;
+    display: block;
+    width: 100%;
+    padding: 20px;
+    border: 2px solid #cbcbcb;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.floor:hover {
+    cursor: pointer;
+    border-color: #add8e6;
+    text-decoration: none;
+}
