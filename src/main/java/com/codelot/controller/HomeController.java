@@ -210,10 +210,8 @@ public class HomeController {
         List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
         int currFlr = c_user.getJavaCodelot().getBuildings().get(0).getCurrentFloor();
         floors.get(currFlr).addAttempt(sourceText);
-        List<String> attempts = new ArrayList<>(floors.get(currFlr).getAttempts());
-        if (attempts.isEmpty() == false){
-            System.out.println(attempts.get(0));
-        }
+        ObjectifyService.ofy().save().entity(c_user).now();
+
 
         return service.execute(sourceText);
     }
@@ -252,6 +250,9 @@ public class HomeController {
         if (attempts.isEmpty() == false){
             System.out.println(attempts.get(0));
         }
+        if (floors.get(floorNum).getAttempts().isEmpty() == false){
+            System.out.println(floors.get(floorNum).getAttempts().get(0));
+        }
 
         if (floors.get(floorNum).isLocked() == true) {
             warning = "Floor " + (floorNum + 1) + " is locked. Please pass through all lower floors to access this one.";
@@ -260,10 +261,15 @@ public class HomeController {
             task = floors.get(currFlr).getTaskDescription();
             hints = floors.get(currFlr).getHints();
             attempts = new ArrayList<>(floors.get(currFlr).getAttempts());
+
+            if (floors.get(currFlr).getAttempts().isEmpty() == false){
+                System.out.println(floors.get(currFlr).getAttempts().get(0));
+            }
         }
         else{
             // update current floor
             c_user.getJavaCodelot().getBuildings().get(0).setCurrentFloor(floorNum);
+            ObjectifyService.ofy().save().entity(c_user).now();
         }
 
         ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
