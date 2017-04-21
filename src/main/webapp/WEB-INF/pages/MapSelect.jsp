@@ -8,7 +8,7 @@
 
     <link rel="icon" type="image/png" href="../images/CodelotShield.png" />
     <script src="../scripts/jquery-3.2.0.min.js"></script>
-    <script src="../scripts/bootstrap.min.js"></script>
+    <script src="../stylesheets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 
     <script>
