@@ -159,10 +159,17 @@
                 <hr />
 
                 <%--center content--%>
-                <div id="taskDescription">
-                    <h5>${warning}</h5>
-                    <h4 id="flrdesc">${taskDesc}</h4>
+                <!-- Left-aligned -->
+                <div class="media char">
+                  <div class="media-left">
+                    <img src="../images/img_avatar1.png" class="media-object" style="width:60px">
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">Java Wizard</h4>
+                    <p>${taskDesc}</p>
+                  </div>
                 </div>
+
                 <div id="compiler">
                     <p><textarea rows="20" cols="50" id="source">${baseCode}</textarea></p>
                     <p><button data-loading-text="<img src='../images/loading.gif' class='loading' /> Executing"
