@@ -41,15 +41,26 @@
                  "y":929.770318021201
                 }, 
                 {
-                 "height":32,
+                 "height":64,
                  "id":2,
                  "name":"endPoint",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":32,
-                 "x":348.939929328622,
-                 "y":364.399293286219
+                 "width":64,
+                 "x":335.689045936396,
+                 "y":344.52296819788
+                }, 
+                {
+                 "height":64,
+                 "id":5,
+                 "name":"finalTask",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":779.593639575972,
+                 "y":609.540636042403
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -58,7 +69,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":4,
+ "nextobjectid":7,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
