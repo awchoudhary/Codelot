@@ -28,3 +28,22 @@
     border-color: #add8e6;
     text-decoration: none;
 }
+
+.success {
+    background-color: #beffbe;
+    border-radius: 5px 5px 0 0;
+}
+
+.failed {
+    background-color: #ff7272;
+    border-radius: 5px 5px 0 0;
+}
+
+.loading {
+    width: 24px;
+    height: 24px;
+}
+
+#btn_execute {
+    font-weight: bold;
+}

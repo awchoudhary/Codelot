@@ -60,6 +60,8 @@
         });
 
         function execute(){
+            $("#btn_execute").button("loading");
+
             //empty messages
             $("#result").html("");
             $("#output").html("");
@@ -70,6 +72,20 @@
             var source = $("#source").val();
             var currentFloor = $("#currentFloor").val();
             var params = {source: source, currentFloor: currentFloor};
+
+            var resultSuccess = function() {
+                $("#resultHeader").removeClass("failed").addClass("success");
+                $("#resultTitle").text("Success");
+
+                //update the progress bar
+                $("#progess_message").html(data.progress + "% Completed");
+                $("#progress-bar").css("width", data.progress + "%");
+            }
+
+            var resultFailed = function() {
+                $("#resultHeader").removeClass("success").addClass("failed");
+                $("#resultTitle").text("Failed");
+            }
 
             //post to execute controller
             $.ajax({
@@ -86,23 +102,22 @@
                         else{
                             //display the outcome
                             if(data.outcome == "true"){
-                                $("#result").html("Success!");
-
-                                //update the progress bar
-                                $("#progess_message").html(data.progress + "% Completed");
-                                $("#progress-bar").css("width", data.progress + "%");
+                                resultSuccess();
                             }
                             else{
-                                $("#result").html("Failed");
+                                resultFailed();
                             }
 
                             //show the program output and expected output. TODO: Print out all outputs
                             $("#output").html("Your Output: " + data.stdout[0]);
                             $("#expectedOutput").html("Expected Output: " + data.expectedOutputs[0]);
                         }
+                        $("#compileModal").modal();
+                        $("#btn_execute").button("reset");
                      },
                      error: function (e) {
                          alert("Error");
+                         $("#btn_execute").button("reset");
                      }
             });
         }
@@ -156,12 +171,8 @@
                 </div>
                 <div id="compiler">
                     <p><textarea rows="20" cols="50" id="source">${baseCode}</textarea></p>
-                    <p><button class="button w-button" id="btn_execute"><strong>Execute</strong></button></p>
-                    <p><div id="result"><!-- Displays result for the task --></div></p>
-                    <p><div id="output"><!-- Displays output for program --></div></p>
-                    <p><div id="expectedOutput"><!-- Displays the expected output for the task--></div></p>
-                    <p><div id="compileMessage"><!-- Displays message from compiler --></div></p>
-                    <input type="hidden" id="currentFloor" value="${currentFloor}"></input>
+                    <p><button data-loading-text="<img src='../images/loading.gif' class='loading' /> Executing"
+                        class="button w-button" id="btn_execute">Execute</button></p>
                 </div>
             </div>
 
@@ -264,6 +275,34 @@
                             <li>${attempt}</li>
                         </c:forEach>
                     </ol>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="compileModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+
+                <div id="resultHeader" class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="resultTitle" class="modal-title">Result</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p><div id="output"><!-- Displays output for program --></div></p>
+                    <p><div id="expectedOutput"><!-- Displays the expected output for the task--></div></p>
+                    <p><div id="compileMessage"><!-- Displays message from compiler --></div></p>
+                    <input type="hidden" id="currentFloor" value="${currentFloor}"></input>
                 </div>
 
                 <div class="modal-footer">
