@@ -239,8 +239,7 @@ public class HomeController {
         model.addObject("hints", hints);
         model.addObject("attempts", attempts);
         model.addObject("lesson", lesson);
-        model.addObject("baseCode", baseCode);
-        model.addObject("currentFloor", currFlr);
+
 
         return model;
     }
@@ -291,6 +290,9 @@ public class HomeController {
         model.addObject("attempts", attempts);
         model.addObject("lesson", lesson);
         model.addObject("progress", prog);
+        model.addObject("baseCode", floors.get(floorNum).getBaseCode());
+        model.addObject("currentFloor", floorNum);
+
 
         return model;
     }
