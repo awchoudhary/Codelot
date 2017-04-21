@@ -109,7 +109,7 @@
         <div class="column-4 wood-bg w-col w-col-10">
             <h1 class="heading-6"><strong>Choose a language</strong></h1>
             <div class="row w-row">
-                <div id="java" class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
+                <div id="java" class="mapWrapper w-col w-col-4"><img class="map" src="../images/java.png" width="330">
                     <div class="caption-1">Java-Ville</div>
                 </div>
                 <div id="javascript" class="mapWrapper w-col w-col-4"><img class="map" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" width="330">
