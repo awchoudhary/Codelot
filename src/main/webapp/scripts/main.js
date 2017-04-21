@@ -6,6 +6,7 @@ var score = 0;
 var scoreText;
 var map;
 var winZone;
+var finalZone;
 
 var mainstate = {
     preload:function () {
@@ -38,9 +39,11 @@ var mainstate = {
         var start =map.objects["ObjLayer"][0];
         //alert(start);
         var end = map.objects["ObjLayer"][1];
+        var final = map.objects["ObjLayer"][2];
 
         //define winzone
         winZone = new Phaser.Rectangle(end.x,end.y,end.width,end.height);
+        finalZone = new Phaser.Rectangle(final.x,final.y,final.width,final.height);
 
         //set player to starting point
         player.position.set(start.x,start.y);
@@ -161,6 +164,9 @@ var mainstate = {
         if (winZone.contains(player.x+player.width/2,player.y+player.height/2)) {
             window.location = "/getJavaTasksPage";
             //alert("You Win!!");
+        }
+        if (finalZone.contains(player.x+player.width/2,player.y+player.height/2)) {
+            alert("Sorry,you must unlock this building");
         }
         //
         // //  Allow the player to jump if they are touching the ground.
