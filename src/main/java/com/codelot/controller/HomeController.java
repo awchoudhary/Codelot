@@ -241,26 +241,42 @@ public class HomeController {
         return response.toString();
     }
 
-
     @RequestMapping("/getJavaTasksPage")
     public ModelAndView javaTasks() {
         //Load values for user
         CodelotUser c_user = getCodelotUser();
-        List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
-        int currFlr = c_user.getJavaCodelot().getBuildings().get(c_user.getJavaCodelot().getCurrentBuilding()).getCurrentFloor();
+        Building currbldg = c_user.getJavaCodelot().getBuildings().get(0);
+        List<Floor> floors = currbldg.getFloors();
+        String warning = "";
+        int currFlr = currbldg.getCurrentFloor();
         String lesson = floors.get(currFlr).getLesson();
         String task = floors.get(currFlr).getTaskDescription();
         ArrayList<String> hints = floors.get(currFlr).getHints();
-        List<String> attempts = new ArrayList<>(floors.get(currFlr).getAttempts());
-        String baseCode = floors.get(currFlr).getBaseCode();
+        List<String> attempts = new ArrayList<>();
+        int attSize;
+        if (floors.get(currFlr).getAttempts().size() < 5){
+            attSize = floors.get(currFlr).getAttempts().size();
+        }
+        else {
+            attSize = 5;
+        }
+        for (int i = 0; i<attSize; i++){
+            if(floors.get(currFlr).getAttempts().get(i).isEmpty() == false){
+                attempts.add(floors.get(currFlr).getAttempts().get(i));
+            }
+        }
+        int prog = (int)((((double) currbldg.getCompletedTaskSet().size())/floors.size()) * 100);
 
         ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
         model.addObject("floors", floors);
         model.addObject("taskDesc", task);
+        model.addObject("warning", warning);
         model.addObject("hints", hints);
         model.addObject("attempts", attempts);
         model.addObject("lesson", lesson);
-
+        model.addObject("progress", prog);
+        model.addObject("baseCode", floors.get(currFlr).getBaseCode());
+        model.addObject("currentFloor", currFlr);
 
         return model;
     }
@@ -313,7 +329,6 @@ public class HomeController {
         model.addObject("progress", prog);
         model.addObject("baseCode", floors.get(floorNum).getBaseCode());
         model.addObject("currentFloor", floorNum);
-
 
         return model;
     }

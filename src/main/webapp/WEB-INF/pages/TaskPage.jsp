@@ -187,7 +187,7 @@
                         </div>
                         <p id="progess_message">${progress}%</p>
                     </div>
-                    
+
                     <div class="buttonblock">
                         <div class="text-block" id="flrs">
                             <table id="floorsTable">
