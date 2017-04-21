@@ -7,6 +7,7 @@ var scoreText;
 var map;
 var winZone;
 var finalZone;
+var alertShown = false; // For now, keep alert from looping infinitely
 
 var mainstate = {
     preload:function () {
@@ -165,8 +166,9 @@ var mainstate = {
             window.location = "/getJavaTasksPage";
             //alert("You Win!!");
         }
-        if (finalZone.contains(player.x+player.width/2,player.y+player.height/2)) {
+        if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
             alert("Sorry,you must unlock this building");
+            alertShown = true;
         }
         //
         // //  Allow the player to jump if they are touching the ground.
