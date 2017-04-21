@@ -201,17 +201,23 @@ public class HomeController {
     public @ResponseBody String execute(@RequestBody String source) throws IOException {
         //parse parameter to get source
         JSONObject obj = new JSONObject(source);
-        String sourceText = obj.getString("source");
-        CompilerService service = new CompilerService();
 
-        // add input as an attempt
+        String sourceText = obj.getString("source");
+
+        //get the expected outputs
+        int currentFloor = Integer.parseInt(obj.getString("currentFloor"));
         CodelotUser c_user = getCodelotUser();
         List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
-        int currFlr = c_user.getJavaCodelot().getBuildings().get(0).getCurrentFloor();
-        floors.get(currFlr).addAttempt(sourceText);
+        ArrayList<String> expectedOutputs = floors.get(currentFloor).getExpectedOutputs();
+
+        //save attempt
+        floors.get(currentFloor).addAttempt(sourceText);
         ObjectifyService.ofy().save().entity(c_user).now();
 
-        return service.execute(sourceText);
+        //compile the code and return a response object
+        CompilerService service = new CompilerService();
+
+        return CompilerService.createResponse(service.execute(sourceText), expectedOutputs);
     }
 
 
@@ -234,6 +240,7 @@ public class HomeController {
         model.addObject("attempts", attempts);
         model.addObject("lesson", lesson);
         model.addObject("baseCode", baseCode);
+        model.addObject("currentFloor", currFlr);
 
         return model;
     }

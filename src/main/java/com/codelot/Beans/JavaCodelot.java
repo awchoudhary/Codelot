@@ -41,6 +41,9 @@ public class JavaCodelot extends Language{
                             "\t\t//Your code goes under here\n" +
                             "\t}\n" +
                             "}");
+        ArrayList<String> expectedOutputs = new ArrayList<>();
+        expectedOutputs.add("Hello World!");
+        flr1.setExpectedOutputs(expectedOutputs);
 
         Floor flr2 = new Floor();
         flr2.setLesson("Theres also another type of print: System.out.print(). " +

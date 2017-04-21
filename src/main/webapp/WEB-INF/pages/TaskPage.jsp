@@ -61,12 +61,15 @@
 
         function execute(){
             //empty messages
+            $("#result").html("");
             $("#output").html("");
+            $("#expectedOutput").html("");
             $("#compileMessage").html("");
 
-            //get code to execute
+            //get parameters
             var source = $("#source").val();
-            var params = {source: source};
+            var currentFloor = $("#currentFloor").val();
+            var params = {source: source, currentFloor: currentFloor};
 
             //post to execute controller
             $.ajax({
@@ -76,17 +79,22 @@
                      data: JSON.stringify(params),
                      dataType: 'json',
                      success: function (data) {
-                        //print program output if applicable
-                        if(data.result.stdout && data.result.stdout.length > 0){
-                            var output = "";
-                            for(var i = 0; i < data.result.stdout.length; i++){
-                                output += data.result.stdout[i] + "<br>";
-                            }
-                            $("#output").html("Output: " + output);
-                        }
                         //print compilemessage if there is a run-time error
-                        if(data.result.compilemessage && data.result.compilemessage != ""){
-                            $("#compileMessage").html("Compile Message: " + data.result.compilemessage);
+                        if(data.compilemessage){
+                            $("#compileMessage").html("Error: " + data.compilemessage);
+                        }
+                        else{
+                            //display the outcome
+                            if(data.outcome == "true"){
+                                $("#result").html("Success!");
+                            }
+                            else{
+                                $("#result").html("Failed");
+                            }
+
+                            //show the program output and expected output. TODO: Print out all outputs
+                            $("#output").html("Your Output: " + data.stdout[0]);
+                            $("#expectedOutput").html("Expected Output: " + data.expectedOutputs[0]);
                         }
                      },
                      error: function (e) {
@@ -145,8 +153,11 @@
                 <div id="compiler">
                     <p><textarea rows="20" cols="50" id="source">${baseCode}</textarea></p>
                     <p><button class="button w-button" id="btn_execute"><strong>Execute</strong></button></p>
+                    <p><div id="result"><!-- Displays result for the task --></div></p>
                     <p><div id="output"><!-- Displays output for program --></div></p>
+                    <p><div id="expectedOutput"><!-- Displays the expected output for the task--></div></p>
                     <p><div id="compileMessage"><!-- Displays message from compiler --></div></p>
+                    <input type="hidden" id="currentFloor" value="${currentFloor}"></input>
                 </div>
             </div>
 
