@@ -230,7 +230,7 @@ public class HomeController {
         }
 
         //add progress to response
-        double progress = (((double) currentBuilding.getCompletedTaskSet().size())/floors.size()) * 100;
+        int progress = (int)((((double) currentBuilding.getCompletedTaskSet().size())/floors.size()) * 100);
         response.put("progress", progress);
 
         //save changes
@@ -296,7 +296,7 @@ public class HomeController {
                 attempts.add(floors.get(floorNum).getAttempts().get(i));
             }
         }
-        double prog = (((double) currbldg.getCompletedTaskSet().size())/floors.size()) * 100;
+        int progress = (int)((((double) currbldg.getCompletedTaskSet().size())/floors.size()) * 100);
         currbldg.setCurrentFloor(floorNum); // update current floor
         ObjectifyService.ofy().save().entity(c_user).now(); // save user
 
