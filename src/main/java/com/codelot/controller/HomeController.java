@@ -212,65 +212,46 @@ public class HomeController {
         floors.get(currFlr).addAttempt(sourceText);
         ObjectifyService.ofy().save().entity(c_user).now();
 
-
         return service.execute(sourceText);
-    }
-
-    @RequestMapping("/getJavaTasksPage")
-    public ModelAndView javaTasks() {
-        //Load values for user
-        CodelotUser c_user = getCodelotUser();
-        List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
-        int currFlr = c_user.getJavaCodelot().getBuildings().get(c_user.getJavaCodelot().getCurrentBuilding()).getCurrentFloor();
-        String lesson = floors.get(currFlr).getLesson();
-        String task = floors.get(currFlr).getTaskDescription();
-        ArrayList<String> hints = floors.get(currFlr).getHints();
-        List<String> attempts = new ArrayList<>(floors.get(currFlr).getAttempts());
-
-        ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
-        model.addObject("floors", floors);
-        model.addObject("taskDesc", task);
-        model.addObject("hints", hints);
-        model.addObject("attempts", attempts);
-        model.addObject("lesson", lesson);
-
-        return model;
     }
 
     @RequestMapping("/getJavaTask")
     public ModelAndView javaTasks(@RequestParam("floorNum") int floorNum) {
         //Load values for user
         CodelotUser c_user = getCodelotUser();
-        List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
+        Building currbldg = c_user.getJavaCodelot().getBuildings().get(0);
+        List<Floor> floors = currbldg.getFloors();
         String warning = "";
+        int currFlr = currbldg.getCurrentFloor();
+
+        // if coming from map page, load current floor/task of user
+        if (floorNum == -1){ // means it is redirected from map page
+            floorNum = currFlr;
+        }
+        else if (floors.get(floorNum).isLocked() == true) {
+            floorNum = currFlr;
+            warning = "Floor " + (floorNum + 1) + " is locked. Please pass through all lower floors to access this one.";
+        }
+
         String lesson = floors.get(floorNum).getLesson();
         String task = floors.get(floorNum).getTaskDescription();
         ArrayList<String> hints = floors.get(floorNum).getHints();
-        List<String> attempts = new ArrayList<>(floors.get(floorNum).getAttempts());
-        if (attempts.isEmpty() == false){
-            System.out.println(attempts.get(0));
+        List<String> attempts = new ArrayList<>();
+        int attSize;
+        if (floors.get(floorNum).getAttempts().size() < 5){
+            attSize = floors.get(floorNum).getAttempts().size();
         }
-        if (floors.get(floorNum).getAttempts().isEmpty() == false){
-            System.out.println(floors.get(floorNum).getAttempts().get(0));
+        else {
+            attSize = 5;
         }
-
-        if (floors.get(floorNum).isLocked() == true) {
-            warning = "Floor " + (floorNum + 1) + " is locked. Please pass through all lower floors to access this one.";
-            int currFlr = c_user.getJavaCodelot().getBuildings().get(0).getCurrentFloor();
-            lesson = floors.get(currFlr).getLesson();
-            task = floors.get(currFlr).getTaskDescription();
-            hints = floors.get(currFlr).getHints();
-            attempts = new ArrayList<>(floors.get(currFlr).getAttempts());
-
-            if (floors.get(currFlr).getAttempts().isEmpty() == false){
-                System.out.println(floors.get(currFlr).getAttempts().get(0));
+        for (int i = 0; i<attSize; i++){
+            if(floors.get(floorNum).getAttempts().get(i).isEmpty() == false){
+                attempts.add(floors.get(floorNum).getAttempts().get(i));
             }
         }
-        else{
-            // update current floor
-            c_user.getJavaCodelot().getBuildings().get(0).setCurrentFloor(floorNum);
-            ObjectifyService.ofy().save().entity(c_user).now();
-        }
+        double prog = currbldg.getNumCompleted() / currbldg.getFloors().size();
+        currbldg.setCurrentFloor(floorNum); // update current floor
+        ObjectifyService.ofy().save().entity(c_user).now(); // save user
 
         ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
         model.addObject("floors", floors);
@@ -279,6 +260,7 @@ public class HomeController {
         model.addObject("hints", hints);
         model.addObject("attempts", attempts);
         model.addObject("lesson", lesson);
+        model.addObject("progress", prog);
 
         return model;
     }

@@ -65,8 +65,9 @@
                 <button style="display:none" id="submitSignout" title="Sign Out" type="submit"
                         onclick="form.action='/signout';">Signout</button>
                 <a id="taskLink">Task</a>
+                <input type="hidden" value="-1" name="floorNum"/>
                 <button style="display:none" id="submitTask" title="Task" type="submit"
-                    onclick="form.action='/getJavaTasksPage';">Task</button>
+                    onclick="form.action='/getJavaTask';">Task</button>
             </form>
         </div>
     </div>
