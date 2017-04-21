@@ -73,7 +73,7 @@
             var currentFloor = $("#currentFloor").val();
             var params = {source: source, currentFloor: currentFloor};
 
-            var resultSuccess = function() {
+            var resultSuccess = function(data) {
                 $("#resultHeader").removeClass("failed").addClass("success");
                 $("#resultTitle").text("Success");
 
@@ -82,7 +82,7 @@
                 $("#progress-bar").css("width", data.progress + "%");
             }
 
-            var resultFailed = function() {
+            var resultFailed = function(data) {
                 $("#resultHeader").removeClass("success").addClass("failed");
                 $("#resultTitle").text("Failed");
             }
@@ -102,10 +102,10 @@
                         else{
                             //display the outcome
                             if(data.outcome == "true"){
-                                resultSuccess();
+                                resultSuccess(data);
                             }
                             else{
-                                resultFailed();
+                                resultFailed(data);
                             }
 
                             //show the program output and expected output. TODO: Print out all outputs
@@ -156,13 +156,7 @@
             <%-- Main Pane --%>
             <div class="column-4 wood-bg w-col w-col-10">
                 <h2>Basics</h2>
-                <div class="progress">
-                    <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="${progress}"
-                         aria-valuemin="0" aria-valuemax="100" style="width:${progress}%; background-color:maroon;">
-                        <span class="sr-only">${progress}% Completed</span>
-                    </div>
-                    <p id="progess_message">${progress}%</p>
-                </div>
+                <hr />
 
                 <%--center content--%>
                 <div id="taskDescription">
@@ -196,6 +190,14 @@
                                     </tr>
                                 </c:forEach>
                             </table>
+                        </div>
+
+                        <div class="progress">
+                            <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="${progress}"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:${progress}%; background-color:maroon;">
+                                <span class="sr-only">${progress}% Completed</span>
+                            </div>
+                            <p id="progess_message">${progress}%</p>
                         </div>
                     </div>
 
