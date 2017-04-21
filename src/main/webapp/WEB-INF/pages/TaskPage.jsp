@@ -87,6 +87,10 @@
                             //display the outcome
                             if(data.outcome == "true"){
                                 $("#result").html("Success!");
+
+                                //update the progress bar
+                                $("#progess_message").html(data.progress + "% Completed");
+                                $("#progress-bar").css("width", data.progress + "%");
                             }
                             else{
                                 $("#result").html("Failed");
@@ -138,11 +142,11 @@
             <div class="column-4 wood-bg w-col w-col-10">
                 <h2>Basics</h2>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="${progress}"
+                    <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="${progress}"
                          aria-valuemin="0" aria-valuemax="100" style="width:${progress}%; background-color:maroon;">
                         <span class="sr-only">${progress}% Completed</span>
                     </div>
-                    <p>${progress}% Completed</p>
+                    <p id="progess_message">${progress}% Completed</p>
                 </div>
 
                 <%--center content--%>
