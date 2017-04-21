@@ -1,12 +1,16 @@
 package com.codelot.services;
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Created by awaeschoudhary on 4/18/17.
@@ -50,4 +54,51 @@ public class CompilerService {
 
         return response.toString();
     }
+
+    //create a JSON response string based on provided JSON string and expected output
+    public static String createResponse(String input, ArrayList<String> expectedOutputs){
+        if(input == null){
+            return null;
+        }
+
+        //the object to return
+        JSONObject response = new JSONObject();
+
+        //responses from Hackerrank are wrapped in an object
+        JSONObject object = new JSONObject(input);
+        JSONObject result = object.getJSONObject("result");
+
+        if(result.has("compilemessage")){
+            String message = result.getString("compilemessage");
+            if(!message.equals("")){
+                result.put("compilemessage", message);
+            }
+        }
+
+        if(result.has("stdout")){
+            JSONArray stdout = result.getJSONArray("stdout");
+
+            response.put("stdout", stdout);
+            response.put("expectedOutputs", expectedOutputs);
+
+            //compare stdout with the expected answer
+            if(stdout.length() != expectedOutputs.size()){
+                response.put("outcome", "false");
+            }
+            else{
+                for(int i = 0; i < stdout.length(); i++){
+                    if(!stdout.getString(i).equals(expectedOutputs.get(i))){
+                        response.put("outcome", "false");
+                        break;
+                    }
+                }
+            }
+            if(!response.has("outcome")){
+                response.put("outcome", "true");
+            }
+        }
+
+        return response.toString();
+    }
+
 }

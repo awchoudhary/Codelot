@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -202,17 +201,47 @@ public class HomeController {
     public @ResponseBody String execute(@RequestBody String source) throws IOException {
         //parse parameter to get source
         JSONObject obj = new JSONObject(source);
-        String sourceText = obj.getString("source");
-        CompilerService service = new CompilerService();
 
-        // add input as an attempt
+        String sourceText = obj.getString("source");
+
+        //get the expected outputs
+        int currentFloor = Integer.parseInt(obj.getString("currentFloor"));
         CodelotUser c_user = getCodelotUser();
         List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
-        int currFlr = c_user.getJavaCodelot().getBuildings().get(0).getCurrentFloor();
-        floors.get(currFlr).addAttempt(sourceText);
+        ArrayList<String> expectedOutputs = floors.get(currentFloor).getExpectedOutputs();
+
+        //save attempt
+        floors.get(currentFloor).addAttempt(sourceText);
         ObjectifyService.ofy().save().entity(c_user).now();
 
-        return service.execute(sourceText);
+        //compile the code and return a response object
+        CompilerService service = new CompilerService();
+
+        return CompilerService.createResponse(service.execute(sourceText), expectedOutputs);
+    }
+
+
+    @RequestMapping("/getJavaTasksPage")
+    public ModelAndView javaTasks() {
+        //Load values for user
+        CodelotUser c_user = getCodelotUser();
+        List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
+        int currFlr = c_user.getJavaCodelot().getBuildings().get(c_user.getJavaCodelot().getCurrentBuilding()).getCurrentFloor();
+        String lesson = floors.get(currFlr).getLesson();
+        String task = floors.get(currFlr).getTaskDescription();
+        ArrayList<String> hints = floors.get(currFlr).getHints();
+        List<String> attempts = new ArrayList<>(floors.get(currFlr).getAttempts());
+        String baseCode = floors.get(currFlr).getBaseCode();
+
+        ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
+        model.addObject("floors", floors);
+        model.addObject("taskDesc", task);
+        model.addObject("hints", hints);
+        model.addObject("attempts", attempts);
+        model.addObject("lesson", lesson);
+
+
+        return model;
     }
 
     @RequestMapping("/getJavaTask")
@@ -261,6 +290,9 @@ public class HomeController {
         model.addObject("attempts", attempts);
         model.addObject("lesson", lesson);
         model.addObject("progress", prog);
+        model.addObject("baseCode", floors.get(floorNum).getBaseCode());
+        model.addObject("currentFloor", floorNum);
+
 
         return model;
     }

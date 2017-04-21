@@ -16,6 +16,8 @@ public class Floor {
     LinkedList<String> attempts = new LinkedList<String>();
     ArrayList<String> hints = new ArrayList<String>();
     int index;
+    private String baseCode;
+    private ArrayList<String> expectedOutputs = new ArrayList<>();
 
     public Floor(){
         currentlyOn = false;
@@ -93,8 +95,22 @@ public class Floor {
     public String getLesson() {
         return lesson;
     }
-
     public void setLesson(String lesson) {
         this.lesson = lesson;
+    }
+
+    public String getBaseCode() {
+        return baseCode;
+    }
+    public void setBaseCode(String baseCode) {
+        this.baseCode = baseCode;
+    }
+
+    public ArrayList<String> getExpectedOutputs() {
+        return expectedOutputs;
+    }
+
+    public void setExpectedOutputs(ArrayList<String> expectedOutputs) {
+        this.expectedOutputs = expectedOutputs;
     }
 }
