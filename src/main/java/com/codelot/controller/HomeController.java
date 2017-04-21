@@ -148,6 +148,8 @@ public class HomeController {
     @RequestMapping("/map")
     public ModelAndView map() {
         CodelotUser c_user = getCodelotUser();
+        ArrayList<Building> buildings = c_user.getJavaCodelot().getBuildings();
+        int progress = (int)((((double) c_user.getJavaCodelot().getNumCompleted())/buildings.size()) * 100);
 
         ModelAndView model = new ModelAndView("WEB-INF/pages/map");
         model.addObject("fullName", c_user.getFullname());
@@ -155,6 +157,7 @@ public class HomeController {
         model.addObject("avatar", c_user.avatarImage);
         model.addObject("email", c_user.getUser_email());
         model.addObject("age", c_user.getAge());
+        model.addObject("progress", progress);
         return model;
     }
 
@@ -276,8 +279,8 @@ public class HomeController {
             floorNum = currFlr;
         }
         else if (floors.get(floorNum).isLocked() == true) {
+            warning = "NOTE: Floor " + (floorNum + 1) + " is locked. Please pass through all lower floors to access this one.";
             floorNum = currFlr;
-            warning = "Floor " + (floorNum + 1) + " is locked. Please pass through all lower floors to access this one.";
         }
 
         String lesson = floors.get(floorNum).getLesson();
