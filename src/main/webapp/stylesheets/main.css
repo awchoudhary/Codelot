@@ -139,8 +139,7 @@ p {
 }
 
 .wood-bg {
-  background-image: -webkit-linear-gradient(270deg, hsla(43, 54%, 61%, .79), hsla(43, 54%, 61%, .79)), url('../images/wood.jpg');
-  background-image: linear-gradient(180deg, hsla(43, 54%, 61%, .79), hsla(43, 54%, 61%, .79)), url('../images/wood.jpg');
+  background-image: url('../images/wood_cartoon.jpg');
   background-position: 0px 0px, 0px 0px;
   background-size: auto, 776px;
 }
