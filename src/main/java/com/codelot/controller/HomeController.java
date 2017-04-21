@@ -222,6 +222,11 @@ public class HomeController {
         //if successful, add to task set for the building
         if(response.get("outcome").equals("true")){
             currentBuilding.getCompletedTaskSet().add(currentFloor);
+
+            //unlock next floor if current floor is not last floor.
+            if(currentFloor < floors.size()-1){
+                floors.get(currentFloor + 1).setLocked(false);
+            }
         }
 
         //add progress to response
