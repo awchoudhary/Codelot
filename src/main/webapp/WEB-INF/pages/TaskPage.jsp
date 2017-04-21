@@ -143,7 +143,7 @@
                     <h4 id="flrdesc">${taskDesc}</h4>
                 </div>
                 <div id="compiler">
-                    <p><textarea rows="20" cols="50" id="source"></textarea></p>
+                    <p><textarea rows="20" cols="50" id="source">${baseCode}</textarea></p>
                     <p><button class="button w-button" id="btn_execute"><strong>Execute</strong></button></p>
                     <p><div id="output"><!-- Displays output for program --></div></p>
                     <p><div id="compileMessage"><!-- Displays message from compiler --></div></p>

@@ -36,6 +36,11 @@ public class JavaCodelot extends Language{
         ArrayList<String> hints = new ArrayList<String>();
         hints.add("To print 'Hello, world' we type 'System.out.println(\"Hello, world\");");
         flr1.setHints(hints);
+        flr1.setBaseCode("public class Solution{\n" +
+                            "\tpublic static void main(String[] args){\n" +
+                            "\t\t//Your code goes under here\n" +
+                            "\t}\n" +
+                            "}");
 
         Floor flr2 = new Floor();
         flr2.setLesson("Theres also another type of print: System.out.print(). " +

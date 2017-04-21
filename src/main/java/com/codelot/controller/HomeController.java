@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -213,6 +212,30 @@ public class HomeController {
         ObjectifyService.ofy().save().entity(c_user).now();
 
         return service.execute(sourceText);
+    }
+
+
+    @RequestMapping("/getJavaTasksPage")
+    public ModelAndView javaTasks() {
+        //Load values for user
+        CodelotUser c_user = getCodelotUser();
+        List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
+        int currFlr = c_user.getJavaCodelot().getBuildings().get(c_user.getJavaCodelot().getCurrentBuilding()).getCurrentFloor();
+        String lesson = floors.get(currFlr).getLesson();
+        String task = floors.get(currFlr).getTaskDescription();
+        ArrayList<String> hints = floors.get(currFlr).getHints();
+        List<String> attempts = new ArrayList<>(floors.get(currFlr).getAttempts());
+        String baseCode = floors.get(currFlr).getBaseCode();
+
+        ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
+        model.addObject("floors", floors);
+        model.addObject("taskDesc", task);
+        model.addObject("hints", hints);
+        model.addObject("attempts", attempts);
+        model.addObject("lesson", lesson);
+        model.addObject("baseCode", baseCode);
+
+        return model;
     }
 
     @RequestMapping("/getJavaTask")
