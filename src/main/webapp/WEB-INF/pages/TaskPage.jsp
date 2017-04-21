@@ -8,7 +8,10 @@
     <link rel="stylesheet" type="text/css" href="../stylesheets/map.css" />
     <link rel="stylesheet" type="text/css" href="../stylesheets/task.css" />
 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
     <link rel="icon" type="image/png" href="../images/CodelotShield.png" />
     <script src="../scripts/jquery-3.2.0.min.js"></script>
@@ -109,12 +112,12 @@
                     <a id="homeLink">Home</a>
                     <button style="display:none" id="submitHome" title="Home" type="submit"
                             onclick="form.action='/';">Home</button>
-                    <a id="mapLink">Quit</a>
-                    <button style="display:none" id="submitMap" title="Map" type="submit"
-                            onclick="form.action='/map';">Map</button>
                     <a id="lessonLink">Review Lesson</a>
                     <a id="hintLink">Hint</a>
                     <a id="attemptLink">Attempts</a>
+                    <a id="mapLink">Quit</a>
+                    <button style="display:none" id="submitMap" title="Map" type="submit"
+                            onclick="form.action='/map';">Map</button>
 
 
                 </form>
@@ -125,7 +128,15 @@
         <div class="content-row">
             <%-- Main Pane --%>
             <div class="column-4 wood-bg w-col w-col-10">
-                <h3>Basics</h3>
+                <h2>Basics</h2>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="${progress}"
+                         aria-valuemin="0" aria-valuemax="100" style="width:${progress}%; background-color:maroon;">
+                        <span class="sr-only">${progress}% Completed</span>
+                    </div>
+                    <p>${progress}% Completed</p>
+                </div>
+
                 <%--center content--%>
                 <div id="taskDescription">
                     <h5>${warning}</h5>
