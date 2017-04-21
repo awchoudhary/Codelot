@@ -517,6 +517,16 @@ p {
   font-size: 12px;
 }
 
+.char {
+    width: 70%;
+    background-color: white;
+    padding: 5px;
+    text-align: left;
+    border-radius: 6px;
+    border: 2px solid #cccccc;
+    margin: 10px auto;
+}
+
 .section-3 {
   display: -webkit-box;
   display: -webkit-flex;
