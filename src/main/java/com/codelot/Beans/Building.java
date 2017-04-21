@@ -1,6 +1,7 @@
 package com.codelot.Beans;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Created by Jane on 4/19/2017.
@@ -14,6 +15,7 @@ public class Building {
     int currentFloor;
     private String name;
     private int index;
+    private HashSet<Integer> completedTaskSet;
 
     public Building(){
         started = false;
@@ -22,6 +24,7 @@ public class Building {
         floors = makeFloors();
         numCompleted = 0;
         currentFloor = 0;
+        completedTaskSet = new HashSet<Integer>();
     }
 
     public ArrayList<Floor> makeFloors(){
@@ -92,5 +95,12 @@ public class Building {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public HashSet<Integer> getCompletedTaskSet() {
+        return completedTaskSet;
+    }
+    public void setCompletedTaskSet(HashSet<Integer> completedTaskSet) {
+        this.completedTaskSet = completedTaskSet;
     }
 }

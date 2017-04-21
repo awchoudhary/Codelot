@@ -207,17 +207,30 @@ public class HomeController {
         //get the expected outputs
         int currentFloor = Integer.parseInt(obj.getString("currentFloor"));
         CodelotUser c_user = getCodelotUser();
-        List<Floor> floors = c_user.getJavaCodelot().getBuildings().get(0).getFloors();
+        Building currentBuilding = c_user.getJavaCodelot().getBuildings().get(0);
+        List<Floor> floors = currentBuilding.getFloors();
         ArrayList<String> expectedOutputs = floors.get(currentFloor).getExpectedOutputs();
 
         //save attempt
         floors.get(currentFloor).addAttempt(sourceText);
-        ObjectifyService.ofy().save().entity(c_user).now();
 
         //compile the code and return a response object
         CompilerService service = new CompilerService();
 
-        return CompilerService.createResponse(service.execute(sourceText), expectedOutputs);
+        JSONObject response = CompilerService.createResponse(service.execute(sourceText), expectedOutputs);
+
+        //if successful, add to task set for the building
+        if(response.get("outcome").equals("true")){
+            currentBuilding.getCompletedTaskSet().add(currentFloor);
+        }
+
+        //add progress to response
+        double progress = (((double) currentBuilding.getCompletedTaskSet().size())/floors.size()) * 100;
+        response.put("progress", progress);
+
+        //save changes
+        ObjectifyService.ofy().save().entity(c_user).now();
+        return response.toString();
     }
 
 
@@ -278,7 +291,7 @@ public class HomeController {
                 attempts.add(floors.get(floorNum).getAttempts().get(i));
             }
         }
-        double prog = currbldg.getNumCompleted() / currbldg.getFloors().size();
+        double prog = (((double) currbldg.getCompletedTaskSet().size())/floors.size()) * 100;
         currbldg.setCurrentFloor(floorNum); // update current floor
         ObjectifyService.ofy().save().entity(c_user).now(); // save user
 

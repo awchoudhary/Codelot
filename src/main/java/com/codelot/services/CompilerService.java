@@ -56,7 +56,7 @@ public class CompilerService {
     }
 
     //create a JSON response string based on provided JSON string and expected output
-    public static String createResponse(String input, ArrayList<String> expectedOutputs){
+    public static JSONObject createResponse(String input, ArrayList<String> expectedOutputs){
         if(input == null){
             return null;
         }
@@ -72,6 +72,7 @@ public class CompilerService {
             String message = result.getString("compilemessage");
             if(!message.equals("")){
                 result.put("compilemessage", message);
+                result.put("outcome", "false");
             }
         }
 
@@ -98,7 +99,7 @@ public class CompilerService {
             }
         }
 
-        return response.toString();
+        return response;
     }
 
 }
