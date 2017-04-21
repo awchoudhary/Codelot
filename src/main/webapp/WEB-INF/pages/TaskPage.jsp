@@ -166,6 +166,7 @@
                   </div>
                   <div class="media-body">
                     <h4 class="media-heading">Java Wizard</h4>
+                      <p style="font-size:75%"><em>${warning}</em></p>
                     <p>${taskDesc}</p>
                   </div>
                 </div>
@@ -179,6 +180,14 @@
 
                 <%-- right column --%>
                 <div class="column-3 w-col w-col-2">
+                    <div class="progress">
+                        <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="${progress}"
+                             aria-valuemin="0" aria-valuemax="100" style="width:${progress}%; background-color:maroon;">
+                            <span class="sr-only">${progress}% Completed</span>
+                        </div>
+                        <p id="progess_message">${progress}%</p>
+                    </div>
+                    
                     <div class="buttonblock">
                         <div class="text-block" id="flrs">
                             <table id="floorsTable">
@@ -197,14 +206,6 @@
                                     </tr>
                                 </c:forEach>
                             </table>
-                        </div>
-
-                        <div class="progress">
-                            <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="${progress}"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:${progress}%; background-color:maroon;">
-                                <span class="sr-only">${progress}% Completed</span>
-                            </div>
-                            <p id="progess_message">${progress}%</p>
                         </div>
                     </div>
 

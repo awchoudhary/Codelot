@@ -100,7 +100,14 @@
             <%-- Progress information --%>
             <div class="buttonblock">
                 <div class="text-block">
-                    Progress info
+                    Progress
+                    <div class="progress">
+                        <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="${progress}"
+                             aria-valuemin="0" aria-valuemax="100" style="width:${progress}%; background-color:maroon;">
+                            <span class="sr-only">${progress}% Completed</span>
+                        </div>
+                        <p id="progess_message">${progress}%</p>
+                    </div>
                 </div>
             </div>
         </div>
