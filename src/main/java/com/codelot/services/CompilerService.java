@@ -73,6 +73,7 @@ public class CompilerService {
             if(!message.equals("")){
                 result.put("compilemessage", message);
                 result.put("outcome", "false");
+                return result;
             }
         }
 
