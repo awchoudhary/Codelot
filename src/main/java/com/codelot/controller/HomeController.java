@@ -3,6 +3,7 @@ package com.codelot.controller;
 import com.codelot.Beans.Building;
 import com.codelot.Beans.CodelotUser;
 import com.codelot.Beans.Floor;
+import com.codelot.services.CodelotUserService;
 import com.codelot.services.CompilerService;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -27,31 +28,28 @@ public class HomeController {
 
     @RequestMapping(value = "/")
     public ModelAndView home(){
-        //if there is no logged in user, redirect to homepage
         ModelAndView model = new ModelAndView("WEB-INF/pages/home");
         return model;
     }
 
-    @RequestMapping("/profileCreationPage")
-    public ModelAndView profileCreationPage() {
-        //redirect to google auth page. On signing up, user is redirected to profile page
-        UserService userService = UserServiceFactory.getUserService();
-        ModelAndView model = new ModelAndView("redirect:" + userService.createLoginURL("/profileCreation1"));
-        return model;
-    }
+    @RequestMapping("/updateProfile")
+    public ModelAndView updateProfile(@RequestParam("fullname") String fullname,
+                                      @RequestParam("age") int age,
+                                      @RequestParam("username") String username,
+                                      @RequestParam("avatar") String avatar) {
 
-    @RequestMapping("/profileCreation2")
-    public ModelAndView profileCreation2(@RequestParam("fullname") String fullname,
-                                         @RequestParam("age") int age,
-                                         @RequestParam("username") String username,
-                                         @RequestParam("avatar") String avatar) {
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
-        CodelotUser newUser = new CodelotUser(fullname, age, username, avatar);
-        newUser.setUser(user.getEmail(), user.getUserId());
-        ObjectifyService.ofy().save().entity(newUser).now();
+        CodelotUser profile = CodelotUserService.getCurrentUserProfile();
 
-        return languageSelection(newUser.getId());
+        if(profile == null){
+            //create new user and redirect to language select
+            CodelotUserService.createUser(fullname, age, username, avatar);
+        }
+        else{
+            //update the existing profile
+            CodelotUserService.updateUser(fullname, age, username, avatar);
+        }
+
+        return languageSelection();
     }
 
     public User getGoogleUser(){
@@ -79,50 +77,20 @@ public class HomeController {
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();
 
+        //if there is no logged in user, redirect to login page.
         if (user == null){
-            ModelAndView model = new ModelAndView("redirect:" + userService.createLoginURL("/signin1"));
+            ModelAndView model = new ModelAndView("redirect:" + userService.createLoginURL("/signin"));
             return model;
         }
-        //ModelAndView model = new ModelAndView("redirect:" + userService.createLoginURL("/signin1"));
-        List<CodelotUser> users = ObjectifyService.ofy()
-                .load()
-                .type(CodelotUser.class)
-                .filter("user_id",user.getUserId())
-                .list();
-        if (user != null && users.size()>=1){
-            return languageSelection(users.get(0).getId());
-        }
-        else if (user != null && users.size()<=0){
-            return signin1();
-        }
-        else{
-            return home();
-        }
-    }
 
-    @RequestMapping(value = "/signin1")
-    public ModelAndView signin1(){
-        //redirect to google auth page. On signing in, user should be redirected to mapselect
-        User user = getGoogleUser();
-
-        //check to see if user already in database, if not need to create profile
-        List<CodelotUser> users = ObjectifyService.ofy()
-                .load()
-                .type(CodelotUser.class)
-                .filter("user_id",user.getUserId())
-                .list();
-
-        //Get all the users
-        System.out.println(user.getEmail());
-        System.out.println(user.getUserId());
-        //If user already registered dont direct them
-        if (users.size()>=1) {
-            return languageSelection(users.get(0).getId());
-        }
-        //if user not already registered profile creation page
-        else{
-            ModelAndView model = new ModelAndView("WEB-INF/pages/profileCreationPage");
+        //if account does not have a profile, redirect to profile creation page.
+        if (CodelotUserService.getCurrentUserProfile() == null){
+            ModelAndView model = new ModelAndView("WEB-INF/pages/profilePage");
             return model;
+        }
+        //redirect to map select otherwise
+        else{
+            return languageSelection();
         }
     }
 
@@ -134,14 +102,19 @@ public class HomeController {
     }
 
     @RequestMapping("/languageSelection")
-    public ModelAndView languageSelection(Long id) {
-        CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(id).now();
+    public ModelAndView languageSelection() {
+        CodelotUser profile = CodelotUserService.getCurrentUserProfile();
+
+        //direct to map select page
         ModelAndView model = new ModelAndView("WEB-INF/pages/mapSelect");
-        model.addObject("fullName", c_user.getFullname());
-        model.addObject("username", c_user.getUsername());
-        model.addObject("avatar", c_user.avatarImage);
-        model.addObject("email", c_user.getUser_email());
-        model.addObject("age", c_user.getAge());
+
+        if(profile != null){
+            model.addObject("fullName", profile.getFullname());
+            model.addObject("username", profile.getUsername());
+            model.addObject("avatar", profile.avatarImage);
+            model.addObject("email", profile.getUser_email());
+            model.addObject("age", profile.getAge());
+        }
         return model;
     }
 
@@ -161,38 +134,23 @@ public class HomeController {
         return model;
     }
 
-    @RequestMapping("/changeSettings1")
-    public ModelAndView changeSettings1() {
+    @RequestMapping("/profilePage")
+    public ModelAndView profilePage() {
         //Load values for user
-        CodelotUser c_user = getCodelotUser();
+        CodelotUser profile = CodelotUserService.getCurrentUserProfile();
 
-        ModelAndView model = new ModelAndView("WEB-INF/pages/changeSettings");
-        model.addObject("fullName", c_user.getFullname());
-        model.addObject("username", c_user.getUsername());
-        model.addObject("avatar", c_user.avatarImage);
-        model.addObject("email", c_user.getUser_email());
-        model.addObject("age", c_user.getAge());
+        ModelAndView model = new ModelAndView("WEB-INF/pages/profilePage");
+
+        //populate fields if not null
+        if(profile != null){
+            model.addObject("fullName", profile.getFullname());
+            model.addObject("username", profile.getUsername());
+            model.addObject("avatar", profile.avatarImage);
+            model.addObject("email", profile.getUser_email());
+            model.addObject("age", profile.getAge());
+        }
 
         return model;
-    }
-
-    @RequestMapping("/changeSettings2")
-    public ModelAndView changeSettings2(@RequestParam("fullname") String fullname,
-                                        @RequestParam("age") int age,
-                                        @RequestParam("username") String username,
-                                        @RequestParam("avatar") String avatar) {
-        //Load values for user
-        CodelotUser c_user = getCodelotUser();
-
-        // set new values
-        c_user.setAge(age);
-        c_user.setAvatarImage(avatar);
-        c_user.setFullname(fullname);
-        c_user.setUsername(username);
-
-        ObjectifyService.ofy().save().entity(c_user).now();
-
-        return languageSelection(c_user.getId());
     }
 
     @RequestMapping("/TaskPage")
