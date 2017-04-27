@@ -52,26 +52,6 @@ public class HomeController {
         return languageSelection();
     }
 
-    public User getGoogleUser(){
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
-        return user;
-    }
-
-    public CodelotUser getCodelotUser(){
-        User user = getGoogleUser();
-        //check to see if user already in database, if not need to create profile
-        List<CodelotUser> users = ObjectifyService.ofy()
-                .load()
-                .type(CodelotUser.class)
-                .filter("user_id",user.getUserId())
-                .list();
-        long userid = users.get(0).getId();
-
-        CodelotUser c_user = ObjectifyService.ofy().load().type(CodelotUser.class).id(userid).now();
-        return c_user;
-    }
-
     @RequestMapping(value = "/signin")
     public ModelAndView signin() {
         UserService userService = UserServiceFactory.getUserService();
@@ -120,17 +100,21 @@ public class HomeController {
 
     @RequestMapping("/map")
     public ModelAndView map() {
-        CodelotUser c_user = getCodelotUser();
-        ArrayList<Building> buildings = c_user.getJavaCodelot().getBuildings();
-        int progress = (int)((((double) c_user.getJavaCodelot().getNumCompleted())/buildings.size()) * 100);
-
         ModelAndView model = new ModelAndView("WEB-INF/pages/map");
-        model.addObject("fullName", c_user.getFullname());
-        model.addObject("username", c_user.getUsername());
-        model.addObject("avatar", c_user.avatarImage);
-        model.addObject("email", c_user.getUser_email());
-        model.addObject("age", c_user.getAge());
-        model.addObject("progress", progress);
+        CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
+
+        if(c_user != null){
+            ArrayList<Building> buildings = c_user.getJavaCodelot().getBuildings();
+            int progress = (int)((((double) c_user.getJavaCodelot().getNumCompleted())/buildings.size()) * 100);
+
+            model.addObject("fullName", c_user.getFullname());
+            model.addObject("username", c_user.getUsername());
+            model.addObject("avatar", c_user.avatarImage);
+            model.addObject("email", c_user.getUser_email());
+            model.addObject("age", c_user.getAge());
+            model.addObject("progress", progress);
+        }
+
         return model;
     }
 
@@ -163,13 +147,18 @@ public class HomeController {
         //parse parameter to get source
         JSONObject obj = new JSONObject(source);
 
+        //source code for attempt
         String sourceText = obj.getString("source");
 
-        //get the expected outputs
+        //current task floor index
         int currentFloor = Integer.parseInt(obj.getString("currentFloor"));
-        CodelotUser c_user = getCodelotUser();
-        Building currentBuilding = c_user.getJavaCodelot().getBuildings().get(0);
+
+        //get floors for current building
+        CodelotUser profile = CodelotUserService.getCurrentUserProfile();
+        Building currentBuilding = profile.getJavaCodelot().getBuildings().get(0);
         List<Floor> floors = currentBuilding.getFloors();
+
+        //get the expected outputs for the current floor
         ArrayList<String> expectedOutputs = floors.get(currentFloor).getExpectedOutputs();
 
         //save attempt
@@ -195,46 +184,40 @@ public class HomeController {
         response.put("progress", progress);
 
         //save changes
-        ObjectifyService.ofy().save().entity(c_user).now();
+        ObjectifyService.ofy().save().entity(profile).now();
         return response.toString();
     }
 
     @RequestMapping("/getJavaTasksPage")
     public ModelAndView javaTasks() {
         //Load values for user
-        CodelotUser c_user = getCodelotUser();
+        CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
         Building currbldg = c_user.getJavaCodelot().getBuildings().get(0);
         List<Floor> floors = currbldg.getFloors();
         String warning = "";
-        int currFlr = currbldg.getCurrentFloor();
-        String lesson = floors.get(currFlr).getLesson();
-        String task = floors.get(currFlr).getTaskDescription();
-        ArrayList<String> hints = floors.get(currFlr).getHints();
+        Floor currentFloor = floors.get(currbldg.getCurrentFloor());
+
+        //get the latest 5 attempts for the user
         List<String> attempts = new ArrayList<>();
-        int attSize;
-        if (floors.get(currFlr).getAttempts().size() < 5){
-            attSize = floors.get(currFlr).getAttempts().size();
-        }
-        else {
-            attSize = 5;
-        }
-        for (int i = 0; i<attSize; i++){
-            if(floors.get(currFlr).getAttempts().get(i).isEmpty() == false){
-                attempts.add(floors.get(currFlr).getAttempts().get(i));
+        for (int i = 0; i < currentFloor.getAttempts().size(); i++){
+            if(attempts.size() < 5 && !currentFloor.getAttempts().get(i).isEmpty()){
+                attempts.add(currentFloor.getAttempts().get(i));
             }
         }
+
+        //progress = number of completed tasks / total tasks * 100
         int prog = (int)((((double) currbldg.getCompletedTaskSet().size())/floors.size()) * 100);
 
         ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
         model.addObject("floors", floors);
-        model.addObject("taskDesc", task);
+        model.addObject("taskDesc", currentFloor.getTaskDescription());
         model.addObject("warning", warning);
-        model.addObject("hints", hints);
+        model.addObject("hints", currentFloor.getHints());
         model.addObject("attempts", attempts);
-        model.addObject("lesson", lesson);
+        model.addObject("lesson", currentFloor.getLesson());
         model.addObject("progress", prog);
-        model.addObject("baseCode", floors.get(currFlr).getBaseCode());
-        model.addObject("currentFloor", currFlr);
+        model.addObject("baseCode", currentFloor.getBaseCode());
+        model.addObject("currentFloor", currbldg.getCurrentFloor());
 
         return model;
     }
@@ -242,48 +225,45 @@ public class HomeController {
     @RequestMapping("/getJavaTask")
     public ModelAndView javaTasks(@RequestParam("floorNum") int floorNum) {
         //Load values for user
-        CodelotUser c_user = getCodelotUser();
+        CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
         Building currbldg = c_user.getJavaCodelot().getBuildings().get(0);
         List<Floor> floors = currbldg.getFloors();
         String warning = "";
-        int currFlr = currbldg.getCurrentFloor();
+        int currentFloorNumber = currbldg.getCurrentFloor();
 
         // if coming from map page, load current floor/task of user
         if (floorNum == -1){ // means it is redirected from map page
-            floorNum = currFlr;
+            floorNum = currentFloorNumber;
         }
-        else if (floors.get(floorNum).isLocked() == true) {
+        //if the floor is locked, create a warning and navigate to current task
+        else if (floors.get(floorNum).isLocked()) {
             warning = "NOTE: Floor " + (floorNum + 1) + " is locked. Please pass through all lower floors to access this one.";
-            floorNum = currFlr;
+            floorNum = currentFloorNumber;
         }
 
-        String lesson = floors.get(floorNum).getLesson();
-        String task = floors.get(floorNum).getTaskDescription();
-        ArrayList<String> hints = floors.get(floorNum).getHints();
+        Floor currentFloor = floors.get(floorNum);
+
+        //get the latest 5 attempts for the user
         List<String> attempts = new ArrayList<>();
-        int attSize;
-        if (floors.get(floorNum).getAttempts().size() < 5){
-            attSize = floors.get(floorNum).getAttempts().size();
-        }
-        else {
-            attSize = 5;
-        }
-        for (int i = 0; i<attSize; i++){
-            if(floors.get(floorNum).getAttempts().get(i).isEmpty() == false){
-                attempts.add(floors.get(floorNum).getAttempts().get(i));
+        for (int i = 0; i < currentFloor.getAttempts().size(); i++){
+            if(attempts.size() < 5 && !currentFloor.getAttempts().get(i).isEmpty()){
+                attempts.add(currentFloor.getAttempts().get(i));
             }
         }
+
+        //progress = number of completed tasks / total tasks * 100
         int prog = (int)((((double) currbldg.getCompletedTaskSet().size())/floors.size()) * 100);
+
         currbldg.setCurrentFloor(floorNum); // update current floor
         ObjectifyService.ofy().save().entity(c_user).now(); // save user
 
         ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
         model.addObject("floors", floors);
-        model.addObject("taskDesc", task);
+        model.addObject("taskDesc", currentFloor.getTaskDescription());
         model.addObject("warning", warning);
-        model.addObject("hints", hints);
+        model.addObject("hints", currentFloor.getHints());
         model.addObject("attempts", attempts);
-        model.addObject("lesson", lesson);
+        model.addObject("lesson", currentFloor.getLesson());
         model.addObject("progress", prog);
         model.addObject("baseCode", floors.get(floorNum).getBaseCode());
         model.addObject("currentFloor", floorNum);
