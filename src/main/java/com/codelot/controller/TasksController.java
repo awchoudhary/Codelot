@@ -8,6 +8,7 @@ import com.codelot.services.CompilerService;
 import com.googlecode.objectify.ObjectifyService;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -69,42 +70,25 @@ public class TasksController {
         return response.toString();
     }
 
+    /* Function used when directing from map to tasks page when there is no floor number passed in
+    // Default floor number is set to last-accessed floor
+    */
     @RequestMapping("/getJavaTasksPage")
-    public ModelAndView javaTasks() {
-        //Load values for user
+    public ModelAndView tasksContent(){
         CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
         Building currbldg = c_user.getJavaCodelot().getBuildings().get(0);
-        List<Floor> floors = currbldg.getFloors();
-        String warning = "";
-        Floor currentFloor = floors.get(currbldg.getCurrentFloor());
-
-        //get the latest 5 attempts for the user
-        List<String> attempts = new ArrayList<>();
-        for (int i = 0; i < currentFloor.getAttempts().size(); i++){
-            if(attempts.size() < 5 && !currentFloor.getAttempts().get(i).isEmpty()){
-                attempts.add(currentFloor.getAttempts().get(i));
-            }
-        }
-
-        //progress = number of completed tasks / total tasks * 100
-        int prog = (int)((((double) currbldg.getCompletedTaskSet().size())/floors.size()) * 100);
-
-        ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
-        model.addObject("floors", floors);
-        model.addObject("taskDesc", currentFloor.getTaskDescription());
-        model.addObject("warning", warning);
-        model.addObject("hints", currentFloor.getHints());
-        model.addObject("attempts", attempts);
-        model.addObject("lesson", currentFloor.getLesson());
-        model.addObject("progress", prog);
-        model.addObject("baseCode", currentFloor.getBaseCode());
-        model.addObject("currentFloor", currbldg.getCurrentFloor());
-
-        return model;
+        int currentFloorNumber = currbldg.getCurrentFloor();
+        return(javaTasks(currentFloorNumber));
     }
 
+    /* Function used when moving from one floor to another when floor number IS passed in
+    */
     @RequestMapping("/getJavaTask")
-    public ModelAndView javaTasks(@RequestParam("floorNum") int floorNum) {
+    public ModelAndView tasksContent(@RequestParam("floorNum") int floorNum){
+        return(javaTasks(floorNum));
+    }
+
+    public ModelAndView javaTasks(int floorNum) {
         //Load values for user
         CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
         Building currbldg = c_user.getJavaCodelot().getBuildings().get(0);
