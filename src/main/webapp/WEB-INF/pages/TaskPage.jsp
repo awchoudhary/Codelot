@@ -94,7 +94,7 @@
                                                 <div class="floorWrapper">
                                                     <a class="floor" onclick="$('#Floor${floor.index}').click();">Floor ${floor.index+1}</a>
                                                     <button style="display:none" id="Floor${floor.index}" title="Floor" type="submit"
-                                                            onclick="form.action='/getJavaTask';">Floor ${floor.index+1}</button></a>
+                                                            onclick="form.action='/task/getJavaTask';">Floor ${floor.index+1}</button></a>
                                                         <input type="hidden" value="${floor.index}" name="floorNum"/>
                                                 </div>
                                             </form>

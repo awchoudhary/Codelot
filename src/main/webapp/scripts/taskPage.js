@@ -68,7 +68,7 @@ function execute(){
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/execute",
+        url: "/task/execute",
         data: JSON.stringify(params),
         dataType: 'json',
         success: function (data) {

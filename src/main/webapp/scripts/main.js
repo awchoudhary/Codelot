@@ -163,7 +163,7 @@ var mainstate = {
 
 
         if (winZone.contains(player.x+player.width/2,player.y+player.height/2)) {
-            window.location = "/getJavaTasksPage";
+            window.location = "/task/getJavaTasksPage";
             //alert("You Win!!");
         }
         if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
