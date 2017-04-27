@@ -60,7 +60,7 @@
                         onclick="form.action='/';">Home</button>
                 <a id="settingsLink">Settings</a>
                 <button style="display:none" id="submitSettings" title="Settings" type="submit"
-                        onclick="form.action='/changeSettings1';">Settings</button>
+                        onclick="form.action='/profilePage';">Settings</button>
                 <a id="signoutLink">Signout</a>
                 <button style="display:none" id="submitSignout" title="Sign Out" type="submit"
                         onclick="form.action='/signout';">Signout</button>
