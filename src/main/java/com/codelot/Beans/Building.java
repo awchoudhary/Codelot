@@ -44,6 +44,10 @@ public class Building {
         return tasks;
     }
 
+    public void addFloor(Floor flr){
+        floors.add(flr);
+    }
+
     // returned whether Building has been started or not
     public boolean isStarted() {
         return started;
