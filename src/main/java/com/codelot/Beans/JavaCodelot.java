@@ -40,9 +40,9 @@ public class JavaCodelot extends Language{
         JSONParser parser = new JSONParser();
 
         try {
-            final String dir = System.getProperty("user.dir");
-            System.out.println("----------------------CURRENT DIRECTORY-------------");
-            System.out.println("current dir = " + dir);
+//            final String dir = System.getProperty("user.dir");
+//            System.out.println("----------------------CURRENT DIRECTORY-------------");
+//            System.out.println("current dir = " + dir);
 
             Object obj = parser.parse(new FileReader( "content/java_content.json"));
             JSONObject jsonObject = (JSONObject) obj;
