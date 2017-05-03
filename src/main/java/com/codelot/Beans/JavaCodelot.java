@@ -89,6 +89,11 @@ public class JavaCodelot extends Language{
                     }
                     floor.setExpectedOutputs(save_outputs);
 
+                    //get test cases if applicable
+                    if(json_floor.containsKey("testCases")){
+                        floor.setTestCases((String)json_floor.get("testCases"));
+                    }
+
                     building.addFloor(floor);
                     floor.setIndex(building.getFloors().indexOf(floor));
                     n++;

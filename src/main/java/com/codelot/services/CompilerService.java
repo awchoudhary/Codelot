@@ -17,7 +17,11 @@ import java.util.ArrayList;
  * A class to handle program execution via the Hackerrank API
  */
 public class CompilerService {
-    public String execute(String source) throws IOException {
+    public String execute(String source, String testCases) throws IOException {
+        if(testCases == null || testCases.isEmpty()){
+            testCases = "[\"1\"]";
+        }
+
         String apiKey = "hackerrank|649055-1352|c087072528ca4bc4eb2d9c8d993fcb8971616e9c";
         URL url = new URL("http://api.hackerrank.com/checker/submission.json");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -25,7 +29,7 @@ public class CompilerService {
         //add reuqest header
         con.setRequestMethod("POST");
 
-        String urlParameters = "source=" + source + "&lang=3&testcases=[\"1\"]&api_key=" + apiKey;
+        String urlParameters = "source=" + source + "&lang=3&testcases=" + testCases + "&api_key=" + apiKey;
 
         // Send post request
         con.setDoOutput(true);

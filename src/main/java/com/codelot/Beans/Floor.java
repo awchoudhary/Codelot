@@ -27,6 +27,7 @@ public class Floor {
     private String baseCode;
     // list of expected outputs for this task
     private ArrayList<String> expectedOutputs = new ArrayList<>();
+    private String testCases;
 
     // initializing locked to true (because all are locked in the beginning)
     public Floor(){
@@ -116,5 +117,13 @@ public class Floor {
     // sets the list of expected outputs
     public void setExpectedOutputs(ArrayList<String> expectedOutputs) {
         this.expectedOutputs = expectedOutputs;
+    }
+
+    public String getTestCases() {
+        return testCases;
+    }
+
+    public void setTestCases(String testCases) {
+        this.testCases = testCases;
     }
 }

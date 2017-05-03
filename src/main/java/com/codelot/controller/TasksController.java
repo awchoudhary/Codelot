@@ -8,7 +8,6 @@ import com.codelot.services.CompilerService;
 import com.googlecode.objectify.ObjectifyService;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -49,7 +48,7 @@ public class TasksController {
         //compile the code and return a response object
         CompilerService service = new CompilerService();
 
-        JSONObject response = CompilerService.createResponse(service.execute(sourceText), expectedOutputs);
+        JSONObject response = CompilerService.createResponse(service.execute(sourceText, floors.get(currentFloor).getTestCases()), expectedOutputs);
 
         //if successful, add to task set for the building
         if(response.get("outcome").equals("true")){
