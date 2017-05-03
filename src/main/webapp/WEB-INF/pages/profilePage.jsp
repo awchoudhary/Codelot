@@ -42,9 +42,10 @@
                 <td><label for="avtr">Avatar:</label></td>
                 <td>
                     <select class="form-control" name="avatar" id="avtr" onchange="switchImage();" >
-                        <option  value="../../images/duck.png">Duck</option>
-                        <option  value="../../images/clown.png">Clown</option>
-                        <option  value="../../images/wabbit.png">Rabbit</option>
+                        <option  value="../../images/sprites/amg4.png">Avatar 1</option>
+                        <option  value="../../images/sprites/avt2.png">Avatar 2</option>
+                        <option  value="../../images/sprites/knt1.png">Avatar 3</option>
+                        <option  value="../../images/sprites/knt4.png">Avatar 4</option>
                     </select>
                 </td>
                 </tr>

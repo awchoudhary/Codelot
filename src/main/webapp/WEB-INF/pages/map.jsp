@@ -21,7 +21,7 @@
 
     <script type="text/javascript" src="../scripts/tether.min.js"></script>
     <script type="text/javascript" src="../scripts/phaser.min.js"></script>
-    <script type="text/javascript" src="../scripts/main.js"></script>
+    <script type="text/javascript" src="../scripts/java_map.js"></script>
 
     <script>
         $(function() {
@@ -91,7 +91,7 @@
             <div class="buttonblock">
                 <div class="text-block">
                     <p><strong>${username}</strong></p>
-                    <p><img src="${avatar}" height="80px" width="65px"></p>
+                    <p><img id="avtr" src="${avatar}" height="80px" width="65px"></p>
                     <p>${fullName}</p>
                     <p>${age}</p>
                     <p>${email}</p>
