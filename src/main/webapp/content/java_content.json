@@ -1,82 +1,142 @@
 {
   "java": [
-  {
-  "name": "basics",
-    "floors": [
-      {
-      "lesson": "Lets learn one of the most essential aspects of Java: how to print!\n",
-      "description": "Type in 'System.out.print();' with the words Hello World! in between quotes in between the two parentheses. Then click Execute.",
-      "hints": [
-        "To print 'Hey!' we type 'System.out.print(\"Hey\");"
-        ],
-      "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\t//Your code goes under here\n\t}\n}",
-      "expectedOutputs": [
-          "Hello World!"
+    {
+      "name": "basics",
+      "floors": [
+        {
+          "lesson": "Lets learn one of the most essential aspects of Java: how to print!\n",
+          "description": "Type in 'System.out.print();' with the words Hello World! in between quotes in between the two parentheses. Then click Execute.",
+          "hints": [
+            "To print 'Hey!' we type 'System.out.print(\"Hey\");"
+          ],
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\t//Your code goes under here\n\t}\n}",
+          "expectedOutputs": [
+            "Hello World!"
           ]
-      },
-      {
-      "lesson": "Theres also another type of print: System.out.println(). While System.out.print() prints the input on the same line, System.out.println() prints the given input and moves to a new line so that any new input will begin in the next line. Lets try it out! \n",
-      "description": "Type in 'System.out.println();' with the word 'Hello!', and then 'System.out.println();' with the word 'World!.",
-      "hints": [
-        "To print 'Hey!' followed by a newline we type 'System.out.println(\"Hey!\");"
-        ],
-      "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\t//Your code goes under here\n\t}\n}",
-      "expectedOutputs": [
-          "Hello!\nWorld!\n"
+        },
+        {
+          "lesson": "Theres also another type of print: System.out.println(). While System.out.print() prints the input on the same line, System.out.println() prints the given input and moves to a new line so that any new input will begin in the next line. Lets try it out! \n",
+          "description": "Type in 'System.out.println();' with the word 'Hello!', and then 'System.out.println();' with the word 'World!.",
+          "hints": [
+            "To print 'Hey!' followed by a newline we type 'System.out.println(\"Hey!\");"
+          ],
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\t//Your code goes under here\n\t}\n}",
+          "expectedOutputs": [
+            "Hello!\nWorld!\n"
           ]
-      },
-      {
-        "lesson": "In any programming language, a variable is used to hold values for later use. For example, the statement 'String x = \"Hello\";' stores the text 'Hello' as x in your program, which can then be used in subsequent code. Lets use our knowledge from the previous tasks to print out a String Variable! \n",
-        "description": "Print the variable called str.",
-        "hints": [
-          "Printing a variable is just like how we printed \"Hello World\", but without quotations."
-        ],
-        "baseCode": "import java.util.*;\npublic class Solution{\n\tpublic static void main(String[] args){\n\t\tScanner sc = new Scanner(System.in);\n\t\twhile(sc.hasNextLine()){\n\t\t\tString line = sc.nextLine();\n\t\t\tprintVariable(line);\n\t\t}\n\t}\n\tpublic static void printVariable(String str){\n\t\t//Your code goes here\n\t}\n}",
-        "expectedOutputs": [
-          "Hello Codelot!"
-        ],
-        "testCases": "[\"Hello Codelot!\"]"
-      }
-      {
-        "lesson": "Integer is another variable like String which, instead of storing text, is used to keep integer values. For example, The assignment 'int x = 5' creates a variable x with the value 5. Integers are numbers and you can therefore perform mathematical operations on them. Taking our previously declared variable x, we can add 5 to x and store the result within a new Integer variable like so: 'int y = x + 5;'. The value of y is now 10 as x was declared with a value of 5.",
-        "description": "Create a new variable equal to the difference between a and b and print the variable.",
-        "hints": [
-          "You can store the difference between a and b in a new variable similar to how we created y in the lesson description and print it out exactly like we printed a string variable in floor 3."
-        ],
-        "baseCode": "import java.util.*;\n public class Solution{\n\tpublic static void main(String[] args){\n\t\tScanner sc = new Scanner(System.in);\n\t\twhile(sc.hasNextLine()){\n\t\t\tString line = sc.nextLine();\n\t\t\tString[] nums = line.split(\",\");\n\t\t\tint a = Integer.parseInt(nums[0]);\n\t\t\tint b = Integer.parseInt(nums[1]);\n\t\t\taddTwoNums(a, b);\n\t\t}\n\t}\n\tpublic static void addTwoNums(int a, int b){\n\t\t//Your code goes under here\n\t}\n}",
-        "expectedOutputs": [
-          "5"
-        ],
-        "testCases": "[\"10,5\"]"
-      }
-    ]
-},
-  {
-    "name": "loops",
-    "floors": [
-      {
-      "lesson": "Lets learn one of the most essential aspects of Java: how to print!\n",
-      "description": "Type in 'System.out.print();' with the words Hello World! in between quotes in between the two parentheses. Then click Execute.",
-      "hints": [
-        "To print 'Hey!' we type 'System.out.println(\"Hey\");"
-        ],
-      "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\t//Your code goes under here\n\t}\n}",
-      "expectedOutputs": [
-          "Hello World!"
+        },
+        {
+          "lesson": "In any programming language, a variable is used to hold values for later use. For example, the statement 'String x = \"Hello\";' stores the text 'Hello' as x in your program, which can then be used in subsequent code. Lets use our knowledge from the previous tasks to print out a String Variable! \n",
+          "description": "Print the variable called str.",
+          "hints": [
+            "Printing a variable is just like how we printed \"Hello World\", but without quotations."
+          ],
+          "baseCode": "import java.util.*;\npublic class Solution{\n\tpublic static void main(String[] args){\n\t\tScanner sc = new Scanner(System.in);\n\t\twhile(sc.hasNextLine()){\n\t\t\tString line = sc.nextLine();\n\t\t\tprintVariable(line);\n\t\t}\n\t}\n\tpublic static void printVariable(String str){\n\t\t//Your code goes here\n\t}\n}",
+          "expectedOutputs": [
+            "Hello Codelot!"
+          ],
+          "testCases": "[\"Hello Codelot!\"]"
+        }
+        {
+          "lesson": "Integer is another variable like String which, instead of storing text, is used to keep integer values. For example, The assignment 'int x = 5' creates a variable x with the value 5. Integers are numbers and you can therefore perform mathematical operations on them. Taking our previously declared variable x, we can add 5 to x and store the result within a new Integer variable like so: 'int y = x + 5;'. The value of y is now 10 as x was declared with a value of 5.",
+          "description": "Create a new variable equal to the difference between a and b and print the variable.",
+          "hints": [
+            "You can store the difference between a and b in a new variable similar to how we created y in the lesson description and print it out exactly like we printed a string variable in floor 3."
+          ],
+          "baseCode": "import java.util.*;\n public class Solution{\n\tpublic static void main(String[] args){\n\t\tScanner sc = new Scanner(System.in);\n\t\twhile(sc.hasNextLine()){\n\t\t\tString line = sc.nextLine();\n\t\t\tString[] nums = line.split(\",\");\n\t\t\tint a = Integer.parseInt(nums[0]);\n\t\t\tint b = Integer.parseInt(nums[1]);\n\t\t\taddTwoNums(a, b);\n\t\t}\n\t}\n\tpublic static void addTwoNums(int a, int b){\n\t\t//Your code goes under here\n\t}\n}",
+          "expectedOutputs": [
+            "5"
+          ],
+          "testCases": "[\"10,5\"]"
+        }
+      ]
+    },
+    {
+      "name": "conditionals",
+      "floors": [
+        {
+          "lesson": "Conditional statements are used to execute different code based on whether a given expression evaluates to true or false. A boolean variable may be used to express true or false. You may do so by setting a variable using the following format: \n\n\tboolean myBoolean = true; \n\n You can construct an if statement by using the following syntax. The code within the 'if' block will execute if myBoolean is true. The code within the 'else' block will run if myBoolean is false. \n\n\tif (myBoolean) {\n\t\t// your code\n\t}\n\telse {\n\t\t// other code\n\t}",
+          "description": "Write a program that prints \"myBoolean is true\" if myBoolean is true and prints \"myBoolean is false\" otherwise.",
+          "hints": [
+            "To print \"myBoolean is true\" we type 'System.out.println(\"myBoolean is true\");"
+          ],
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tmyConditional(true);\n\t\tmyConditional(false);\n\t}\n\tpublic myConditional(boolean myBoolean) {\n\t\t//Your code here\n\t}\n}",
+          "expectedOutputs": [
+            "myBoolean is true",
+            "myBoolean is false"
           ]
-      },
-      {
-      "lesson": "Lets learn one of the most essential aspects of Java: how to print!\n",
-      "description": "Type in 'System.out.print();' with the words Hello World! in between quotes in between the two parentheses. Then click Execute.",
-      "hints": [
-        "To print 'Hey!' we type 'System.out.println(\"Hey\");"
-        ],
-      "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\t//Your code goes under here\n\t}\n}",
-      "expectedOutputs": [
-          "Hello World!"
+        },
+        {
+          "lesson": "Along with 'if' and 'else' statements, there is also the 'else if' statement. Using these statements, there are more possibilities to branch code off of than simple true or false.\nRelational operators to be used in an expression include the following: less than (<), greater than (>), less than or equal to (<=), greater than or equal to (>=), equals (==), or not equals (!=)",
+          "description": "Write a program that prints \"x is less than 5\" if x is less than 5, prints \"x is greater than 10\" if x is greater than 10, and prints \"x is between 5 and 10\" otherwise.",
+          "hints": [
+            "Use if, else if, and else to test for different cases!",
+            "Remember the relational operators that may be useful in this problem, such as \"<\""
+          ],
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tmyConditional(1);\n\t\tmyConditional(11);\n\t\tmyConditional(5)\n\t}\n\tpublic myConditional(int x) {\n\t\t//Your code here\n\t}\n}",
+          "expectedOutputs": [
+            "x is less than 5",
+            "x is greater than 10",
+            "x is between 5 and 10"
           ]
-      }
-    ]
-  }
-]
+        },
+        {
+          "lesson": "In order to print the value of a variable as part of a string, you may use string concatenation. To print \"x equals \" followed by the value of x, the following code is used:\n\t System.out.print(\"x equals \" + x) ",
+          "description": "Write a program that prints \"5 is greater than \" followed by the value of x when 5 is greater than x, otherwise print \"x is equal to \" followed by the value of x.",
+          "hints": [
+            "Use if and else to test for different cases!",
+            "Remember the relational operators that may be useful in this problem, such as \">\""
+          ],
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tmyConditional(1);\n\t\tmyConditional(11);\n\t\tmyConditional(5)\n\t}\n\tpublic myConditional(int x) {\n\t\t//Your code here\n\t}\n}",
+          "expectedOutputs": [
+            "5 is greater than 1",
+            "x is equal to 11",
+            "x is equal to 5"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "loops",
+      "floors": [
+        {
+          "lesson": "While loops are used to execute code numerous times while a given expression or value evaluates to true. You can construct a while statement by using the following syntax. The code within the 'while' block will execute so long as myBoolean is true. \n\n\twhile (myBoolean) {\n\t\t// your code\n\t}. \nIt is very important to be careful when using loops, as infinitely executing loops will likely cause problems for a program. As such, it is important to make sure that any variables within a while statement are being updated as needed within the while block.",
+          "description": "Using a while loop, write a program that prints \"x is \" followed by the value of x and a new line for all values from 0 to 4",
+          "hints": [
+            "To run the loop for all necessary values, start x at 0 and continue the loop so long as x is less than or equal to 4.",
+            "Remember to update x from within the loop by adding 1 each time at the end."
+          ],
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\t// Your Code Here\n\t}\n}",
+          "expectedOutputs": [
+            "x is 0\nx is 1\nx is 2\nx is 3\nx is 4\n"
+          ]
+        },
+        {
+          "lesson": "For loops are used to execute code for a number of times while a temporary variable is within a certain range. You can construct a for statement by using the following syntax. The code within the 'for' block will execute so long as the variable defined within the statement evaluates to true based on the given expression. The third expression of the for statement updates the variable after each iteration. \n\n\tfor (int i = 0; i < 10; i = i + 1) {\n\t\t// your code\n\t}.",
+          "description": "Using a for loop, write a program that prints \"x is \" followed by the value of x and a new line for all values from 7 to 12",
+          "hints": [
+            "To run the loop for all necessary values, start x at 7 and continue the loop so long as x is less than or equal to 12.",
+          ],
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\t// Your Code Here\n\t}\n}",
+          "expectedOutputs": [
+            "x is 7\nx is 8\nx is 9\nx is 10\nx is 11\n"
+          ]
+        },
+        {
+          "lesson": "In order to print the value of a variable as part of a string, you may use string concatenation. To print \"x equals \" followed by the value of x, the following code is used:\n\t System.out.print(\"x equals \" + x) ",
+          "description": "Write a program that prints \"5 is greater than \" followed by the value of x when 5 is greater than x, otherwise print \"x is equal to \" followed by the value of x.",
+          "hints": [
+            "Use if and else to test for different cases!",
+            "Remember the relational operators that may be useful in this problem, such as \">\""
+          ],
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tmyConditional(1);\n\t\tmyConditional(11);\n\t\tmyConditional(5)\n\t}\n\tpublic myConditional(int x) {\n\t\t//Your code here\n\t}\n}",
+          "expectedOutputs": [
+            "5 is greater than 1",
+            "x is equal to 11",
+            "x is equal to 5"
+          ]
+        }
+      ]
+    }
+  ]
 }
