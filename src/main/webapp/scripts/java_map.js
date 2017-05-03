@@ -10,9 +10,13 @@ var player;
 
 var map;
 var basics;
-var conditonals;
+var conditionals;
 var loops;
 var final;
+var basicsZone;
+var conditionalsZone;
+var loopsZone;
+var finalZone;
 var alertShown = false; // For now, keep alert from looping infinitely
 
 var mainstate = {
@@ -51,30 +55,30 @@ var mainstate = {
         var start =map.objects["tasks"][4];
 
         //basics
-        var build1 = map.objects["tasks"][0];
+        basics = map.objects["tasks"][0];
 
         //final
-        var build2 = map.objects["tasks"][1];
+        final = map.objects["tasks"][1];
 
         //conditionals
-        var build3 = map.objects["tasks"][2];
+        conditionals= map.objects["tasks"][2];
 
         //loops
-        var build4 = map.objects["tasks"][3]
+        loops = map.objects["tasks"][3]
 
 
         //define basics zone
-         basics = new Phaser.Rectangle(build1.x,build1.y,build1.width,build1.height);
+         basicsZone = new Phaser.Rectangle(basics.x,basics.y,basics.width,basics.height);
 
         //define conditionals zone
-        conditonals = new Phaser.Rectangle(build3.x,build3.y,build3.width,build3.height);
+        conditionalsZone = new Phaser.Rectangle(conditionals.x,conditionals.y,conditionals.width,conditionals.height);
 
 
         //define loops zone
-        loops = new Phaser.Rectangle(build4.x,build4.y,build4.width,build4.height);
+        loopsZone = new Phaser.Rectangle(loops.x,loops.y,loops.width,loops.height);
 
         //define final zone
-        final = new Phaser.Rectangle(build2.x,build2.y,build2.width,build2.height);
+        finalZone = new Phaser.Rectangle(final.x,final.y,final.width,final.height);
 
         // //set player to starting point
         player.position.set(start.x,start.y);
@@ -128,29 +132,29 @@ var mainstate = {
 
 
          //Check if in basics
-         if (basics.contains(player.x+player.width/2,player.y+player.height/2)) {
+         if (basicsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
              //Basics name for java
               window.location = "/task/getJavaTasksPage";
              //alert("You Win!!");
          }
          //check if in conditionals
-         if (conditonals.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
+         if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
             console.log("conditonals");
-            console.log(map.objects["tasks"][2].name);
+            console.log(conditonals.name);
              alert("CONDITIONALS" );
              alertShown = true;
         }
         //check if in loops
-        if (loops.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
+        if (loopsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
             console.log("loops");
             console.log(loops.name);
             alert("Sorry,you must unlock this building");
             alertShown = true;
         }
         //check if in final
-        if (final.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
-            console.log("finals");
-            console.log(finals.name);
+        if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
+            console.log("final");
+            console.log(final.name);
             alert("Sorry,you must unlock this building");
             alertShown = true;
         }
