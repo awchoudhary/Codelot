@@ -123,17 +123,31 @@
           ]
         },
         {
-          "lesson": "In order to print the value of a variable as part of a string, you may use string concatenation. To print \"x equals \" followed by the value of x, the following code is used:\n\t System.out.print(\"x equals \" + x) ",
-          "description": "Write a program that prints \"5 is greater than \" followed by the value of x when 5 is greater than x, otherwise print \"x is equal to \" followed by the value of x.",
+          "lesson": "An array is a list of variables of fixed length. For example, a list of ten integers can be defined with the following code:\n\tint a[] = new int[10];\nTo access a value in the list, the indexes begin counting at 0 and continue to the length of the list minus 1. As such, the first element of array a is a[0] and the last element is a[9]. To get the length of an array, use a.length to get the value 10.",
+          "description": "Write a program that prints every element in the integer array a, separated by a new line.",
           "hints": [
-            "Use if and else to test for different cases!",
-            "Remember the relational operators that may be useful in this problem, such as \">\""
+            "Remember that the indices of array a begin with 0 and end with a.length-1.",
+            "You can use a variable to hold the index of the element that you would like to access in array a."
           ],
-          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tmyConditional(1);\n\t\tmyConditional(11);\n\t\tmyConditional(5)\n\t}\n\tpublic myConditional(int x) {\n\t\t//Your code here\n\t}\n}",
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tint[] a = {1,2,3,4}\n\t\tprintArray(a);\n\t\tint[] b = {6,8,9,2,1}\n\t\tprintArray(b);\n\t}\n\tpublic printArray(int[] a) {\n\t\t//Your code here\n\t}\n}",
           "expectedOutputs": [
-            "5 is greater than 1",
-            "x is equal to 11",
-            "x is equal to 5"
+            "1\n2\n3\n4\n",
+            "6\n8\n9\n2\n1\n",
+          ]
+        },
+        {
+          "lesson": "You can define a variable outside of a loop in order to use it and update the value during subsequent executions of the code. In this example, you will need to keep a running sum of each value in an array.",
+          "description": "Write a program that prints \"The total is \" followed by the total of the values within an integer array.",
+          "hints": [
+            "Remember that the indices of array a begin with 0 and end with a.length-1.",
+            "You can use a variable to hold the index of the element that you would like to access in array a.",
+            "You can use a variable to hold the total as you go through every element in array a."
+
+          ],
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tint[] a = {0,1,2,3,4}\n\t\taddArray(a);\n\t\tint[] b = {6,8,9,2,1}\n\t\tprintArray(b);\n\t}\n\tpublic addArray(int[] a) {\n\t\t//Your code here\n\t}\n}",
+          "expectedOutputs": [
+            "The total is 10",
+            "The total is 26"
           ]
         }
       ]
