@@ -20,6 +20,9 @@ var languages = {
     $("#settingsLink").click(function() {
         $("#submitSettings").click();
     });
+     $("#resetLink").click(function() {
+         $("#submitReset").click();
+     });
     $("#homeLink, #logolink").click(function() {
         $("#submitHome").click();
     });

@@ -81,8 +81,7 @@ public class TasksController {
         return(javaTasks(currentFloorNumber));
     }
 
-    /* Function used when moving from one floor to another when floor number IS passed in
-    */
+    /* Function used when moving from one floor to another when floor number IS passed in */
     @RequestMapping("/getJavaTask")
     public ModelAndView tasksContent(@RequestParam("floorNum") int floorNum){
         return(javaTasks(floorNum));

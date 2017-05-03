@@ -11,12 +11,11 @@ This is the object that will be loaded when user clicks "Python" on the language
 Each building in the map will be loaded with each object Building from the list of buildings in this class.
  */
 public class PythonCodelot extends Language{
-    ArrayList<Building> bldgs;
 
-    /* Initializing PythonCodelot by setting default/prelemenary values */
+    /* Initializing JavaCodelot by setting default/prelemenary values */
     public PythonCodelot(){
-        // Add buildings by reading from PythonContext.xml
-        setBuildings(makeBuildings());
+        // Add buildings by reading from JavaContext.xml
+        setBuildings(makeBuildings("content/java_content.json", "java"));
         // Since language is initialized when CodelotUser is made and therefore hasnt been clicked on by user, set started to false
         setStarted(false);
         // Set number of completed buildings to 0 since language has not been started
@@ -28,17 +27,4 @@ public class PythonCodelot extends Language{
         setCompleted(false);
     }
 
-    // Method that adds data from xml/json file to buildings list
-    private ArrayList<Building> makeBuildings(){
-        ArrayList<Building> bldgs = new ArrayList<Building>();
-        makeBuilding1("Basics");
-        return bldgs;
-    }
-
-    // temp method to populate first building
-    private void makeBuilding1(String bname){
-        Building bldg1 = new Building();
-        bldg1.setName(bname);
-        Floor flr1 = new Floor();
-    }
 }

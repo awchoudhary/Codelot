@@ -3,6 +3,7 @@
 <head>
     <title>Codelot</title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/task.css" />
 
     <link rel="stylesheet" type="text/css" href="../stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 
@@ -81,6 +82,13 @@
                     <h2 id="aboutLanguage"></h2>
                     <p id="languageDescription"></p>
                 </div>
+            </div>
+            <div class="floorWrapper">
+                <form method="post">
+                <a class="floor" id="resetLink">Reset All</a>
+                <button style="display:none" id="submitReset" title="Reset" type="submit"
+                        onclick="form.action='/reset';">Reset</button>
+                </form>
             </div>
         </div>
     </div>
