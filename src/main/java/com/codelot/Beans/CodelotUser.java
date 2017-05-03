@@ -91,4 +91,16 @@ public class CodelotUser {
     public JavaScriptCodelot getJavaScriptCodelot() {
         return javaScriptCodelot;
     }
+
+    public void setJavaCodelot(JavaCodelot javaCodelot) {
+        this.javaCodelot = javaCodelot;
+    }
+
+    public void setPythonCodelot(PythonCodelot pythonCodelot) {
+        this.pythonCodelot = pythonCodelot;
+    }
+
+    public void setJavaScriptCodelot(JavaScriptCodelot javaScriptCodelot) {
+        this.javaScriptCodelot = javaScriptCodelot;
+    }
 }

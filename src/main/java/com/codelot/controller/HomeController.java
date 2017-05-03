@@ -1,7 +1,6 @@
 package com.codelot.controller;
 
-import com.codelot.Beans.Building;
-import com.codelot.Beans.CodelotUser;
+import com.codelot.Beans.*;
 import com.codelot.services.CodelotUserService;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import com.googlecode.objectify.ObjectifyService;
 
 import java.util.ArrayList;
 
@@ -128,6 +128,18 @@ public class HomeController {
             //update the existing profile
             CodelotUserService.updateUser(fullname, age, username, avatar);
         }
+
+        return languageSelection();
+    }
+
+    @RequestMapping("/reset")
+    public ModelAndView resetProgress (){
+        System.out.println("------------------- RESET ------------------");
+        CodelotUser profile = CodelotUserService.getCurrentUserProfile();
+        profile.setJavaCodelot(new JavaCodelot());
+        profile.setJavaScriptCodelot(new JavaScriptCodelot());
+        profile.setPythonCodelot(new PythonCodelot());
+        ObjectifyService.ofy().save().entity(profile).now();
 
         return languageSelection();
     }

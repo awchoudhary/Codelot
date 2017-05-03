@@ -40,6 +40,9 @@
             $("#taskLink").click(function() {
                 $("#submitTask").click();
             });
+            $("#langSelectLink").click(function() {
+                $("#submitLangSelect").click();
+            });
         });
     </script>
 </head>
@@ -55,6 +58,9 @@
             <%--<a role="button" data-toggle="modal" data-target="#faqModal">FAQ</a>--%>
             <form id="signoutForm" method="post">
                 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+                <a id="langSelectLink">Back to Language Selection</a>
+                <button style="display:none" id="submitLangSelect" title="LangSelect" type="submit"
+                        onclick="form.action='/languageSelection';">Language Selection</button>
                 <a id="homeLink">Home</a>
                 <button style="display:none" id="submitHome" title="Home" type="submit"
                         onclick="form.action='/';">Home</button>
@@ -64,10 +70,6 @@
                 <a id="signoutLink">Signout</a>
                 <button style="display:none" id="submitSignout" title="Sign Out" type="submit"
                         onclick="form.action='/signout';">Signout</button>
-                <%--<a id="taskLink">Task</a>--%>
-                <%--<input type="hidden" value="-1" name="floorNum"/>--%>
-                <%--<button style="display:none" id="submitTask" title="Task" type="submit"--%>
-                    <%--onclick="form.action='/getJavaTask';">Task</button>--%>
             </form>
         </div>
     </div>

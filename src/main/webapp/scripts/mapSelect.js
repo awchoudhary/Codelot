@@ -23,6 +23,9 @@ var languages = {
     $("#homeLink, #logolink").click(function() {
         $("#submitHome").click();
     });
+     $("#resetLink").click(function() {
+         $("#submitReset").click();
+     });
 
     $(".mapWrapper").click(selectMap);
  });
