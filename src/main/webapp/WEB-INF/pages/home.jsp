@@ -38,8 +38,10 @@
         <div id="Home" class="wood-bg section hero-section">
             <div class="hero-wrap">
                 <div class="hero-left">
-                    <h1 class="heading-1"><strong>Learn to code</strong></h1>
-                    <p class="subhead-1">Info about website goes here and it will be an informative paragraph that gives the user an idea of what they are getting themselves into when clicking the play button.</p>
+                    <h1 class="heading-1"><strong>Codelot: Virtual Coding Kingdom</strong></h1>
+                    <p class="subhead-1">
+                        Learn to code and study core programming concepts as easily as playing a game!
+                    </p>
                     <a class="button w-button" onclick="location.href='/signin'"><strong>Play</strong></a>
                 </div>
             </div>

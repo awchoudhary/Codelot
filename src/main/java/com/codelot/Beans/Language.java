@@ -1,5 +1,10 @@
 package com.codelot.Beans;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.io.FileReader;
 import java.util.ArrayList;
 
 /**
@@ -43,6 +48,80 @@ public abstract class Language {
         if (numCompleted >= getNumBuildings()){
             completed = true;
         }
+    }
+
+    // Method that adds data from xml/json file to buildings list
+    protected ArrayList<Building> makeBuildings(String filename, String lang){
+        buildings = new ArrayList<Building>();
+        JSONParser parser = new JSONParser();
+
+        try {
+
+            Object obj = parser.parse(new FileReader( filename));
+            JSONObject jsonObject = (JSONObject) obj;
+            JSONArray json_buildings = (JSONArray) jsonObject.get(lang);
+
+            int i = 0;
+            while (i < json_buildings.size()){
+                Building building = new Building();
+
+                JSONObject json_building = (JSONObject) json_buildings.get(i);
+                String name = (String) json_building.get("name");
+                building.setName(name);
+                if(i == 0){
+                    building.setLocked(false);
+                }
+
+                JSONArray floors = (JSONArray) json_building.get("floors");
+                int n = 0;
+                while (n < floors.size()){
+                    Floor floor = new Floor();
+                    if(n == 0){
+                        floor.setLocked(false);
+                    }
+
+                    JSONObject json_floor = (JSONObject) floors.get(n);
+                    String lesson = (String) json_floor.get("lesson");
+                    floor.setLesson(lesson);
+                    String desc = (String) json_floor.get("description");
+                    floor.setTaskDescription(desc);
+                    String baseCode = (String) json_floor.get("baseCode");
+                    floor.setBaseCode(baseCode);
+
+                    JSONArray hints = (JSONArray) json_floor.get("hints");
+                    ArrayList<String> save_hints = new ArrayList<String>();
+                    for (Object hint: hints) {
+                        save_hints.add((String)hint);
+                    }
+                    floor.setHints(save_hints);
+
+                    JSONArray outputs = (JSONArray) json_floor.get("expectedOutputs");
+                    ArrayList<String> save_outputs = new ArrayList<String>();
+                    for (Object output: outputs) {
+                        save_outputs.add((String)output);
+                    }
+                    floor.setExpectedOutputs(save_outputs);
+
+                    //get test cases if applicable
+                    if(json_floor.containsKey("testCases")){
+                        floor.setTestCases((String)json_floor.get("testCases"));
+                    }
+
+                    building.addFloor(floor);
+                    floor.setIndex(building.getFloors().indexOf(floor));
+                    n++;
+                }
+
+                buildings.add(building);
+                building.setIndex(buildings.indexOf(building));
+                i++;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return buildings;
     }
 
     // Returns the total number of buildings within this language
