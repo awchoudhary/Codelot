@@ -24,6 +24,30 @@
       "expectedOutputs": [
           "Hello!\nWorld!\n"
           ]
+      },
+      {
+        "lesson": "In any programming language, a variable is used to hold values for later use. For example, the statement 'String x = \"Hello\";' stores the text 'Hello' as x in your program, which can then be used in subsequent code. Lets use our knowledge from the previous tasks to print out a String Variable! \n",
+        "description": "Print the variable called str.",
+        "hints": [
+          "Printing a variable is just like how we printed \"Hello World\", but without quotations."
+        ],
+        "baseCode": "import java.util.*;\npublic class Solution{\n\tpublic static void main(String[] args){\n\t\tScanner sc = new Scanner(System.in);\n\t\twhile(sc.hasNextLine()){\n\t\t\tString line = sc.nextLine();\n\t\t\tprintVariable(line);\n\t\t}\n\t}\n\tpublic static void printVariable(String str){\n\t\t//Your code goes here\n\t}\n}",
+        "expectedOutputs": [
+          "Hello Codelot!"
+        ],
+        "testCases": "[\"Hello Codelot!\"]"
+      }
+      {
+        "lesson": "Integer is another variable like String which, instead of storing text, is used to keep integer values. For example, The assignment 'int x = 5' creates a variable x with the value 5. Integers are numbers and you can therefore perform mathematical operations on them. Taking our previously declared variable x, we can add 5 to x and store the result within a new Integer variable like so: 'int y = x + 5;'. The value of y is now 10 as x was declared with a value of 5.",
+        "description": "Create a new variable equal to the difference between a and b and print the variable.",
+        "hints": [
+          "You can store the difference between a and b in a new variable similar to how we created y in the lesson description and print it out exactly like we printed a string variable in floor 3."
+        ],
+        "baseCode": "import java.util.*;\n public class Solution{\n\tpublic static void main(String[] args){\n\t\tScanner sc = new Scanner(System.in);\n\t\twhile(sc.hasNextLine()){\n\t\t\tString line = sc.nextLine();\n\t\t\tString[] nums = line.split(\",\");\n\t\t\tint a = Integer.parseInt(nums[0]);\n\t\t\tint b = Integer.parseInt(nums[1]);\n\t\t\taddTwoNums(a, b);\n\t\t}\n\t}\n\tpublic static void addTwoNums(int a, int b){\n\t\t//Your code goes under here\n\t}\n}",
+        "expectedOutputs": [
+          "5"
+        ],
+        "testCases": "[\"10,5\"]"
       }
     ]
 },
