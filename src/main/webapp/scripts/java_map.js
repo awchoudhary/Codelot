@@ -137,11 +137,11 @@ var mainstate = {
             post('/task/getJavaTasksPage', {numBuilding: '0'});
         }
          //check if in conditionals
-        if (conditonals.contains(player.x+player.width/2,player.y+player.height/2)) {
+        if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
             post('/task/getJavaTasksPage', {numBuilding: '1'});
         }
         //check if in loops
-        if (loops.contains(player.x+player.width/2,player.y+player.height/2)) {
+        if (loopsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
             post('/task/getJavaTasksPage', {numBuilding: '2'});
         }
         //check if in final
