@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +30,7 @@ public class CompilerService {
         //add reuqest header
         con.setRequestMethod("POST");
 
-        String urlParameters = "source=" + source + "&lang=3&testcases=" + testCases + "&api_key=" + apiKey;
+        String urlParameters = "source=" + URLEncoder.encode(source, "UTF-8") + "&lang=3&testcases=" + testCases + "&api_key=" + apiKey;
 
         // Send post request
         con.setDoOutput(true);
