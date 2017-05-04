@@ -21,6 +21,7 @@ public class Building {
     private String name; // name of the buildings (ex. 'Loops')
     private int index; // index of the Building within the list of Buildings in Language object
     private HashSet<Integer> completedTaskSet; // set of completed tasks
+    private boolean completed;
 
     // initialize Building
     public Building(){
@@ -36,6 +37,9 @@ public class Building {
         currentFloor = 0;
         // init set of completed tasks to black set
         completedTaskSet = new HashSet<Integer>();
+        // intially building is not completed
+        completed = false;
+
     }
 
     // read from xml file for content and add to Floor
@@ -126,5 +130,13 @@ public class Building {
     // used to set hash set of completed task
     public void setCompletedTaskSet(HashSet<Integer> completedTaskSet) {
         this.completedTaskSet = completedTaskSet;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

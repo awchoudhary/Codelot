@@ -1,7 +1,7 @@
 {
   "java": [
     {
-      "name": "basics",
+      "name": "Basics",
       "floors": [
         {
           "lesson": "Lets learn one of the most essential aspects of Java: how to print!\n",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "name": "conditionals",
+      "name": "Conditionals",
       "floors": [
         {
           "lesson": "Conditional statements are used to execute different code based on whether a given expression evaluates to true or false. A boolean variable may be used to express true or false. You may do so by setting a variable using the following format: \n\n\tboolean myBoolean = true; \n\n You can construct an if statement by using the following syntax. The code within the 'if' block will execute if myBoolean is true. The code within the 'else' block will run if myBoolean is false. \n\n\tif (myBoolean) {\n\t\t// your code\n\t}\n\telse {\n\t\t// other code\n\t}",
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "name": "loops",
+      "name": "Loops",
       "floors": [
         {
           "lesson": "While loops are used to execute code numerous times while a given expression or value evaluates to true. You can construct a while statement by using the following syntax. The code within the 'while' block will execute so long as myBoolean is true. \n\n\twhile (myBoolean) {\n\t\t// your code\n\t}. \nIt is very important to be careful when using loops, as infinitely executing loops will likely cause problems for a program. As such, it is important to make sure that any variables within a while statement are being updated as needed within the while block.",

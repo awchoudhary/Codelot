@@ -106,7 +106,7 @@
                     <div class="progress">
                         <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="${progress}"
                              aria-valuemin="0" aria-valuemax="100" style="width:${progress}%; background-color:maroon;">
-                            <span class="sr-only">${progress}% Completed</span>
+                            <span class="sr-only">${progress}%</span>
                         </div>
                         <p id="progess_message">${progress}%</p>
                     </div>

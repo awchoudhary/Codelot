@@ -80,7 +80,15 @@ public class HomeController {
 
         if(c_user != null){
             ArrayList<Building> buildings = c_user.getJavaCodelot().getBuildings();
-            int progress = (int)((((double) c_user.getJavaCodelot().getNumCompleted())/buildings.size()) * 100);
+
+            int numCompleted = 0;
+            // get number of completed buildings
+            for(int x=0; x<buildings.size(); x++){
+                if (c_user.getJavaCodelot().getBuildings().get(x).isCompleted() == true){
+                    numCompleted += 1;
+                }
+            }
+            int progress = (int)((((double) numCompleted)/buildings.size()) * 100);
 
             model.addObject("fullName", c_user.getFullname());
             model.addObject("username", c_user.getUsername());
