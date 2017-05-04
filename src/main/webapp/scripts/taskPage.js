@@ -48,7 +48,8 @@ function execute(){
     //get parameters
     var source = $("#source").val();
     var currentFloor = $("#currentFloor").val();
-    var params = {source: source, currentFloor: currentFloor};
+    var numBuilding = $("#numBuilding").val();
+    var params = {source: source, currentFloor: currentFloor, numBuilding: numBuilding};
 
     var resultSuccess = function(data) {
         $("#resultHeader").removeClass("failed").addClass("success");

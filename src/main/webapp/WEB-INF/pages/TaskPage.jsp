@@ -96,6 +96,7 @@
                                                     <button style="display:none" id="Floor${floor.index}" title="Floor" type="submit"
                                                             onclick="form.action='/task/getJavaTask';">Floor ${floor.index+1}</button></a>
                                                         <input type="hidden" value="${floor.index}" name="floorNum"/>
+                                                        <input type="hidden" value="${numBuilding}" name="numBuilding"/>
                                                 </div>
                                             </form>
                                         </td>
@@ -209,6 +210,7 @@
                     <p><div id="expectedOutput"><!-- Displays the expected output for the task--></div></p>
                     <p><div id="compileMessage"><!-- Displays message from compiler --></div></p>
                     <input type="hidden" id="currentFloor" value="${currentFloor}"></input>
+                    <input id="numBuilding" type="hidden" value="${numBuilding}"/>
                 </div>
 
                 <div class="modal-footer">
