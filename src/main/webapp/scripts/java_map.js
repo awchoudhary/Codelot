@@ -4,7 +4,7 @@
 //Variables used in game
 
 //Create canvas to display the game,'game' will refer to this canvas element
-var game = new Phaser.Game(800,800,Phaser.CANVAS,'gameDiv');
+var game = new Phaser.Game(1000,600,Phaser.CANVAS,'gameDiv');
 var player;
 
 
@@ -45,7 +45,7 @@ var mainstate = {
 
         //get player
         player = new Phaser.Sprite(game,0,0,"sprite");
-        game.world.addAt(player,2);
+        game.world.addAt(player,1);
         game.camera.follow(player);
 
 

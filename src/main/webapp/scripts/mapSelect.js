@@ -1,15 +1,15 @@
 var languages = {
     java : {
         name : "Java",
-        desc : "Java Description"
+        desc : "Java is an Object Oriented Programming language used to create web and native applications"
     },
     javascript : {
         name : "JavaScript",
-        desc : "JavaScript Description"
+        desc : "JavaScript is a scripting programming language  used to create dynamic content on webpages"
     },
     python : {
         name : "Python",
-        desc : "Python Description"
+        desc : "Python is a popular multipurpose programming language. The use for python spans to both front end(web pages) and back end"
     }
  };
 

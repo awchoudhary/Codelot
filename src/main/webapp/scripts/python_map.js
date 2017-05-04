@@ -1,7 +1,7 @@
 //Variables used in game
 
 //Create canvas to display the game,'game' will refer to this canvas element
-var game = new Phaser.Game(800,800,Phaser.CANVAS,'gameDiv');
+var game = new Phaser.Game(800,600,Phaser.CANVAS,'gameDiv');
 var player;
 
 
