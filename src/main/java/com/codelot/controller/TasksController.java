@@ -64,7 +64,20 @@ public class TasksController {
         }
 
         //add progress to response
+        //progress = number of completed tasks / total tasks * 100
         int progress = (int)((((double) currentBuilding.getCompletedTaskSet().size())/floors.size()) * 100);
+        // if all tasks have been completed, mark building as completed
+        if (progress >= 100){
+            if (currentBuilding.isCompleted() == false){
+                currentBuilding.setCompleted(true);
+                if (numBuilding+1 < profile.getJavaCodelot().getBuildings().size()) {
+                    profile.getJavaCodelot().getBuildings().get(numBuilding+1).setLocked(false);
+                }
+//                else {
+//                    c_user.getJavaCodelot().setCompleted(true);
+//                }
+            }
+        }
         response.put("progress", progress);
 
         //save changes
@@ -119,12 +132,25 @@ public class TasksController {
         }
 
         //progress = number of completed tasks / total tasks * 100
-        int prog = (int)((((double) currbldg.getCompletedTaskSet().size())/floors.size()) * 100);
+        int progress = (int)((((double) currbldg.getCompletedTaskSet().size())/floors.size()) * 100);
+        // if all tasks have been completed, mark building as completed
+        if (progress >= 100){
+            if (currbldg.isCompleted() == false){
+                currbldg.setCompleted(true);
+                if (numBuilding+1 < c_user.getJavaCodelot().getBuildings().size()) {
+                    c_user.getJavaCodelot().getBuildings().get(numBuilding+1).setLocked(false);
+                }
+//                else {
+//                    c_user.getJavaCodelot().setCompleted(true);
+//                }
+            }
+        }
 
         currbldg.setCurrentFloor(floorNum); // update current floor
         ObjectifyService.ofy().save().entity(c_user).now(); // save user
 
         ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
+        model.addObject("buildingName", currbldg.getName());
         model.addObject("numBuilding", numBuilding);
         model.addObject("floors", floors);
         model.addObject("taskDesc", currentFloor.getTaskDescription());
@@ -132,7 +158,7 @@ public class TasksController {
         model.addObject("hints", currentFloor.getHints());
         model.addObject("attempts", attempts);
         model.addObject("lesson", currentFloor.getLesson());
-        model.addObject("progress", prog);
+        model.addObject("progress", progress);
         model.addObject("baseCode", floors.get(floorNum).getBaseCode());
         model.addObject("currentFloor", floorNum);
 
