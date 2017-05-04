@@ -4,21 +4,12 @@
         <title>Codelot</title>
         <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
         <link rel="stylesheet" type="text/css" href="../stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+        <script src="../stylesheets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
         <link rel="icon" type="image/png" href="../images/CodelotShield.png" />
-        <script src="../scripts/jquery-3.2.0.min.js"></script>
-
-        <script>
-            $(function() {
-                $(".nav-links > a").click(function() {
-                    var scrollid = $(this).text();
-                    $("html, body").animate({
-                        scrollTop: $("#" + scrollid).position().top,
-                        duration: 800
-                    });
-                });
-            });
-        </script>
+        <script src="../scripts/home.js"></script>
 
     </head>
 
@@ -29,9 +20,9 @@
                     <img sizes="131px" src="../images/CodelotLogo.png" width="131">
                 </a>
                 <div class="nav-links">
-                    <a>Home</a>
-                    <a>About</a>
-                    <a>FAQ</a>
+                    <a id="homeLink">Home</a>
+                    <a id="aboutLink">About</a>
+                    <a id="faqLink">FAQ</a>
                 </div>
             </div>
         </nav>
@@ -73,16 +64,6 @@
         </div>
     </div>
 
-    <div id="FAQ" class="section-3">
-        <div class="wrap-3">
-            <h2 class="heading-5">Frequently Asked Questions</h2>
-            <ul>
-                <li>Question 1 - click to expand</li>
-                <li>Question 2</li>
-                <li>Question 3</li>
-            </ul>
-        </div>
-    </div>
     <div class="footer-bottom">
         <div class="footer-bottom-wrap">
             <div class="legal">Information about the group and other footer content. Design made using Webflow.</div>
@@ -92,6 +73,81 @@
         <style>
             .xxx { background: rgba(0,0,0,0.05); }
         </style>
+    </div>
+
+    <!-- FAQ Modal -->
+    <div class="modal fade" id="faqModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Frequently Asked Questions</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse1">Exploring Codelot</a>
+                        </h4>
+                      </div>
+
+                      <div id="collapse1" class="panel-collapse collapse">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <strong>How do I navigate Codelot?</strong>
+                            <br/>
+                            Navigate your character around Codelot using the directional arrows on your keyboard!
+                          </li>
+                          <li class="list-group-item">
+                            <strong>How do I begin a coding task?</strong>
+                            <br/>
+                            To begin a coding task, enter a building by walking up to the location of the building.
+                          </li>
+                          <li class="list-group-item">
+                            <strong>A building appears to be locked!</strong>
+                            <br/>
+                            If a building is locked, this means that other buildings are required to be completed before entering. Explore the town for the next unlocked building in your journey!
+                          </li>
+                        </ul>
+                      </div>
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse2">Coding Tasks</a>
+                            </h4>
+                        </div>
+
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <strong>How do I review the necessary information needed to complete a task?</strong>
+                                    <br/>
+                                    Click the Review Lesson link at the top of the page to review all necessary information.
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>How do I test my solution?</strong>
+                                    <br/>
+                                    Click the Execute button beneath your code to run your solution and determine whether it is successful or unsuccessful.
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>How do I revisit a floor?</strong>
+                                    <br/>
+                                    You may navigate all unlocked floors by using the floor buttons located on the right.
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="startTask" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
     </div>
 
     </body>
