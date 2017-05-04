@@ -142,21 +142,21 @@ var mainstate = {
         if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
             console.log("conditionals");
             console.log(conditionals.name);
-            alert("CONDITIONALS" );
+            alert("Conditionals Building: You must unlock previous building(s)!" );
             alertShown = true;
         }
         //check if in loops
         if (loopsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
             console.log("loops");
             console.log(loops.name);
-            alert("Sorry,you must unlock this building");
+            alert("Loops Building: You must unlock previous building(s)!" );
             alertShown = true;
         }
         //check if in final
         if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
             console.log("final");
             console.log(final.name);
-            alert("Sorry,you must unlock this building");
+            alert("Can't do your final project without the core skills. Complete the previous buildings and come back!");
             alertShown = true;
         }
 
