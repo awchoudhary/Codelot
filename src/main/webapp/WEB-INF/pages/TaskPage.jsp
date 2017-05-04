@@ -42,7 +42,6 @@
                     <button style="display:none" id="submitMap" title="Map" type="submit"
                             onclick="form.action='/map';">Map</button>
 
-
                 </form>
             </div>
         </div>
@@ -76,12 +75,12 @@
 
                 <%-- right column --%>
                 <div class="column-3 w-col w-col-2">
+                    <p id="progess_message" style="color:white;">${progress}%</p>
                     <div class="progress">
                         <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="${progress}"
                              aria-valuemin="0" aria-valuemax="100" style="width:${progress}%; background-color:maroon;">
                             <span class="sr-only">${progress}%</span>
                         </div>
-                        <p id="progess_message">${progress}%</p>
                     </div>
 
                     <div class="buttonblock">

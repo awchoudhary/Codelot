@@ -108,8 +108,8 @@
                              aria-valuemin="0" aria-valuemax="100" style="width:${progress}%; background-color:maroon;">
                             <span class="sr-only">${progress}%</span>
                         </div>
-                        <p id="progess_message">${progress}%</p>
                     </div>
+                    <p id="progess_message" >${progress}%</p>
                 </div>
             </div>
         </div>
