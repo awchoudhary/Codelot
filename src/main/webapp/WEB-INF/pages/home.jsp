@@ -56,19 +56,19 @@
             <div class="a wrap-2">
                 <div class="left-1">
                     <h2 class="heading-2">What is Codelot?</h2>
-                    <p class="paragraph-2">Brief description of Codelot. Here the user can find information about the Codelot experience and what we offer. This is going to be in paragraph form.</p>
+                    <p class="paragraph-2">If you want to learn how to code and love playing games then Codelot is for you !! Complete an adventure within the Codelot Kingdom with your chosen avatar and learn how to code in a variety of coding languages at the same time. </p>
                 </div>
-                <div class="right-1"><img class="screenshot" sizes="(max-width: 767px) 63vw, (max-width: 991px) 35vw, 300px" src="images/RPGScreenshot.png" srcset="images/RPGScreenshot-p-500x380.png 500w, images/RPGScreenshot.png 646w" width="300">
+                <div class="right-1"><img class="screenshot" sizes="(max-width: 767px) 63vw, (max-width: 991px) 35vw, 300px" src="images/pythonworld_overview.png" srcset="images/pythonworld_overview.png 500w, images/RPGScreenshot.png 646w" width="300">
                     <p class="caption-2">Image from Codelot.</p>
                 </div>
             </div>
             <div class="b wrap-2">
-                <div class="left-2"><img class="screenshot" sizes="(max-width: 479px) 80vw, 300px" src="images/RPGScreenshot.png" srcset="images/RPGScreenshot-p-500x380.png 500w, images/RPGScreenshot.png 646w" width="300">
+                <div class="left-2"><img class="screenshot" sizes="(max-width: 479px) 80vw, 300px" src="images/javascriptworld_overview.png" srcset="images/javascriptworld_overview.png 500w, images/RPGScreenshot.png 646w" width="300">
                     <p class="caption-3">Image from Codelot.</p>
                 </div>
             <div class="right-2">
                 <h2 class="heading-2">Virtual Coding Kingdom</h2>
-                <p class="paragraph-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus aliquet neque, sit amet pretium velit mattis ac. Aenean laoreet urna ac ex tempus, vitae bibendum enim consequat. Nulla facilisi.&nbsp;</p>
+                <p class="paragraph-2">There are currently three regions corresponding to three different coding languages within the Codelot kindgom. Unlock all the buildings in each region to master the language  </p>
             </div>
         </div>
     </div>
