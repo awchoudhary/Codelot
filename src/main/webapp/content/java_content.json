@@ -60,10 +60,9 @@
           "hints": [
             "To print \"myBoolean is true\" we type 'System.out.println(\"myBoolean is true\");"
           ],
-          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tmyConditional(true);\n\t\tmyConditional(false);\n\t}\n\tpublic myConditional(boolean myBoolean) {\n\t\t//Your code here\n\t}\n}",
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tmyConditional(true);\n\t\tmyConditional(false);\n\t}\n\tpublic static void myConditional(boolean myBoolean) {\n\t\t//Your code here\n\t}\n}",
           "expectedOutputs": [
-            "myBoolean is true",
-            "myBoolean is false"
+            "myBoolean is true\nmyBoolean is false\n"
           ]
         },
         {
@@ -73,11 +72,9 @@
             "Use if, else if, and else to test for different cases!",
             "Remember the relational operators that may be useful in this problem, such as \"<\""
           ],
-          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tmyConditional(1);\n\t\tmyConditional(11);\n\t\tmyConditional(5)\n\t}\n\tpublic myConditional(int x) {\n\t\t//Your code here\n\t}\n}",
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tmyConditional(1);\n\t\tmyConditional(11);\n\t\tmyConditional(5);\n\t}\n\tpublic static void myConditional(int x) {\n\t\t//Your code here\n\t}\n}",
           "expectedOutputs": [
-            "x is less than 5",
-            "x is greater than 10",
-            "x is between 5 and 10"
+            "x is less than 5\nx is greater than 10\nx is between 5 and 10\n"
           ]
         },
         {
@@ -87,11 +84,9 @@
             "Use if and else to test for different cases!",
             "Remember the relational operators that may be useful in this problem, such as \">\""
           ],
-          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tmyConditional(1);\n\t\tmyConditional(11);\n\t\tmyConditional(5)\n\t}\n\tpublic myConditional(int x) {\n\t\t//Your code here\n\t}\n}",
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tmyConditional(1);\n\t\tmyConditional(11);\n\t\tmyConditional(5);\n\t}\n\tpublic static void myConditional(int x) {\n\t\t//Your code here\n\t}\n}",
           "expectedOutputs": [
-            "5 is greater than 1",
-            "x is equal to 11",
-            "x is equal to 5"
+            "5 is greater than 1\nx is equal to 11\nx is equal to 5\n"
           ]
         }
       ]
@@ -129,10 +124,9 @@
             "Remember that the indices of array a begin with 0 and end with a.length-1.",
             "You can use a variable to hold the index of the element that you would like to access in array a."
           ],
-          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tint[] a = {1,2,3,4}\n\t\tprintArray(a);\n\t\tint[] b = {6,8,9,2,1}\n\t\tprintArray(b);\n\t}\n\tpublic printArray(int[] a) {\n\t\t//Your code here\n\t}\n}",
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tint[] a = {1,2,3,4};\n\t\tprintArray(a);\n\t\tint[] b = {6,8,9,2,1};\n\t\tprintArray(b);\n\t}\n\tpublic static void printArray(int[] a) {\n\t\t//Your code here\n\t}\n}",
           "expectedOutputs": [
-            "1\n2\n3\n4\n",
-            "6\n8\n9\n2\n1\n",
+            "1\n2\n3\n4\n6\n8\n9\n2\n1\n"
           ]
         },
         {
@@ -144,10 +138,9 @@
             "You can use a variable to hold the total as you go through every element in array a."
 
           ],
-          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tint[] a = {0,1,2,3,4}\n\t\taddArray(a);\n\t\tint[] b = {6,8,9,2,1}\n\t\tprintArray(b);\n\t}\n\tpublic addArray(int[] a) {\n\t\t//Your code here\n\t}\n}",
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tint[] a = {0,1,2,3,4};\n\t\taddArray(a);\n\t\tint[] b = {6,8,9,2,1};\n\t\taddArray(b);\n\t}\n\tpublic static void addArray(int[] a) {\n\t\t//Your code here\n\t}\n}",
           "expectedOutputs": [
-            "The total is 10",
-            "The total is 26"
+            "The total is 10\nThe total is 26\n"
           ]
         }
       ]

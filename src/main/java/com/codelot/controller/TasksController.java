@@ -34,9 +34,12 @@ public class TasksController {
         //current task floor index
         int currentFloor = Integer.parseInt(obj.getString("currentFloor"));
 
+        //get building number
+        int numBuilding = Integer.parseInt(obj.getString("numBuilding"));
+
         //get floors for current building
         CodelotUser profile = CodelotUserService.getCurrentUserProfile();
-        Building currentBuilding = profile.getJavaCodelot().getBuildings().get(0);
+        Building currentBuilding = profile.getJavaCodelot().getBuildings().get(numBuilding);
         List<Floor> floors = currentBuilding.getFloors();
 
         //get the expected outputs for the current floor
@@ -73,24 +76,24 @@ public class TasksController {
     // Default floor number is set to last-accessed floor
     */
     @RequestMapping("/getJavaTasksPage")
-    public ModelAndView tasksContent(){
+    public ModelAndView tasksContent(@RequestParam("numBuilding") int numBuilding){
         CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
-        Building currbldg = c_user.getJavaCodelot().getBuildings().get(0);
+        Building currbldg = c_user.getJavaCodelot().getBuildings().get(numBuilding);
         int currentFloorNumber = currbldg.getCurrentFloor();
-        return(javaTasks(currentFloorNumber));
+        return javaTasks(currentFloorNumber, numBuilding);
     }
 
     /* Function used when moving from one floor to another when floor number IS passed in
     */
     @RequestMapping("/getJavaTask")
-    public ModelAndView tasksContent(@RequestParam("floorNum") int floorNum){
-        return(javaTasks(floorNum));
+    public ModelAndView moveFloors(@RequestParam("floorNum") int floorNum, @RequestParam("numBuilding") int numBuilding){
+        return javaTasks(floorNum, numBuilding);
     }
 
-    public ModelAndView javaTasks(int floorNum) {
+    private ModelAndView javaTasks(int floorNum, int numBuilding) {
         //Load values for user
         CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
-        Building currbldg = c_user.getJavaCodelot().getBuildings().get(0);
+        Building currbldg = c_user.getJavaCodelot().getBuildings().get(numBuilding);
         List<Floor> floors = currbldg.getFloors();
         String warning = "";
         int currentFloorNumber = currbldg.getCurrentFloor();
@@ -122,6 +125,7 @@ public class TasksController {
         ObjectifyService.ofy().save().entity(c_user).now(); // save user
 
         ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
+        model.addObject("numBuilding", numBuilding);
         model.addObject("floors", floors);
         model.addObject("taskDesc", currentFloor.getTaskDescription());
         model.addObject("warning", warning);

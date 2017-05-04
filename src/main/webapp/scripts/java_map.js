@@ -132,24 +132,17 @@ var mainstate = {
 
 
          //Check if in basics
-         if (basicsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
-             //Basics name for java
-              window.location = "/task/getJavaTasksPage";
-             //alert("You Win!!");
-         }
+        if (basicsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
+            //Basics name for java
+            post('/task/getJavaTasksPage', {numBuilding: '0'});
+        }
          //check if in conditionals
-         if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
-            console.log("conditonals");
-            console.log(conditonals.name);
-             alert("CONDITIONALS" );
-             alertShown = true;
+        if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
+            post('/task/getJavaTasksPage', {numBuilding: '1'});
         }
         //check if in loops
-        if (loopsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
-            console.log("loops");
-            console.log(loops.name);
-            alert("Sorry,you must unlock this building");
-            alertShown = true;
+        if (loopsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
+            post('/task/getJavaTasksPage', {numBuilding: '2'});
         }
         //check if in final
         if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
@@ -165,3 +158,27 @@ var mainstate = {
 
 game.state.add('mainstate',mainstate);
 game.state.start('mainstate');
+
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
