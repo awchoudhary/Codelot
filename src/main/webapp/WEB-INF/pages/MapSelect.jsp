@@ -61,6 +61,7 @@
                 <form method="post">
                     <button title="Map" type="submit" class="button w-button" onclick="form.action='/map';">
                         <strong>Enter</strong></button>
+                    <input type="hidden" id="lang" name="selectedLang"/>
                 </form>
             </div>
         </div>

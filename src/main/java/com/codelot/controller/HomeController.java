@@ -74,7 +74,7 @@ public class HomeController {
     }
 
     @RequestMapping("/map")
-    public ModelAndView map() {
+    public ModelAndView map(@RequestParam("selectedLang") String lang) {
         ModelAndView model = new ModelAndView("WEB-INF/pages/map");
         CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
 
@@ -90,19 +90,19 @@ public class HomeController {
             }
             int progress = (int)((((double) numCompleted)/buildings.size()) * 100);
 
-//            // return correct map - java, js, python
-//            String langMap;
-//            if (lang.equals("javascript")){
-//                langMap = "../scripts/javascript_map.js";
-//            }
-//            else if (lang.equals("python")){
-//                langMap = "../scripts/python_map.js";
-//            }
-//            else { // lang is java
-//                langMap = "../scripts/java_map.js";
-//            }
-//
-//            model.addObject("lang", langMap);
+            // return correct map - java, js, python
+            String langMap;
+            if (lang.equals("javascript")){
+                langMap = "../scripts/javascript_map.js";
+            }
+            else if (lang.equals("python")){
+                langMap = "../scripts/python_map.js";
+            }
+            else { // lang is java
+                langMap = "../scripts/java_map.js";
+            }
+
+            model.addObject("lang", langMap);
             model.addObject("fullName", c_user.getFullname());
             model.addObject("username", c_user.getUsername());
             model.addObject("avatar", c_user.avatarImage);

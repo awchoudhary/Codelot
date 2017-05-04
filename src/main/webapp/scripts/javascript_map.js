@@ -14,7 +14,10 @@ var basicsZone;
 var conditionalsZone;
 var loopsZone;
 var finalZone;
-var alertShown = false; // For now, keep alert from looping infinitely
+var alertShown0 = false; // For now, keep alert from looping infinitely
+var alertShown1 = false; // For now, keep alert from looping infinitely
+var alertShown2 = false; // For now, keep alert from looping infinitely
+var alertShown3 = false; // For now, keep alert from looping infinitely
 
 
 var mainstate = {
@@ -129,31 +132,35 @@ var mainstate = {
         }
 
         //Check if in basics
-        if (basicsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
+        if (basicsZone.contains(player.x+player.width/2,player.y+player.height/2 && !alertShown0)) {
             //Basics name for javascript
-            window.location = "/task/getJavaTasksPage";
+            // window.location = "/task/getJavaTasksPage";
             //alert("You Win!!");
+            console.log("basics");
+            console.log(basics.name);
+            alert("Basics Building: We're working on bringing you the best content!" );
+            alertShown0 = true;
         }
         //check if in conditionals
-        if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
+        if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown1) {
             console.log("conditionals");
             console.log(conditionals.name);
             alert("Conditionals Building: You must unlock previous building(s)!" );
-            alertShown = true;
+            alertShown1 = true;
         }
         //check if in loops
-        if (loopsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
+        if (loopsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown2) {
             console.log("loops");
             console.log(loops.name);
             alert("Loops Building: You must unlock previous building(s)!" );
-            alertShown = true;
+            alertShown2 = true;
         }
         //check if in final
-        if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
+        if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown3) {
             console.log("final");
             console.log(final.name);
             alert("Can't do your final project without the core skills. Complete the previous buildings and come back!");
-            alertShown = true;
+            alertShown3 = true;
         }
 
 

@@ -144,7 +144,7 @@ var mainstate = {
         if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
             console.log("final");
             console.log(final.name);
-            alert("Sorry,you must unlock this building");
+            alert("Can't do your final project without the core skills. Complete the previous buildings and come back!");
             alertShown = true;
         }
 

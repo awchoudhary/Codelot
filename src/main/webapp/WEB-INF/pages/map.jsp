@@ -21,7 +21,7 @@
 
     <script type="text/javascript" src="../scripts/tether.min.js"></script>
     <script type="text/javascript" src="../scripts/phaser.min.js"></script>
-    <script type="text/javascript" src="../scripts/java_map.js"></script>
+    <script type="text/javascript" src=${lang}></script>
 
     <script>
         $(function() {

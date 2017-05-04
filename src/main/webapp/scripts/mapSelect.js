@@ -46,7 +46,7 @@ var languages = {
     selected.addClass("selectedMap");
     var language = languages[selected.attr("id")];
 
-    // document.getElementById("lang").setAttribute('value',selected.attr("id"));
+    document.getElementById("lang").setAttribute('value',selected.attr("id"));
 
     setAbout(language.name, language.desc);
  }
