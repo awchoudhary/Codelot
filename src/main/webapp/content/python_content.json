@@ -11,7 +11,7 @@
           ],
           "baseCode": "",
           "expectedOutputs": [
-            "Hello World!"
+            "Hello World!\n"
           ]
         },
         {
@@ -20,9 +20,9 @@
           "hints": [
             "Printing a variable is just like how we printed \"Hello World\", but without quotations."
           ],
-          "baseCode": "import fileinput\ndef printString(str):\n\t#Your code goes under here\n\t\nfor line in fileinput.input():\n\tprintString(line)",
+          "baseCode": "import fileinput\n\ndef printString(str):\n\t#Your code goes under here\n\nfor line in fileinput.input():\n\tprintString(line)",
           "expectedOutputs": [
-            "Hello Codelot!"
+            "Hello Codelot!\n"
           ],
           "testCases": "[\"Hello Codelot!\"]"
         },
@@ -32,9 +32,9 @@
           "hints": [
             "You can store the difference between a and b in a new variable similar to how we created y in the lesson description and print it out exactly like we printed a string variable in floor 3."
           ],
-          "baseCode": "import fileinput\ndef subtractAndPrint(a, b):\n\t#Your code goes under here\nfor line in fileinput.input():\n\tnums = line.split(\",\")\n\tsubtractAndPrint(int(nums[0]), int(nums[1]))",
+          "baseCode": "import fileinput\n\ndef subtractAndPrint(a, b):\n\t#Your code goes under here\n\nfor line in fileinput.input():\n\tnums = line.split(\",\")\n\tsubtractAndPrint(int(nums[0]), int(nums[1]))",
           "expectedOutputs": [
-            "5"
+            "5\n"
           ],
           "testCases": "[\"10,5\"]"
         }

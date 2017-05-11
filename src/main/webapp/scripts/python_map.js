@@ -130,14 +130,8 @@ var mainstate = {
 
 
         //Check if in basics
-        if (basicsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown0) {
-            //Basics name for java
-            // window.location = "/task/getJavaTasksPage";
-            //alert("You Win!!");
-            console.log("basics");
-            console.log(basics.name);
-            alert("Basics Building: We're working on bringing you the best content!" );
-            alertShown0 = true;
+        if (basicsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
+            post('/tasks/task', {languageCode: '30', numBuilding: '0', floorNum: '-1'});
         }
         //check if in conditionals
         if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown1) {
@@ -163,6 +157,30 @@ var mainstate = {
 
 
     }
+}
+
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
 }
 
 game.state.add('mainstate',mainstate);

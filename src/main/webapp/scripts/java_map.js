@@ -149,7 +149,6 @@ var mainstate = {
 
          //Check if in basics
         if (basicsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
-            //Basics name for java
             post('/tasks/task', {languageCode: '3', numBuilding: '0', floorNum: '-1'});
         }
          //check if in conditionals
