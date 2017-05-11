@@ -93,9 +93,10 @@
                                                 <div class="floorWrapper">
                                                     <a class="floor" onclick="$('#Floor${floor.index}').click();">Floor ${floor.index+1}</a>
                                                     <button style="display:none" id="Floor${floor.index}" title="Floor" type="submit"
-                                                            onclick="form.action='/task/getJavaTask';">Floor ${floor.index+1}</button></a>
-                                                        <input type="hidden" value="${floor.index}" name="floorNum"/>
-                                                        <input type="hidden" value="${numBuilding}" name="numBuilding"/>
+                                                            onclick="form.action='/tasks/task';">Floor ${floor.index+1}</button></a>
+                                                    <input type="hidden" value="${floor.index}" name="floorNum"/>
+                                                    <input type="hidden" value="${numBuilding}" name="numBuilding"/>
+                                                    <input type="hidden" value="${languageCode}" name="languageCode"/>
                                                 </div>
                                             </form>
                                         </td>
@@ -208,7 +209,7 @@
                     <p><div id="output"><!-- Displays output for program --></div></p>
                     <p><div id="expectedOutput"><!-- Displays the expected output for the task--></div></p>
                     <p><div id="compileMessage"><!-- Displays message from compiler --></div></p>
-                    <input type="hidden" id="currentFloor" value="${currentFloor}"></input>
+                    <input type="hidden" id="currentFloor" value="${currentFloor}"/>
                     <input id="numBuilding" type="hidden" value="${numBuilding}"/>
                 </div>
 
@@ -220,7 +221,7 @@
 
         </div>
     </div>
-
+        <input type="hidden" id="languageCode" value="${languageCode}"/>
 
 </body>
 </html>

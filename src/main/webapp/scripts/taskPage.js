@@ -49,7 +49,8 @@ function execute(){
     var source = $("#source").val();
     var currentFloor = $("#currentFloor").val();
     var numBuilding = $("#numBuilding").val();
-    var params = {source: source, currentFloor: currentFloor, numBuilding: numBuilding};
+    var languageCode = $("#languageCode").val();
+    var params = {source: source, currentFloor: currentFloor, numBuilding: numBuilding, languageCode: languageCode};
 
     var resultSuccess = function(data) {
         $("#resultHeader").removeClass("failed").addClass("success");
@@ -69,11 +70,11 @@ function execute(){
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/task/execute",
+        url: "/tasks/execute",
         data: JSON.stringify(params),
         dataType: 'json',
         success: function (data) {
-            //print compilemessage if there is a run-time error
+            //print compile message if there is a compiler error
             if(data.compilemessage){
                 $("#compileMessage").html("Error: " + data.compilemessage);
             }
