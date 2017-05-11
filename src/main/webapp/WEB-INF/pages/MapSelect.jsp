@@ -14,17 +14,6 @@
 
 </head>
 
-<%--<script>--%>
-    <%--function redirect(elem, jsp_page){--%>
-        <%--elem.setAttribute("action",jsp_page);--%>
-        <%--elem.submit();--%>
-    <%--}--%>
-    <%--function red() {--%>
-        <%--document.getElementById("redirect").innerHTML =--%>
-            <%--"<jsp:forward page='resetProgress.jsp'/>";--%>
-    <%--}--%>
-<%--</script>--%>
-
 <body>
 
 <%-- Navigation Bar --%>
@@ -37,7 +26,7 @@
             <%--<a role="button" data-toggle="modal" data-target="#faqModal">FAQ</a>--%>
             <form id="signoutForm" method="post">
                 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-                <a style="display:none" id="homeLink">Home</a>
+                <a id="homeLink">Home</a>
                 <button style="display:none" id="submitHome" title="Home" type="submit"
                         onclick="form.action='/';">Home</button>
                 <a id="settingsLink">Settings</a>
@@ -96,13 +85,13 @@
                     <p id="languageDescription"></p>
                 </div>
             </div>
-            <div class="floorWrapper">
-                <form method="post">
-                    <a class="floor" id="resetLink">Reset All</a>
-                    <button style="display:none" id="submitReset" title="Reset" type="submit"
-                            onclick="form.action='/resetRedirect';">Reset</button>
-                </form>
-            </div>
+            <%--<div class="floorWrapper">--%>
+                <%--<form method="post">--%>
+                    <%--<a class="floor" id="resetLink">Reset All</a>--%>
+                    <%--<button style="display:none" id="submitReset" title="Reset" type="submit"--%>
+                            <%--onclick="form.action='/resetRedirect';">Reset</button>--%>
+                <%--</form>--%>
+            <%--</div>--%>
         </div>
     </div>
 

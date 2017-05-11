@@ -109,7 +109,7 @@
                             <span class="sr-only">${progress}%</span>
                         </div>
                     </div>
-                    <p id="progess_message" >${progress}%</p>
+                    <p id="progess_message" >${progress}% Completed</p>
                 </div>
             </div>
         </div>
