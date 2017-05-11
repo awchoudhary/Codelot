@@ -41,6 +41,7 @@ public class HomeController {
         //if account does not have a profile, redirect to profile creation page.
         if (CodelotUserService.getCurrentUserProfile() == null){
             ModelAndView model = new ModelAndView("WEB-INF/pages/profilePage");
+            model.addObject("display","display:none");
             return model;
         }
         //redirect to map select otherwise
@@ -120,9 +121,14 @@ public class HomeController {
         CodelotUser profile = CodelotUserService.getCurrentUserProfile();
 
         ModelAndView model = new ModelAndView("WEB-INF/pages/profilePage");
+        // Do not show reset div if it a user creation
+        // We dont want to give a new user the option of resetting all progress
+        String display = "display:none";
 
         //populate fields if not null
         if(profile != null){
+            System.out.println("profile is not null");
+            display = ""; // Do show reset div and button if prfile update
             model.addObject("fullName", profile.getFullname());
             model.addObject("username", profile.getUsername());
             model.addObject("avatar", profile.avatarImage);
@@ -130,6 +136,7 @@ public class HomeController {
             model.addObject("age", profile.getAge());
         }
 
+        model.addObject("display", display);
         return model;
     }
 

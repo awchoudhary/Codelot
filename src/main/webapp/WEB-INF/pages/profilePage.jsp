@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Update Profile</title>
+    <title>My Profile</title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
     <link rel="stylesheet" type="text/css" href="../stylesheets/profileCreation.css" />
 
@@ -16,6 +16,7 @@
 
     <link rel="icon" type="image/png" href="../images/CodelotShield.png" />
     <script src="../scripts/jquery-3.2.0.min.js"></script>
+    <script src="../scripts/profilePage.js"></script>
 
 </head>
 
@@ -24,7 +25,7 @@
 
     <div id="createProfile" class="wood-bg">
 
-        <h2 class="formTitle">Update Profile</h2>
+        <h2 class="formTitle">Profile</h2>
         <form action="/updateProfile" method="post">
             <table class="form-group createTable">
                 <tr>
@@ -39,6 +40,7 @@
                     <td><label for="username">Username:</label></td>
                     <td><input value="${username}" type="text" class="form-control" id="username" name="username"/></td>
                 </tr>
+                <tr>
                 <td><label for="avtr">Avatar:</label></td>
                 <td>
                     <select class="form-control" name="avatar" id="avtr" onchange="switchImage();" >
@@ -62,8 +64,27 @@
 
                     </td>
                     <td>
-                        <a class="button w-button" onclick="$('#updateUser').click();"><strong>Update</strong></a>
+                        <a class="button w-button" onclick="$('#updateUser').click();"><strong>Done</strong></a>
                         <input style="display:none" id="updateUser" type="submit" value="Update"/>
+                    </td>
+                </tr>
+
+                <tr style="${display};">
+                    <td colspan="2">
+                        <div style="padding-top: 10px;">
+                            <p style="text-align: center">If you would like to reset progress for all languages</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="${display}">
+                    <td colspan="2">
+                        <div class="resetWrapper">
+                            <form method="post">
+                                <a class="button w-button" id="resetLink">Reset All</a>
+                                <button style="display:none" id="submitReset" title="Reset" type="submit"
+                                        onclick="form.action='/resetRedirect';">Reset</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
 

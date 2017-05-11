@@ -41,3 +41,7 @@ body {
 #avatar-td {
     text-align: right;
 }
+
+.resetWrapper{
+    margin: 0 auto;
+}
