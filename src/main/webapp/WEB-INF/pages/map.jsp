@@ -61,7 +61,7 @@
                 <a id="langSelectLink">Back to Language Selection</a>
                 <button style="display:none" id="submitLangSelect" title="LangSelect" type="submit"
                         onclick="form.action='/languageSelection';">Language Selection</button>
-                <a id="homeLink">Home</a>
+                <a style="display:none" id="homeLink">Home</a>
                 <button style="display:none" id="submitHome" title="Home" type="submit"
                         onclick="form.action='/';">Home</button>
                 <a id="settingsLink">Settings</a>

@@ -32,7 +32,7 @@
                 <%--<a role="button" data-toggle="modal" data-target="#faqModal">FAQ</a>--%>
                 <form id="signoutForm" method="post">
                     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-                    <a id="homeLink">Home</a>
+                    <a style="display:none" id="homeLink">Home</a>
                     <button style="display:none" id="submitHome" title="Home" type="submit"
                             onclick="form.action='/';">Home</button>
                     <a id="lessonLink">Review Lesson</a>
