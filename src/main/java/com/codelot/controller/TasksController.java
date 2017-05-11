@@ -51,7 +51,8 @@ public class TasksController {
         //compile the code and return a response object
         CompilerService service = new CompilerService();
 
-        JSONObject response = CompilerService.createResponse(service.execute(sourceText, floors.get(currentFloor).getTestCases()), expectedOutputs);
+        JSONObject response = CompilerService.createResponse(service.execute(sourceText,
+                floors.get(currentFloor).getTestCases(), "3"), expectedOutputs);
 
         //if successful, add to task set for the building
         if(response.get("outcome").equals("true")){
