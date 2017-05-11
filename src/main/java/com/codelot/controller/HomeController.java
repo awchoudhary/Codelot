@@ -153,6 +153,12 @@ public class HomeController {
         return languageSelection();
     }
 
+    @RequestMapping("/resetRedirect")
+    public ModelAndView resetRedirect (){
+        ModelAndView model = new ModelAndView("WEB-INF/pages/resetProgress");
+        return model;
+    }
+
     @RequestMapping("/reset")
     public ModelAndView resetProgress (){
         System.out.println("------------------- RESET ------------------");
