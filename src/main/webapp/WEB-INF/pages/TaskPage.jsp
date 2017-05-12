@@ -41,7 +41,7 @@
                     <a id="mapLink">Quit</a>
                     <button style="display:none" id="submitMap" title="Map" type="submit"
                             onclick="form.action='/map';">Map</button>
-                    <input type="hidden" value="java" name="selectedLang"/>
+                    <input type="hidden" value="${languageCode}" name="selectedLang"/>
                 </form>
             </div>
         </div>
