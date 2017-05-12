@@ -80,28 +80,32 @@ public class HomeController {
         CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
 
         if(c_user != null){
-            ArrayList<Building> buildings = c_user.getJavaCodelot().getBuildings();
+            String langMap;
+            ArrayList<Building> buildings;
+
+            // get map and buildings for language
+            if (lang.equals("20")){
+                langMap = "../scripts/javascript_map.js";
+                buildings = c_user.getJavaScriptCodelot().getBuildings();
+            }
+            else if (lang.equals("30")){
+                langMap = "../scripts/python_map.js";
+                buildings = c_user.getPythonCodelot().getBuildings();
+            }
+            else { // lang is java
+                langMap = "../scripts/java_map.js";
+                buildings = c_user.getJavaCodelot().getBuildings();
+            }
 
             int numCompleted = 0;
-            // get number of completed buildings
+
+            // calculate user progress for map
             for(int x=0; x<buildings.size(); x++){
-                if (c_user.getJavaCodelot().getBuildings().get(x).isCompleted() == true){
+                if (buildings.get(x).isCompleted()){
                     numCompleted += 1;
                 }
             }
             int progress = (int)((((double) numCompleted)/buildings.size()) * 100);
-
-            // return correct map - java, js, python
-            String langMap;
-            if (lang.equals("javascript")){
-                langMap = "../scripts/javascript_map.js";
-            }
-            else if (lang.equals("python")){
-                langMap = "../scripts/python_map.js";
-            }
-            else { // lang is java
-                langMap = "../scripts/java_map.js";
-            }
 
             model.addObject("lang", langMap);
             model.addObject("fullName", c_user.getFullname());
