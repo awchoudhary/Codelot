@@ -79,41 +79,48 @@ public class HomeController {
         ModelAndView model = new ModelAndView("WEB-INF/pages/map");
         CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
 
-        // Figure out selected language based on langugage code
-        Language currentLang;
-        if (lang.equals("20")){ // code for javascript
-            currentLang = c_user.getJavaScriptCodelot();
-        }
-        else if (lang.equals("30")){ // code for python
-            currentLang = c_user.getPythonCodelot();
-        }
-        else{ // code for javascript
-            currentLang = c_user.getJavaCodelot();
-        }
+        System.out.println("selectedLang = "+lang);
+
+//        // Figure out selected language based on langugage code
+//        Language currentLang;
+//        if (lang.equals("20")){ // code for javascript
+//            currentLang = c_user.getJavaScriptCodelot();
+//        }
+//        else if (lang.equals("30")){ // code for python
+//            currentLang = c_user.getPythonCodelot();
+//        }
+//        else{ // code for javascript
+//            currentLang = c_user.getJavaCodelot();
+//        }
 
         if(c_user != null){
-            ArrayList<Building> buildings = currentLang.getBuildings();
+
+            String langMap;
+            ArrayList<Building> buildings;
+
+            // get map and buildings for language
+            if (lang.equals("20")){
+                langMap = "../scripts/javascript_map.js";
+                buildings = c_user.getJavaScriptCodelot().getBuildings();
+            }
+            else if (lang.equals("30")){
+                langMap = "../scripts/python_map.js";
+                buildings = c_user.getPythonCodelot().getBuildings();
+            }
+            else { // lang is java
+                langMap = "../scripts/java_map.js";
+                buildings = c_user.getJavaCodelot().getBuildings();
+            }
 
             int numCompleted = 0;
-            // get number of completed buildings
+
+            // calculate user progress for map
             for(int x=0; x<buildings.size(); x++){
-                if (currentLang.getBuildings().get(x).isCompleted() == true){
+                if (buildings.get(x).isCompleted()){
                     numCompleted += 1;
                 }
             }
             int progress = (int)((((double) numCompleted)/buildings.size()) * 100);
-
-            // return correct map - java, js, python
-            String langMap;
-            if (lang.equals("20")){
-                langMap = "../scripts/javascript_map.js";
-            }
-            else if (lang.equals("30")){
-                langMap = "../scripts/python_map.js";
-            }
-            else { // lang is java
-                langMap = "../scripts/java_map.js";
-            }
 
             model.addObject("lang", langMap);
             model.addObject("fullName", c_user.getFullname());

@@ -98,12 +98,12 @@ public class TasksController {
             floorNum = getBuildings(languageCode).get(numBuilding).getCurrentFloor();
         }
 
-        return javaTasks(languageCode, numBuilding, floorNum);
+        return navigateToTask(languageCode, numBuilding, floorNum);
     }
 
 
     //helper method that sets all model arguments for the task page
-    private ModelAndView javaTasks(String languageCode, int numBuilding, int floorNum) {
+    private ModelAndView navigateToTask(String languageCode, int numBuilding, int floorNum) {
         //Load values for user
         CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
         Building currentBuilding = getBuildings(languageCode).get(numBuilding);
