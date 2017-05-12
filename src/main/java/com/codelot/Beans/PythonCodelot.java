@@ -1,7 +1,5 @@
 package com.codelot.Beans;
 
-import java.util.ArrayList;
-
 /**
  * Created by Jane on 4/19/2017.
  */
@@ -15,7 +13,7 @@ public class PythonCodelot extends Language {
     /* Initializing PythonCodelot by setting default/prelemenary values */
     public PythonCodelot() {
         // Add buildings by reading from PythonContext.xml
-        setBuildings(makeBuildings("content/java_content.json", "java"));
+        setBuildings(makeBuildings("content/python_content.json", "python"));
         // Since language is initialized when CodelotUser is made and therefore hasnt been clicked on by user, set started to false
         setStarted(false);
         // Set number of completed buildings to 0 since language has not been started

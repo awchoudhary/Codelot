@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/task")
+@RequestMapping("/tasks")
 public class TasksController {
 
     @RequestMapping(value = "/execute", method = RequestMethod.POST, produces="application/json")
@@ -37,9 +37,12 @@ public class TasksController {
         //get building number
         int numBuilding = Integer.parseInt(obj.getString("numBuilding"));
 
+        //the language code for the task
+        String languageCode = obj.getString("languageCode");
+
         //get floors for current building
         CodelotUser profile = CodelotUserService.getCurrentUserProfile();
-        Building currentBuilding = profile.getJavaCodelot().getBuildings().get(numBuilding);
+        Building currentBuilding = getBuildings(languageCode).get(numBuilding);
         List<Floor> floors = currentBuilding.getFloors();
 
         //get the expected outputs for the current floor
@@ -51,7 +54,8 @@ public class TasksController {
         //compile the code and return a response object
         CompilerService service = new CompilerService();
 
-        JSONObject response = CompilerService.createResponse(service.execute(sourceText, floors.get(currentFloor).getTestCases()), expectedOutputs);
+        JSONObject response = CompilerService.createResponse(service.execute(sourceText,
+                floors.get(currentFloor).getTestCases(), languageCode), expectedOutputs);
 
         //if successful, add to task set for the building
         if(response.get("outcome").equals("true")){
@@ -68,10 +72,10 @@ public class TasksController {
         int progress = (int)((((double) currentBuilding.getCompletedTaskSet().size())/floors.size()) * 100);
         // if all tasks have been completed, mark building as completed
         if (progress >= 100){
-            if (currentBuilding.isCompleted() == false){
+            if (!currentBuilding.isCompleted()){
                 currentBuilding.setCompleted(true);
-                if (numBuilding+1 < profile.getJavaCodelot().getBuildings().size()) {
-                    profile.getJavaCodelot().getBuildings().get(numBuilding+1).setLocked(false);
+                if (numBuilding+1 < getBuildings(languageCode).size()) {
+                    getBuildings(languageCode).get(numBuilding+1).setLocked(false);
                 }
 //                else {
 //                    c_user.getJavaCodelot().setCompleted(true);
@@ -85,40 +89,34 @@ public class TasksController {
         return response.toString();
     }
 
-    /* Function used when directing from map to tasks page when there is no floor number passed in
-    // Default floor number is set to last-accessed floor
+    /* controller method to navigate to a task
     */
-    @RequestMapping("/getJavaTasksPage")
-    public ModelAndView tasksContent(@RequestParam("numBuilding") int numBuilding){
-        CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
-        Building currbldg = c_user.getJavaCodelot().getBuildings().get(numBuilding);
-        int currentFloorNumber = currbldg.getCurrentFloor();
-        return javaTasks(currentFloorNumber, numBuilding);
+    @RequestMapping("/task")
+    public ModelAndView moveFloors(@RequestParam("languageCode") String languageCode,
+                                   @RequestParam("numBuilding") int numBuilding,
+                                   @RequestParam("floorNum") int floorNum){
+
+        //if floor number is -1, we are navigating from the map page and should therefore get the current floor for the user
+        if(floorNum == -1){
+            floorNum = getBuildings(languageCode).get(numBuilding).getCurrentFloor();
+        }
+
+        return javaTasks(languageCode, numBuilding, floorNum);
     }
 
-    /* Function used when moving from one floor to another when floor number IS passed in
-    */
-    @RequestMapping("/getJavaTask")
-    public ModelAndView moveFloors(@RequestParam("floorNum") int floorNum, @RequestParam("numBuilding") int numBuilding){
-        return javaTasks(floorNum, numBuilding);
-    }
 
-    private ModelAndView javaTasks(int floorNum, int numBuilding) {
+    //helper method that sets all model arguments for the task page
+    private ModelAndView javaTasks(String languageCode, int numBuilding, int floorNum) {
         //Load values for user
         CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
-        Building currbldg = c_user.getJavaCodelot().getBuildings().get(numBuilding);
-        List<Floor> floors = currbldg.getFloors();
+        Building currentBuilding = getBuildings(languageCode).get(numBuilding);
+        List<Floor> floors = currentBuilding.getFloors();
         String warning = "";
-        int currentFloorNumber = currbldg.getCurrentFloor();
 
-        // if coming from map page, load current floor/task of user
-        if (floorNum == -1){ // means it is redirected from map page
-            floorNum = currentFloorNumber;
-        }
         //if the floor is locked, create a warning and navigate to current task
-        else if (floors.get(floorNum).isLocked()) {
+        if (floors.get(floorNum).isLocked()) {
             warning = "NOTE: Floor " + (floorNum + 1) + " is locked. Please pass through all lower floors to access this one.";
-            floorNum = currentFloorNumber;
+            floorNum = currentBuilding.getCurrentFloor();
         }
 
         Floor currentFloor = floors.get(floorNum);
@@ -132,13 +130,13 @@ public class TasksController {
         }
 
         //progress = number of completed tasks / total tasks * 100
-        int progress = (int)((((double) currbldg.getCompletedTaskSet().size())/floors.size()) * 100);
+        int progress = (int)((((double) currentBuilding.getCompletedTaskSet().size())/floors.size()) * 100);
         // if all tasks have been completed, mark building as completed
         if (progress >= 100){
-            if (currbldg.isCompleted() == false){
-                currbldg.setCompleted(true);
-                if (numBuilding+1 < c_user.getJavaCodelot().getBuildings().size()) {
-                    c_user.getJavaCodelot().getBuildings().get(numBuilding+1).setLocked(false);
+            if (!currentBuilding.isCompleted()){
+                currentBuilding.setCompleted(true);
+                if (numBuilding+1 < getBuildings(languageCode).size()) {
+                    getBuildings(languageCode).get(numBuilding+1).setLocked(false);
                 }
 //                else {
 //                    c_user.getJavaCodelot().setCompleted(true);
@@ -146,11 +144,11 @@ public class TasksController {
             }
         }
 
-        currbldg.setCurrentFloor(floorNum); // update current floor
+        currentBuilding.setCurrentFloor(floorNum); // update current floor
         ObjectifyService.ofy().save().entity(c_user).now(); // save user
 
         ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
-        model.addObject("buildingName", currbldg.getName());
+        model.addObject("buildingName", currentBuilding.getName());
         model.addObject("numBuilding", numBuilding);
         model.addObject("floors", floors);
         model.addObject("taskDesc", currentFloor.getTaskDescription());
@@ -161,8 +159,27 @@ public class TasksController {
         model.addObject("progress", progress);
         model.addObject("baseCode", floors.get(floorNum).getBaseCode());
         model.addObject("currentFloor", floorNum);
+        model.addObject("languageCode", languageCode);
 
         return model;
     }
+
+    //return all buildings for the given languageCode
+    //the language codes are: Java = 3, Python 3 = 30, JavaScript = 20
+    private ArrayList<Building> getBuildings(String languageCode){
+        //get logged in user
+        CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
+
+        //return buildings for java map
+        if(languageCode.equals("3")){
+            return c_user.getJavaCodelot().getBuildings();
+        }else if(languageCode.equals("30")){ //return buildings for python map
+            return c_user.getPythonCodelot().getBuildings();
+        }else{ //must be JavaScript map buildings
+            return c_user.getJavaScriptCodelot().getBuildings();
+        }
+
+    }
+
 
 }

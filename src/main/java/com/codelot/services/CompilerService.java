@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * A class to handle program execution via the Hackerrank API
  */
 public class CompilerService {
-    public String execute(String source, String testCases) throws IOException {
+    public String execute(String source, String testCases, String languageCode) throws IOException {
         if(testCases == null || testCases.isEmpty()){
             testCases = "[\"1\"]";
         }
@@ -30,7 +30,8 @@ public class CompilerService {
         //add reuqest header
         con.setRequestMethod("POST");
 
-        String urlParameters = "source=" + URLEncoder.encode(source, "UTF-8") + "&lang=3&testcases=" + testCases + "&api_key=" + apiKey;
+        String urlParameters = "source=" + URLEncoder.encode(source, "UTF-8") + "&lang=" + languageCode
+                + "&testcases=" + testCases + "&api_key=" + apiKey;
 
         // Send post request
         con.setDoOutput(true);

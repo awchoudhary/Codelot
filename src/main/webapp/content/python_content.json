@@ -1,0 +1,136 @@
+{
+  "python": [
+    {
+      "name": "Basics",
+      "floors": [
+        {
+          "lesson": "Lets learn one of the most essential aspects of any programming language: how to print!\n In Python, you can use the print function to write to standard output.",
+          "description": "Type print() with the String \"Hello World\" in between the parentheses.",
+          "hints": [
+            "The statement to print Hey! would be print(\"Hey!\")"
+          ],
+          "baseCode": "",
+          "expectedOutputs": [
+            "Hello World!\n"
+          ]
+        },
+        {
+          "lesson": "In any programming language, a variable is used to hold values for later use. For example in Python, the statement 'x = \"Hello\";' stores the text 'Hello' as x in your program, which can then be used in subsequent code. Lets use our knowledge from the previous tasks to print out a String Variable! \n",
+          "description": "Print the variable called str.",
+          "hints": [
+            "Printing a variable is just like how we printed \"Hello World\", but without quotations."
+          ],
+          "baseCode": "import fileinput\n\ndef printString(str):\n\t#Your code goes under here\n\nfor line in fileinput.input():\n\tprintString(line)",
+          "expectedOutputs": [
+            "Hello Codelot!\n"
+          ],
+          "testCases": "[\"Hello Codelot!\"]"
+        },
+        {
+          "lesson": "Integer is another variable like String which, instead of storing text, is used to keep integer values. For example, The assignment 'x = 5' creates a variable x with the value 5. Integers are numbers and you can therefore perform mathematical operations on them. Taking our previously declared variable x, we can add 5 to x and store the result within a new Integer variable like so: 'y = x + 5;'. The value of y is now 10 as x was declared with a value of 5.",
+          "description": "Create a new variable equal to the difference between a and b and print the variable.",
+          "hints": [
+            "You can store the difference between a and b in a new variable similar to how we created y in the lesson description and print it out exactly like we printed a string variable in floor 3."
+          ],
+          "baseCode": "import fileinput\n\ndef subtractAndPrint(a, b):\n\t#Your code goes under here\n\nfor line in fileinput.input():\n\tnums = line.split(\",\")\n\tsubtractAndPrint(int(nums[0]), int(nums[1]))",
+          "expectedOutputs": [
+            "5\n"
+          ],
+          "testCases": "[\"10,5\"]"
+        }
+      ]
+    },
+    {
+      "name": "Conditionals",
+      "floors": [
+        {
+          "lesson": "Conditional statements are used to execute different code based on whether a given expression evaluates to true or false. A boolean variable may be used to express true or false. You may do so by setting a variable using the following format: \n\n\tmyBoolean = true \n\n You can construct an if statement by using the following syntax. The code within the 'if' block will execute if myBoolean is true. The code within the 'else' block will run if myBoolean is false. \n\n\tif myBoolean:\n\t\t// your code\n\t\n\telse:\n\t\t// other code\n\t",
+          "description": "Write a program that prints \"myBoolean is true\" if myBoolean is true and prints \"myBoolean is false\" otherwise.",
+          "hints": [
+            "To print \"myBoolean is true\" we type 'print(\"myBoolean is true\")'"
+          ],
+          "baseCode": "def myConditional(myBoolean):\n\t#Your code goes here\n\nmyConditional(True)\n\nmyConditional(False)",
+          "expectedOutputs": [
+            "myBoolean is true\nmyBoolean is false\n"
+          ]
+        },
+        {
+          "lesson": "Along with 'if' and 'else' statements, there is also the 'elif' statement. Using these statements, there are more possibilities to branch code off of than simple true or false.\nRelational operators to be used in an expression include the following: less than (<), greater than (>), less than or equal to (<=), greater than or equal to (>=), equals (==), or not equals (!=)",
+          "description": "Write a program that prints \"x is less than 5\" if x is less than 5, prints \"x is greater than 10\" if x is greater than 10, and prints \"x is between 5 and 10\" otherwise.",
+          "hints": [
+            "Use if, elif, and else to test for different cases!",
+            "Remember the relational operators that may be useful in this problem, such as \"<\""
+          ],
+          "baseCode": "def myConditional(x):\n\t#your code goes here\n\nmyConditional(1)\nmyConditional(11)\nmyConditional(5)",
+          "expectedOutputs": [
+            "x is less than 5\nx is greater than 10\nx is between 5 and 10\n"
+          ]
+        },
+        {
+          "lesson": "In order to print the value of a variable as part of a string, you may use string concatenation. To print \"x equals \" followed by the value of x, the following code is used:\n\t print(\"x equals \" + str(x)). We must convert the integer variable x into a string variable before we can concatenate it with another string.",
+          "description": "Write a program that prints \"5 is greater than \" followed by the value of x when 5 is greater than x, otherwise print \"x is equal to \" followed by the value of x.",
+          "hints": [
+            "Use if and else to test for different cases!",
+            "Remember the relational operators that may be useful in this problem, such as \">\""
+          ],
+          "baseCode": "def myConditional(x):\n\t#your code goes here\n\nmyConditional(1)\nmyConditional(11)\nmyConditional(5)",
+          "expectedOutputs": [
+            "5 is greater than 1\nx is equal to 11\nx is equal to 5\n"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Loops",
+      "floors": [
+        {
+          "lesson": "While loops are used to execute code numerous times while a given expression or value evaluates to true. You can construct a while statement by using the following syntax. The code within the 'while' block will execute so long as myBoolean is true. \n\n\twhile myBoolean:\n\t\t// your code\n\t}. \nIt is very important to be careful when using loops, as infinitely executing loops will likely cause problems for a program. As such, it is important to make sure that any variables within a while statement are being updated as needed within the while block.",
+          "description": "Using a while loop, write a program that prints \"x is \" followed by the value of x and a new line for all values from 0 to 4",
+          "hints": [
+            "To run the loop for all necessary values, start x at 0 and continue the loop so long as x is less than or equal to 4.",
+            "Remember to update x from within the loop by adding 1 each time at the end."
+          ],
+          "baseCode": "",
+          "expectedOutputs": [
+            "x is 0\nx is 1\nx is 2\nx is 3\nx is 4\n"
+          ]
+        },
+        {
+          "lesson": "For loops are used to execute code for a number of times while a temporary variable is within a certain range. You can construct a for statement by using the following syntax. The code within the 'for' block will execute so long as the variable within the statement is within the specified range. One way to define a range for a variable to iterate over is by using the range function. Here is an example on how you can create a loop that iterates 5 times: \n\n\tfor i in range(0,5):\n\t\t// code to execute in the loop\n\t}.\nNote that the range function does not include the last index",
+          "description": "Using a for loop, write a program that prints \"x is \" followed by the value of x for all values from 7 to 12",
+          "hints": [
+            "To run the loop for all necessary values, loop through the range 7 to 13."
+          ],
+          "baseCode": "",
+          "expectedOutputs": [
+            "x is 7\nx is 8\nx is 9\nx is 10\nx is 11\nx is 12\n"
+          ]
+        },
+        {
+          "lesson": "The list is the most versatile datatype available in Python, which can be written as a list of comma-separated values (items) between square brackets. Heres an example of how you would declare a list of integers between 1 and 3:\n\ta = [1, 2, 3];\nThe indexes of a elements within a list begin at 0 and continue to the length of the list minus 1. That being said, in order to access an element within a list, we use an expression with the following syntax: myList[index of element], where myList is a list variable. You can use the len function to get the length of a list like so: len(myList).",
+          "description": "Write a program that prints every element in the integer list a.",
+          "hints": [
+            "Use the range function to loop from 0 to the length of the list in your for loop"
+          ],
+          "baseCode": "def printList(a):\n\t#your code goes under here\n\na = [1,2,3,4]\n\nprintList(a)\n\nb = [6,8,9,2,1]\n\nprintList(b)",
+          "expectedOutputs": [
+            "1\n2\n3\n4\n6\n8\n9\n2\n1\n"
+          ]
+        },
+        {
+          "lesson": "You can define a variable outside of a loop in order to use it and update the value during subsequent executions of the code. In this example, you will need to keep a running sum of each value in an array.",
+          "description": "Write a program that prints \"The total is \" followed by the total of the values within an integer array.",
+          "hints": [
+            "Remember that the indices of a list begin with 0 and end with one less than the length of the list.",
+            "You can use a variable to hold the index of the element that you would like to access in list a.",
+            "You can use a variable to hold the total as you go through every element in list a."
+          ],
+          "baseCode": "def addList(a):\n\t#your code is under here\n\na = [1, 2, 3, 4]\n\naddList(a)\n\nb = [6,8,9,2,1]\n\naddList(b)",
+          "expectedOutputs": [
+            "The total is 10\nThe total is 26\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
