@@ -19,12 +19,17 @@ var alertShown1 = false; // For now, keep alert from looping infinitely
 var alertShown2 = false; // For now, keep alert from looping infinitely
 var alertShown3 = false; // For now, keep alert from looping infinitely
 
+
 var mainstate = {
     preload:function () {
 
         //Load in JsonFile for the tileMap + needed tilesets to render the map
-        game.load.tilemap("ItsTheMap","../images/python_map.json",null,Phaser.Tilemap.TILED_JSON);
-        game.load.image("medieval_tileset","../images/medieval_tileset.png");
+        game.load.tilemap("ItsTheMap","../images/tilesets/python_map.json",null,Phaser.Tilemap.TILED_JSON);
+        game.load.image("medieval_terrain","../images/tilesets/medieval_terrain.png");
+        game.load.image("medieval_houses","../images/tilesets/medieval_houses.png");
+        game.load.image("medieval_animals","../images/tilesets/medieval_animals.png");
+        game.load.image("TileC","../images/tilesets/TileC.png");
+        game.load.image("npc_spritesheet","../images/tilesets/npc_spritesheet.png");
 
 
         //get users sprite and load appropriate sprite sheet
@@ -36,21 +41,23 @@ var mainstate = {
 
     create:function () {
         //load map & assests for map
-        map = game.add.tilemap("ItsTheMap",32,32,30,30);
-        map.addTilesetImage("medieval_tileset","medieval_tileset");
-        map.createLayer("GroundLayer").resizeWorld();
-        map.createLayer("HouseLayer").resizeWorld();
-        map.createLayer("MiscLayer")
+        map = game.add.tilemap("ItsTheMap",32,32,40,40);
+        map.addTilesetImage("medieval_terrain","medieval_terrain");
+        map.addTilesetImage("medieval_houses","medieval_houses");
+        map.addTilesetImage("medieval_animals","medieval_animals");
+        map.addTilesetImage("TileC","TileC");
+        map.addTilesetImage("npc_spritesheet","npc_spritesheet");
 
+        //create the base layer ,these are the floors walls and anything else we want behind any sprites
+        map.createLayer("Background").resizeWorld();
+        map.createLayer("Midground");
+        map.createLayer("Foreground");
+        layer = map.createLayer("Collision")
+        layer.visible = false;
 
-        //get player
-        player = new Phaser.Sprite(game,0,0,"sprite");
-        game.world.addAt(player,2);
-        game.camera.follow(player);
 
 
         //get objects for the tasks
-
 
         //start position
         var start =map.objects["tasks"][0];
@@ -59,13 +66,13 @@ var mainstate = {
         basics = map.objects["tasks"][1];
 
         //final
-        final = map.objects["tasks"][2];
+        conditionals = map.objects["tasks"][2];
 
         //conditionals
-        conditionals = map.objects["tasks"][3];
+        loops = map.objects["tasks"][3];
 
         //loops
-        loops = map.objects["tasks"][4]
+        final = map.objects["tasks"][4];
 
 
         //define basics zone
@@ -81,8 +88,22 @@ var mainstate = {
         //define final zone
         finalZone = new Phaser.Rectangle(final.x,final.y,final.width,final.height);
 
-        // //set player to starting point
-        player.position.set(start.x,start.y);
+        //get player
+        player = new Phaser.Sprite(game,start.x,start.y,"sprite");
+        //Apply physics to our game sprite
+
+        game.world.addAt(player,2);
+        game.camera.follow(player);
+
+
+        //Handle collisions
+        game.physics.startSystem(Phaser.Physics.P2JS);
+        map.setCollision(1711,true,"Collision");
+        game.physics.p2.convertTilemap(map, "Collision");
+        game.physics.p2.enable(player);
+        player.body.fixedRotation = true;
+
+
 
 
         //Animations for player up corresponds to frame 0,1 in spritesheet,etc.
@@ -95,38 +116,38 @@ var mainstate = {
 
     update:function () {
 
+        var speed=100;
         if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
         {
             //  Move to the left
-            player.x -=4;
+            player.body.velocity.x = -speed;
 
             player.animations.play('left');
         }
         else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
         {
             //  Move to the right
-            player.x += 4;
+            player.body.velocity.x = speed;
 
             player.animations.play('right');
         }
         else if (game.input.keyboard.isDown(Phaser.Keyboard.UP))
         {
-            player.y -=4;
+            player.body.velocity.y = -speed;
             player.animations.play('up');
         }
         else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN))
         {
-            player.y +=4;
+            player.body.velocity.y = speed;
             player.animations.play('down');
         }
         else
         {
             //  Stand still
-            player.animations.stop();
-
+            player.body.velocity.y = 0;
+            player.body.velocity.x = 0;
             player.frame = 3;
         }
-
 
 
         //Check if in basics
@@ -142,13 +163,12 @@ var mainstate = {
             post('/tasks/task', {languageCode: '30', numBuilding: '2', floorNum: '-1'});
         }
         //check if in final
-        if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown3) {
+        if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
             console.log("final");
             console.log(final.name);
             alert("Can't do your final project without the core skills. Complete the previous buildings and come back!");
-            alertShown3 = true;
+            alertShown = true;
         }
-
 
     }
 }
@@ -170,7 +190,7 @@ function post(path, params, method) {
             hiddenField.setAttribute("value", params[key]);
 
             form.appendChild(hiddenField);
-         }
+        }
     }
 
     document.body.appendChild(form);
@@ -178,6 +198,4 @@ function post(path, params, method) {
 }
 
 game.state.add('mainstate',mainstate);
-game.state.start('mainstate');/**
- * Created by ramroop on 5/3/17.
- */
+game.state.start('mainstate');
