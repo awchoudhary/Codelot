@@ -1,10 +1,7 @@
-/**
- * Created by ramroop on 5/3/17.
- */
 //Variables used in game
 
 //Create canvas to display the game,'game' will refer to this canvas element
-var game = new Phaser.Game(1000,600,Phaser.CANVAS,'gameDiv');
+var game = new Phaser.Game(800,600,Phaser.CANVAS,'gameDiv');
 var player;
 
 
@@ -17,18 +14,22 @@ var basicsZone;
 var conditionalsZone;
 var loopsZone;
 var finalZone;
-var alertShown = false; // For now, keep alert from looping infinitely
-var layer;
+var alertShown0 = false; // For now, keep alert from looping infinitely
+var alertShown1 = false; // For now, keep alert from looping infinitely
+var alertShown2 = false; // For now, keep alert from looping infinitely
+var alertShown3 = false; // For now, keep alert from looping infinitely
+
 
 var mainstate = {
     preload:function () {
 
         //Load in JsonFile for the tileMap + needed tilesets to render the map
-        game.load.tilemap("ItsTheMap","../images/java_map.json",null,Phaser.Tilemap.TILED_JSON);
-        game.load.image("medieval_terrain","../images/medieval_terrain.png");
-        game.load.image("medieval_houses","../images/medieval_houses.png");
-        game.load.image("medieval_animals","../images/medieval_animals.png");
-        game.load.image("TileC","../images/TileC.png");
+        game.load.tilemap("ItsTheMap","../images/tilesets/java_map.json",null,Phaser.Tilemap.TILED_JSON);
+        game.load.image("medieval_terrain","../images/tilesets/medieval_terrain.png");
+        game.load.image("medieval_houses","../images/tilesets/medieval_houses.png");
+        game.load.image("medieval_animals","../images/tilesets/medieval_animals.png");
+        game.load.image("TileC","../images/tilesets/TileC.png");
+        game.load.image("npc_spritesheet","../images/tilesets/npc_spritesheet.png");
 
 
         //get users sprite and load appropriate sprite sheet
@@ -39,15 +40,13 @@ var mainstate = {
     },
 
     create:function () {
-        //Enable the physics system in Phaser
-       // game.physics.startSystem(Phaser.Physics.ARCADE);
         //load map & assests for map
-        map = game.add.tilemap("ItsTheMap",32,32,30,30);
+        map = game.add.tilemap("ItsTheMap",32,32,40,40);
         map.addTilesetImage("medieval_terrain","medieval_terrain");
         map.addTilesetImage("medieval_houses","medieval_houses");
         map.addTilesetImage("medieval_animals","medieval_animals");
         map.addTilesetImage("TileC","TileC");
-
+        map.addTilesetImage("npc_spritesheet","npc_spritesheet");
 
         //create the base layer ,these are the floors walls and anything else we want behind any sprites
         map.createLayer("Background").resizeWorld();
@@ -57,21 +56,24 @@ var mainstate = {
         layer.visible = false;
 
 
+
         //get objects for the tasks
-        var start = map.objects["tasks"][4];
+
+        //start position
+        var start =map.objects["tasks"][0];
 
         //basics
-        basics = map.objects["tasks"][0];
-
-
-        //conditionals
-        conditionals = map.objects["tasks"][1];
-
-        //loops
-        loops = map.objects["tasks"][2];
+        basics = map.objects["tasks"][1];
 
         //final
-        final = map.objects["tasks"][3];
+        conditionals = map.objects["tasks"][2];
+
+        //conditionals
+        loops = map.objects["tasks"][3];
+
+        //loops
+        final = map.objects["tasks"][4];
+
 
         //define basics zone
         basicsZone = new Phaser.Rectangle(basics.x,basics.y,basics.width,basics.height);
@@ -86,7 +88,6 @@ var mainstate = {
         //define final zone
         finalZone = new Phaser.Rectangle(final.x,final.y,final.width,final.height);
 
-
         //get player
         player = new Phaser.Sprite(game,start.x,start.y,"sprite");
         //Apply physics to our game sprite
@@ -97,10 +98,12 @@ var mainstate = {
 
         //Handle collisions
         game.physics.startSystem(Phaser.Physics.P2JS);
-        map.setCollision(3625,true,"Collision");
+        map.setCollision(3812,true,"Collision");
         game.physics.p2.convertTilemap(map, "Collision");
         game.physics.p2.enable(player);
         player.body.fixedRotation = true;
+
+
 
 
         //Animations for player up corresponds to frame 0,1 in spritesheet,etc.
@@ -112,6 +115,7 @@ var mainstate = {
     },
 
     update:function () {
+
         var speed=100;
         if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
         {
@@ -142,16 +146,15 @@ var mainstate = {
             //  Stand still
             player.body.velocity.y = 0;
             player.body.velocity.x = 0;
-
             player.frame = 3;
         }
 
 
-         //Check if in basics
+        //Check if in basics
         if (basicsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
             post('/tasks/task', {languageCode: '3', numBuilding: '0', floorNum: '-1'});
         }
-         //check if in conditionals
+        //check if in conditionals
         if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
             post('/tasks/task', {languageCode: '3', numBuilding: '1', floorNum: '-1'});
         }
@@ -167,11 +170,8 @@ var mainstate = {
             alertShown = true;
         }
 
-
     }
 }
-
-
 
 function post(path, params, method) {
     method = method || "post"; // Set method to post by default if not specified.
@@ -190,7 +190,7 @@ function post(path, params, method) {
             hiddenField.setAttribute("value", params[key]);
 
             form.appendChild(hiddenField);
-         }
+        }
     }
 
     document.body.appendChild(form);
