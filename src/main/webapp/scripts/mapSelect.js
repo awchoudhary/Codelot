@@ -46,7 +46,15 @@ var languages = {
     selected.addClass("selectedMap");
     var language = languages[selected.attr("id")];
 
-    document.getElementById("lang").setAttribute('value',selected.attr("id"));
+    if (selected.attr("id") == "java"){
+        document.getElementById("lang").setAttribute('value',"3");
+    }
+    else if (selected.attr("id") == "python") {
+        document.getElementById("lang").setAttribute('value',"30");
+    }
+    else{
+         document.getElementById("lang").setAttribute('value',"20");
+    }
 
     setAbout(language.name, language.desc);
  }

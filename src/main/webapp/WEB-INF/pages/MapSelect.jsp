@@ -85,13 +85,6 @@
                     <p id="languageDescription"></p>
                 </div>
             </div>
-            <%--<div class="floorWrapper">--%>
-                <%--<form method="post">--%>
-                    <%--<a class="floor" id="resetLink">Reset All</a>--%>
-                    <%--<button style="display:none" id="submitReset" title="Reset" type="submit"--%>
-                            <%--onclick="form.action='/resetRedirect';">Reset</button>--%>
-                <%--</form>--%>
-            <%--</div>--%>
         </div>
     </div>
 
