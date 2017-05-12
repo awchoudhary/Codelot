@@ -134,18 +134,12 @@ var mainstate = {
             post('/tasks/task', {languageCode: '30', numBuilding: '0', floorNum: '-1'});
         }
         //check if in conditionals
-        if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown1) {
-            console.log("conditionals");
-            console.log(conditionals.name);
-            alert("Conditionals Building: You must unlock previous building(s)!" );
-            alertShown1 = true;
+        if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
+            post('/tasks/task', {languageCode: '30', numBuilding: '1', floorNum: '-1'});
         }
         //check if in loops
-        if (loopsZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown2) {
-            console.log("loops");
-            console.log(loops.name);
-            alert("Loops Building: You must unlock previous building(s)!" );
-            alertShown2 = true;
+        if (loopsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
+            post('/tasks/task', {languageCode: '30', numBuilding: '2', floorNum: '-1'});
         }
         //check if in final
         if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown3) {
