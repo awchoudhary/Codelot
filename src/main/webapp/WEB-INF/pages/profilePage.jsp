@@ -26,6 +26,7 @@
     <div id="createProfile" class="wood-bg">
 
         <h2 class="formTitle">Profile</h2>
+        <h6>${note}</h6>
         <form action="/updateProfile" method="post">
             <table class="form-group createTable">
                 <tr>
@@ -78,12 +79,14 @@
                 </tr>
                 <tr style="${display}">
                     <td colspan="2">
+                        <div>
                         <div class="resetWrapper">
                             <form method="post">
                                 <a class="button w-button" id="resetLink">Reset All</a>
                                 <button style="display:none" id="submitReset" title="Reset" type="submit"
                                         onclick="form.action='/resetRedirect';">Reset</button>
                             </form>
+                        </div>
                         </div>
                     </td>
                 </tr>

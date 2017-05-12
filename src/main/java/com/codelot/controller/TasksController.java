@@ -77,9 +77,6 @@ public class TasksController {
                 if (numBuilding+1 < getBuildings(languageCode).size()) {
                     getBuildings(languageCode).get(numBuilding+1).setLocked(false);
                 }
-//                else {
-//                    c_user.getJavaCodelot().setCompleted(true);
-//                }
             }
         }
         response.put("progress", progress);
@@ -138,9 +135,6 @@ public class TasksController {
                 if (numBuilding+1 < getBuildings(languageCode).size()) {
                     getBuildings(languageCode).get(numBuilding+1).setLocked(false);
                 }
-//                else {
-//                    c_user.getJavaCodelot().setCompleted(true);
-//                }
             }
         }
 

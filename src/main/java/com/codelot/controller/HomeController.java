@@ -79,7 +79,22 @@ public class HomeController {
         ModelAndView model = new ModelAndView("WEB-INF/pages/map");
         CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
 
+        System.out.println("selectedLang = "+lang);
+
+//        // Figure out selected language based on langugage code
+//        Language currentLang;
+//        if (lang.equals("20")){ // code for javascript
+//            currentLang = c_user.getJavaScriptCodelot();
+//        }
+//        else if (lang.equals("30")){ // code for python
+//            currentLang = c_user.getPythonCodelot();
+//        }
+//        else{ // code for javascript
+//            currentLang = c_user.getJavaCodelot();
+//        }
+
         if(c_user != null){
+
             String langMap;
             ArrayList<Building> buildings;
 
@@ -119,8 +134,13 @@ public class HomeController {
         return model;
     }
 
+    // profilePage() function without any particular note
     @RequestMapping("/profilePage")
-    public ModelAndView profilePage() {
+    public ModelAndView profile(){
+        return profilePage("");
+    }
+
+    public ModelAndView profilePage(String note) {
         //Load values for user
         CodelotUser profile = CodelotUserService.getCurrentUserProfile();
 
@@ -141,7 +161,16 @@ public class HomeController {
         }
 
         model.addObject("display", display);
+        model.addObject("note", note);
         return model;
+    }
+
+    // Function to determine if string is null or is or starts with a space char
+    public boolean isValid (String str){
+        if (str.isEmpty() || str.equals("") || str.indexOf(0)==' '){
+            return false;
+        }
+        return true;
     }
 
     @RequestMapping("/updateProfile")
@@ -152,16 +181,20 @@ public class HomeController {
 
         CodelotUser profile = CodelotUserService.getCurrentUserProfile();
 
-        if(profile == null){
-            //create new user and redirect to language select
-            CodelotUserService.createUser(fullname, age, username, avatar);
-        }
-        else{
-            //update the existing profile
-            CodelotUserService.updateUser(fullname, age, username, avatar);
-        }
+        if (isValid(fullname) && isValid(username) && age>0){
+            if(profile == null){
+                //create new user and redirect to language select
+                CodelotUserService.createUser(fullname, age, username, avatar);
+            }
+            else{
+                //update the existing profile
+                CodelotUserService.updateUser(fullname, age, username, avatar);
+            }
 
-        return languageSelection();
+            return languageSelection();
+        }
+        // if any of the strings are invalid, send warning/note
+        return profilePage("Note: one or more of the fields are invalid.");
     }
 
     @RequestMapping("/resetRedirect")
