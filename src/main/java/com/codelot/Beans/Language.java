@@ -7,6 +7,14 @@ import org.json.simple.parser.JSONParser;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import java.io.File;
+
 /**
  * Created by Jane on 4/19/2017.
  */
@@ -53,71 +61,139 @@ public abstract class Language {
     // Method that adds data from xml/json file to buildings list
     protected ArrayList<Building> makeBuildings(String filename, String lang){
         buildings = new ArrayList<Building>();
-        JSONParser parser = new JSONParser();
-
         try {
 
-            Object obj = parser.parse(new FileReader( filename));
-            JSONObject jsonObject = (JSONObject) obj;
-            JSONArray json_buildings = (JSONArray) jsonObject.get(lang);
+            File fXmlFile = new File("content/java_content.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+            //optional, but recommended
+            doc.getDocumentElement().normalize();
 
-            int i = 0;
-            while (i < json_buildings.size()){
-                Building building = new Building();
+            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
-                JSONObject json_building = (JSONObject) json_buildings.get(i);
-                String name = (String) json_building.get("name");
-                building.setName(name);
-                if(i == 0){
-                    building.setLocked(false);
+            NodeList buildingsList = doc.getElementsByTagName("element"); // list of buildings
+
+            System.out.println("----------------------------");
+
+            // iterate through each building in buildings list
+            for (int b = 0; b < buildingsList.getLength(); b++) {
+                Building newBldg = new Building();
+
+                Node building = buildingsList.item(b); // one building
+                System.out.println("\nCurrent Element :" + building.getNodeName()); // = "element"
+
+                if (building.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element buildingElem = (Element) building; // convert to xml element
+
+                    // get name of building if it is not null
+                    if (buildingElem.getElementsByTagName("name").equals(null) == false){
+                        System.out.println(buildingElem.getElementsByTagName("name").toString());
+                        System.out.println(buildingElem.getElementsByTagName("name").getLength());
+                        String name = buildingElem.getElementsByTagName("name")
+                                .item(0).getTextContent();
+                        System.out.println(name);
+                        newBldg.setName(name);
+                    }
+                    else{
+                        System.out.println("name null");
+                    }
+
+                    // get child nodes of <floors> => should be element
+                    NodeList floors = buildingElem.getElementsByTagName("floors")
+                            .item(0).getChildNodes();
+
+                    // iterate through list of floors
+                    for (int f=0; f<floors.getLength(); f++){
+                        Floor newFloor = new Floor();
+                        // should be "element"
+                        Node floor = floors.item(f);
+
+                        if (floor.getNodeType() == Node.ELEMENT_NODE) {
+                            // floor element with baseCode, lesson, etc.
+                            Element floorElem = (Element) floor;
+                            // element inside floors
+
+                            String baseCode =
+                                    floorElem.getElementsByTagName("baseCode").
+                                            item(0).getTextContent();
+                            System.out.println(baseCode);
+                            newFloor.setBaseCode(baseCode);
+
+                            String description =
+                                    floorElem.getElementsByTagName("description").
+                                            item(0).getTextContent();
+                            System.out.println(description);
+                            newFloor.setTaskDescription(description);
+
+                            String lesson =
+                                    floorElem.getElementsByTagName("lesson").
+                                            item(0).getTextContent();
+                            System.out.println(lesson);
+                            newFloor.setLesson(lesson);
+
+                            // get expected outputs list
+                            NodeList outputs = floorElem.getElementsByTagName("expectedOutputs")
+                                    .item(0).getChildNodes();
+                            ArrayList<String> outs = new ArrayList<String>();
+                            // add each output to list of outputs
+                            for (int eo = 0; eo < outputs.getLength(); eo++){
+                                Node output = outputs.item(eo);
+
+                                if (output.getNodeType() == Node.ELEMENT_NODE) {
+                                    // element tag with each output
+                                    Element outputElem = (Element) output;
+                                    // add to outputs list
+                                    outs.add(outputElem.getTextContent());
+                                    System.out.println(outputElem.getTextContent());
+                                }
+                            }
+                            newFloor.setExpectedOutputs(outs);
+
+                            // get hints list
+                            NodeList hints = floorElem.getElementsByTagName("hints")
+                                    .item(0).getChildNodes();
+                            ArrayList<String> newHints = new ArrayList<String>();
+                            // add each hint to list of hints
+                            for (int h = 0; h < hints.getLength(); h++){
+                                Node hint = hints.item(h);
+
+                                if (hint.getNodeType() == Node.ELEMENT_NODE) {
+                                    // element tag with each hint
+                                    Element hintElem = (Element) hint;
+                                    // add to hints list
+                                    newHints.add(hintElem.getTextContent());
+                                    System.out.println(hintElem.getTextContent());
+                                }
+                            }
+                            newFloor.setHints(newHints);
+
+//                            // get testCases
+//                            if (floorElem.getElementsByTagName("testCases").equals(null) == false
+//                                    && floorElem.getElementsByTagName("testCases").item(0).equals(null) == false
+//                                    && floorElem.getElementsByTagName("testCases")
+//                                    .item(0).getChildNodes().equals(null) == false){
+//                            if(floorElem){
+//                                NodeList testCases = floorElem.getElementsByTagName("testCases")
+//                                        .item(0).getChildNodes();
+//                                Node test = testCases.item(0);
+//                                if (test.getNodeType() == Node.ELEMENT_NODE) {
+//                                    // element tag with each hint
+//                                    Element testElem = (Element) test;
+//                                    // add each test case to list of test cases
+//                                    newFloor.setTestCases(testElem.getTextContent());
+//                                    System.out.println(testElem.getTextContent());
+//                                }
+//                            }
+                        }
+
+                        newBldg.addFloor(newFloor);
+                    }
                 }
-
-                JSONArray floors = (JSONArray) json_building.get("floors");
-                int n = 0;
-                while (n < floors.size()){
-                    Floor floor = new Floor();
-                    if(n == 0){
-                        floor.setLocked(false);
-                    }
-
-                    JSONObject json_floor = (JSONObject) floors.get(n);
-                    String lesson = (String) json_floor.get("lesson");
-                    floor.setLesson(lesson);
-                    String desc = (String) json_floor.get("description");
-                    floor.setTaskDescription(desc);
-                    String baseCode = (String) json_floor.get("baseCode");
-                    floor.setBaseCode(baseCode);
-
-                    JSONArray hints = (JSONArray) json_floor.get("hints");
-                    ArrayList<String> save_hints = new ArrayList<String>();
-                    for (Object hint: hints) {
-                        save_hints.add((String)hint);
-                    }
-                    floor.setHints(save_hints);
-
-                    JSONArray outputs = (JSONArray) json_floor.get("expectedOutputs");
-                    ArrayList<String> save_outputs = new ArrayList<String>();
-                    for (Object output: outputs) {
-                        save_outputs.add((String)output);
-                    }
-                    floor.setExpectedOutputs(save_outputs);
-
-                    //get test cases if applicable
-                    if(json_floor.containsKey("testCases")){
-                        floor.setTestCases((String)json_floor.get("testCases"));
-                    }
-
-                    building.addFloor(floor);
-                    floor.setIndex(building.getFloors().indexOf(floor));
-                    n++;
-                }
-
-                buildings.add(building);
-                building.setIndex(buildings.indexOf(building));
-                i++;
+                buildings.add(newBldg);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

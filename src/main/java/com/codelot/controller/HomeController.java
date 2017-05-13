@@ -81,18 +81,6 @@ public class HomeController {
 
         System.out.println("selectedLang = "+lang);
 
-//        // Figure out selected language based on langugage code
-//        Language currentLang;
-//        if (lang.equals("20")){ // code for javascript
-//            currentLang = c_user.getJavaScriptCodelot();
-//        }
-//        else if (lang.equals("30")){ // code for python
-//            currentLang = c_user.getPythonCodelot();
-//        }
-//        else{ // code for javascript
-//            currentLang = c_user.getJavaCodelot();
-//        }
-
         if(c_user != null){
 
             String langMap;
