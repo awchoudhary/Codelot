@@ -494,6 +494,7 @@ p {
   display: -ms-flexbox;
   display: flex;
   padding-top: 15px;
+  height: 50px;
   padding-bottom: 15px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
