@@ -4,6 +4,10 @@
     float:left;
 }
 
+#source {
+
+}
+
 #floorsTable {
     width: 100%;
 }
@@ -47,4 +51,5 @@
 
 #btn_execute {
     font-weight: bold;
+    margin: 20px;
 }

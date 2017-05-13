@@ -18,6 +18,8 @@
     <script src="../stylesheets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="../scripts/taskPage.js"></script>
     <script src="../scripts/base.js"></script>
+    <script src="../scripts/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+
 
 
     <style></style>
@@ -69,7 +71,7 @@
                 </div>
 
                 <div id="compiler">
-                    <p><textarea rows="20" cols="50" id="source">${baseCode}</textarea></p>
+                    <div id="source">${baseCode}</div>
                     <p><button data-loading-text="<img src='../images/loading.gif' class='loading' /> Executing"
                         class="button w-button" id="btn_execute">Execute</button></p>
                 </div>
