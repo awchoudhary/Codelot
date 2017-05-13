@@ -14,6 +14,8 @@
 <body>
 <script type="text/javascript" src="../../scripts/phaser.min.js"></script>
 <script type="text/javascript" src="../../scripts/main.js"></script>
+<script src="../scripts/base.js"></script>
+
 
 </body>
 </html>

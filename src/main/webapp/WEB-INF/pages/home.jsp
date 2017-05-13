@@ -10,6 +10,7 @@
 
         <link rel="icon" type="image/png" href="../images/CodelotShield.png" />
         <script src="../scripts/home.js"></script>
+        <script src="../scripts/base.js"></script>
 
     </head>
 
