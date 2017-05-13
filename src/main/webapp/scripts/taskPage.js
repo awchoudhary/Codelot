@@ -4,6 +4,9 @@ var languageCodes = {
     30 : "python",
 }
 
+// ACE editor
+var editor;
+
 //called on page load
 $(function() {
     //assign click events
@@ -39,7 +42,7 @@ $(function() {
         $("#attemptModal").modal();
     });
 
-    var editor = ace.edit("source");
+    editor = ace.edit("source");
     editor.setTheme("ace/theme/xcode");
     editor.setOptions({
         minLines: 25,
@@ -63,7 +66,7 @@ function execute(){
     $("#compileMessage").html("");
 
     //get parameters
-    var source = $("#source").val();
+    var source = editor.getValue();
     var currentFloor = $("#currentFloor").val();
     var numBuilding = $("#numBuilding").val();
     var languageCode = $("#languageCode").val();
