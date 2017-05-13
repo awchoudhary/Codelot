@@ -22,29 +22,10 @@
     <script type="text/javascript" src="../scripts/tether.min.js"></script>
     <script type="text/javascript" src="../scripts/phaser.min.js"></script>
     <script type="text/javascript" src=${lang}></script>
+    <script type="text/javascript" src="../scripts/map.js"></script>
+    <script src="../scripts/base.js"></script>
 
-    <script>
-        $(function() {
-            $("#signoutLink").click(function() {
-                $("#submitSignout").click();
-            });
-            $("#settingsLink").click(function() {
-                $("#submitSettings").click();
-            });
-            $("#homeLink, #logolink").click(function() {
-                $("#submitHome").click();
-            });
-            $("#homeLink, #logolink").click(function() {
-                $("#submitHome").click();
-            });
-            $("#taskLink").click(function() {
-                $("#submitTask").click();
-            });
-            $("#langSelectLink").click(function() {
-                $("#submitLangSelect").click();
-            });
-        });
-    </script>
+
 </head>
 
 <body>

@@ -17,6 +17,8 @@
     <script src="../scripts/jquery-3.2.0.min.js"></script>
     <script src="../stylesheets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="../scripts/taskPage.js"></script>
+    <script src="../scripts/base.js"></script>
+
 
     <style></style>
 </head>
