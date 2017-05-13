@@ -1,3 +1,9 @@
+var languageCodes = {
+    3 : "java",
+    20 : "javascript",
+    30 : "python",
+}
+
 //called on page load
 $(function() {
     //assign click events
@@ -32,6 +38,17 @@ $(function() {
     $("#attemptLink").click(function() {
         $("#attemptModal").modal();
     });
+
+    var editor = ace.edit("source");
+    editor.setTheme("ace/theme/xcode");
+    editor.setOptions({
+        minLines: 25,
+        maxLines: 25,
+        fontSize: 14,
+    });
+
+    var code = parseInt($("#languageCode").val());
+    editor.getSession().setMode("ace/mode/" + languageCodes[code]);
 
     $("#lessonModal").modal();
 });
