@@ -15,7 +15,7 @@ public class JavaScriptCodelot extends Language{
     /* Initializing JavaScriptCodelot by setting default/prelemenary values */
     public JavaScriptCodelot(){
         // Add buildings by reading from JavaScriptContext.xml
-        setBuildings(makeBuildings("content/java_content.json", "java"));
+        setBuildings(makeBuildings("content/javascript_content.json", "javascript"));
         // Since language is initialized when CodelotUser is made and therefore hasnt been clicked on by user, set started to false
         setStarted(false);
         // Set number of completed buildings to 0 since language has not been started

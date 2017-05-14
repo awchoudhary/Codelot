@@ -11,7 +11,7 @@
           ],
           "baseCode": "",
           "expectedOutputs": [
-            "Hello World!"
+            "Hello World!\n"
           ]
         },
         {
