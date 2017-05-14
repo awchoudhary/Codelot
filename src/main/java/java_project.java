@@ -35,7 +35,7 @@ public class java_project {
         // Write the for loop statement (use variable 'day' as the int used to iterate)
         // HINT: Remember that the first day of the month is 1, not 0.
         // HINT: Days of the month go from 1 to 30 (including 30).
-            // If you want a loop to run from 0 to 5 (including 5), you do 'while (x <= 5)' or 'for (int x = 0; x <= 5; x++)'
+        // If you want a loop to run from 0 to 5 (including 5), you do 'while (x <= 5)' or 'for (int x = 0; x <= 5; x++)'
         // CODE GOES HERE
         for (int day = 1; day <= numDaysInMonth; day++){
 
@@ -46,13 +46,13 @@ public class java_project {
 
             // Write if statement to check whether the dragon is coming this day
             // HINT: If a number x is a multiple of number y, it means that number x is fully divisible by number y.
-                // Ex. 21 is a multiple of 3 which means that 21 divided by 3 is a whole number (7).
+            // Ex. 21 is a multiple of 3 which means that 21 divided by 3 is a whole number (7).
             // HINT: To find out if a number x is divisible by number y, we use the mod function '%'.
-                // If x % y is equal to 0, x is divisible by y.
+            // If x % y is equal to 0, x is divisible by y.
             // HINT: To check equality, we use '=='.
-                // Ex. int x = 5; if (x == 5){ System.out.print("x is equal to 5"); }
+            // Ex. int x = 5; if (x == 5){ System.out.print("x is equal to 5"); }
             // CODE GOES HERE
-             if (day % 5 == 0){
+            if (day % 5 == 0){
 
                 // Set dragonComing to true
                 dragonComing = true;
@@ -67,7 +67,7 @@ public class java_project {
 
                 // Print dragonStatement. Do it so that the next thing printed will be continued on the same line
                 // CODE GOES HERE
-                 System.out.print(dragonStatement);
+                System.out.print(dragonStatement);
 
                 // Variable gallons_of_water will store how many gallons of water the village needs that day.
                 // Initially we set it to zero. This should be changed by your calculation!
@@ -76,14 +76,14 @@ public class java_project {
                 // Calculate number of gallons of water needed to defeat dragon (10 times the day) and set it equal to gallons_of_water
                 // HINT: To divide a number x by number y, we do x / y. To multiply a number x by number y, we do x * y.
                 // CODE GOES HERE
-                 gallons_of_water = day * 10;
+                gallons_of_water = day * 10;
 
                 // Instructions on how to defeat dragon
                 String instructions = "have soldiers throw "+ gallons_of_water +" gallons of water on the dragon!";
 
                 // Print instructions on what to do. Do it so that the next thing printed will be on the next line
                 // CODE GOES HERE
-                 System.out.println(instructions);
+                System.out.println(instructions);
 
             }
             // If dragon is not coming, print out that dragon is not coming
@@ -93,7 +93,7 @@ public class java_project {
 
                 // Print dragonStatement. Do it so that the next thing printed will be on the next line
                 // CODE GOES HERE
-                 System.out.println(dragonStatement);
+                System.out.println(dragonStatement);
             }
         }
     }
