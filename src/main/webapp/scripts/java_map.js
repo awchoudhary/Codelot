@@ -163,11 +163,8 @@ var mainstate = {
             post('/tasks/task', {languageCode: '3', numBuilding: '2', floorNum: '-1'});
         }
         //check if in final
-        if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) && !alertShown) {
-            console.log("final");
-            console.log(final.name);
-            alert("Can't do your final project without the core skills. Complete the previous buildings and come back!");
-            alertShown = true;
+        if (finalZone.contains(player.x+player.width/2,player.y+player.height/2)) {
+            post('/tasks/task', {languageCode: '3', numBuilding: '3', floorNum: '-1'});
         }
 
     }
