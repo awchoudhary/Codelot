@@ -43,7 +43,7 @@ var mainstate = {
     preload:function () {
 
         //Load in JsonFile for the tileMap + needed tilesets to render the map
-        game.load.tilemap("ItsTheMap","../images/python_map.json",null,Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap("ItsTheMap","../images/tilesets/python.json",null,Phaser.Tilemap.TILED_JSON);
         game.load.image("medieval_terrain","../images/tilesets/medieval_terrain.png");
         game.load.image("medieval_houses","../images/tilesets/medieval_houses.png");
         game.load.image("medieval_animals","../images/tilesets/medieval_animals.png");
@@ -344,7 +344,7 @@ var mainstate = {
             player.body.x = player.x;
             player.body.y = player.y +50;
             if (completed!=true) {
-                if (i>dragonLocations.length)  {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x + 50;
@@ -363,7 +363,7 @@ var mainstate = {
             player.body.x = player.x;
             player.body.y = player.y +50;
             if (completed!=true) {
-                if (i>dragonLocations.length)  {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x + 60 ;
@@ -382,7 +382,7 @@ var mainstate = {
             player.body.x = player.x;
             player.body.y = player.y +50;
             if (completed!=true) {
-                if (i>dragonLocations.length)  {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x+ 50 ;
