@@ -1,0 +1,14 @@
+.offScreen {
+    display:none;
+    position: absolute;
+    width:600px;
+    left:320px;
+}
+
+.onScreen{
+    display:block;
+
+    position: absolute;
+    width:600px;
+    left:320px;
+}
