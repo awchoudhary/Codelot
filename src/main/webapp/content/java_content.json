@@ -107,7 +107,7 @@
           ]
         },
         {
-          "lesson": "For loops are used to execute code for a number of times while a temporary variable is within a certain range. You can construct a for statement by using the following syntax. The code within the 'for' block will execute so long as the variable defined within the statement evaluates to true based on the given expression. The third expression of the for statement updates the variable after each iteration. \n\n\tfor (int i = 0; i < 10; i = i + 1) {\n\t\t// your code\n\t}.",
+          "lesson": "For loops are used to execute code for a number of times while a temporary variable is within a certain range.\nYou can construct a for statement by using the following syntax. \nThe code within the 'for' block will execute so long as the variable defined within the statement evaluates to true based on the given expression. The third expression of the for statement updates the variable after each iteration. \n\n\tfor (int i = 0; i < 10; i = i + 1) {\n\t\t// your code\n\t}.",
           "description": "Using a for loop, write a program that prints \"x is \" followed by the value of x and a new line for all values from 7 to 12",
           "hints": [
             "To run the loop for all necessary values, start x at 7 and continue the loop so long as x is less than or equal to 12."
@@ -118,7 +118,7 @@
           ]
         },
         {
-          "lesson": "An array is a list of variables of fixed length. For example, a list of ten integers can be defined with the following code:\n\tint a[] = new int[10];\nTo access a value in the list, the indexes begin counting at 0 and continue to the length of the list minus 1. As such, the first element of array a is a[0] and the last element is a[9]. To get the length of an array, use a.length to get the value 10.",
+          "lesson": "An array is a list of variables of fixed length. \nFor example, a list of ten integers can be defined with the following code:\n\tint a[] = new int[10];\nTo access a value in the list, the indexes begin counting at 0 and continue to the length of the list minus 1. As such, the first element of array a is a[0] and the last element is a[9]. To get the length of an array, use a.length to get the value 10.",
           "description": "Write a program that prints every element in the integer array a, separated by a new line.",
           "hints": [
             "Remember that the indices of array a begin with 0 and end with a.length-1.",
@@ -129,6 +129,24 @@
             "1\n2\n3\n4\n6\n8\n9\n2\n1\n"
           ]
         },
+        {
+          "lesson": "You can define a variable outside of a loop in order to use it and update the value during subsequent executions of the code. In this example, you will need to keep a running sum of each value in an array.",
+          "description": "Write a program that prints \"The total is \" followed by the total of the values within an integer array.",
+          "hints": [
+            "Remember that the indices of array a begin with 0 and end with a.length-1.",
+            "You can use a variable to hold the index of the element that you would like to access in array a.",
+            "You can use a variable to hold the total as you go through every element in array a."
+          ],
+          "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tint[] a = {0,1,2,3,4};\n\t\taddArray(a);\n\t\tint[] b = {6,8,9,2,1};\n\t\taddArray(b);\n\t}\n\tpublic static void addArray(int[] a) {\n\t\t//Your code here\n\t}\n}",
+          "expectedOutputs": [
+            "The total is 10\nThe total is 26\n"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Final Project",
+      "floors": [
         {
           "lesson": "You can define a variable outside of a loop in order to use it and update the value during subsequent executions of the code. In this example, you will need to keep a running sum of each value in an array.",
           "description": "Write a program that prints \"The total is \" followed by the total of the values within an integer array.",
