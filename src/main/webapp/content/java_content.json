@@ -148,12 +148,16 @@
       "name": "Final Project",
       "floors": [
         {
-          "lesson": "You can define a variable outside of a loop in order to use it and update the value during subsequent executions of the code. In this example, you will need to keep a running sum of each value in an array.",
-          "description": "Write a program that prints \"The total is \" followed by the total of the values within an integer array.",
+          "lesson": "Its time to save your village using all the lessons you've learned! Refer back to the previous lessons and programming tasks if you need help.",
+          "description": "<b>We need you to save the village from the dragon's wrath!</b>\nWe'll let you in on a secret. The dragon has a weakness; it can't stand water BUT the amount of water it can withstand is different each day. If you blast the dragon with the correct amount of water every time it comes for a whole month, the dragon will never come again!\n\n<b>Hints:</b>\n\t-The dragon only comes on days that are multiples of 5.\n\t-In order to defeat the dragon, on the days that the dragon comes, you must have soldiers throw dayNumber * 10 gallons of water on the dragon. <i>You need to calculate what this number is.</i>\n\n<b>Print out a list of every day of the month followed by whether the dragon will come that day and if so, also print instructions for how to defeat the dragon that day.</b>\n\nHere is the pseudocode (how the code should look and work) for this program:\n<i>\tfor every day of the month:\n\t\tif dragon coming = true:\n\t\t\tprint the date and that the dragon is coming\n\t\t\tint gallons_of_water = dayNum*10;\n\t\t\tprint gallons_of_water are needed to defeat the dragon today\n\t\telse if dragon coming != true:\n\t\t\tprint the date and that the dragon is not coming</i>",
           "hints": [
-            "Remember that the indices of array a begin with 0 and end with a.length-1.",
-            "You can use a variable to hold the index of the element that you would like to access in array a.",
-            "You can use a variable to hold the total as you go through every element in array a."
+            "Remember that the first day of the month is 1, not 0.",
+            "Days of the month go from 1 to 30 (including 30). If you want a loop to run from 0 to 5 (including 5), you do 'while (x <= 5)' or 'for (int x = 0; x <= 5; x++)'",
+            "If a number x is a multiple of number y, it means that number x is fully divisible by number y. Ex. 21 is a multiple of 3 which means that 21 divided by 3 is a whole number (7).",
+			"To find out if a number x is divisible by number y, we use the mod function '%'. If x % y is equal to 0, x is divisible by y.",
+			"To check equality, we use '=='. Ex. int x = 5; if (x == 5){ System.out.print(\"x is equal to 5\"); }",
+			"System.out.print() when you dont want a new line after this statement. System.out.println() when you want a new line after this statement.",
+			"To divide a number x by number y, we do x / y. To multiply a number x by number y, we do x * y."
           ],
           "baseCode": "public class Solution{\n \tpublic static void main(String[] args){\n \t\tint[] a = {0,1,2,3,4};\n\t\taddArray(a);\n\t\tint[] b = {6,8,9,2,1};\n\t\taddArray(b);\n\t}\n\tpublic static void addArray(int[] a) {\n\t\t//Your code here\n\t}\n}",
           "expectedOutputs": [
