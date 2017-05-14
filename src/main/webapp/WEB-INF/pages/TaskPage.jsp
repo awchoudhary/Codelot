@@ -213,6 +213,7 @@
                     <p><div id="output"><!-- Displays output for program --></div></p>
                     <p><div id="expectedOutput"><!-- Displays the expected output for the task--></div></p>
                     <p><div id="compileMessage"><!-- Displays message from compiler --></div></p>
+                    <p><div id="stderr"><!-- Displays message from compiler --></div></p>
                     <input type="hidden" id="currentFloor" value="${currentFloor}"/>
                     <input id="numBuilding" type="hidden" value="${numBuilding}"/>
                 </div>

@@ -59,11 +59,18 @@ $(function() {
 function execute(){
     $("#btn_execute").button("loading");
 
+    //remove success and failure headers
+    $("#resultHeader").removeClass("failed");
+    $("#resultHeader").removeClass("success");
+    $("#resultTitle").text("");
+
+
     //empty messages
     $("#result").html("");
     $("#output").html("");
     $("#expectedOutput").html("");
     $("#compileMessage").html("");
+    $("#stderr").html("");
 
     //get parameters
     var source = editor.getValue();
@@ -73,7 +80,7 @@ function execute(){
     var params = {source: source, currentFloor: currentFloor, numBuilding: numBuilding, languageCode: languageCode};
 
     var resultSuccess = function(data) {
-        $("#resultHeader").removeClass("failed").addClass("success");
+        $("#resultHeader").addClass("success");
         $("#resultTitle").text("Success");
 
         //update the progress bar
@@ -82,7 +89,7 @@ function execute(){
     }
 
     var resultFailed = function(data) {
-        $("#resultHeader").removeClass("success").addClass("failed");
+        $("#resultHeader").addClass("failed");
         $("#resultTitle").text("Failed");
     }
 
@@ -97,6 +104,15 @@ function execute(){
             //print compile message if there is a compiler error
             if(data.compilemessage){
                 $("#compileMessage").html("Error: " + data.compilemessage);
+                $("#resultTitle").text("Compiler Error");
+            }
+            else if(data.stderr){
+                var stderr = "";
+                for(var i = 0; i < data.stderr.length; i++){
+                    stderr += data.stderr[i];
+                }
+                $("#stderr").html(stderr);
+                $("#resultTitle").text("Runtime Exception");
             }
             else{
                 //display the outcome
