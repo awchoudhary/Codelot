@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
     <link rel="stylesheet" type="text/css" href="../stylesheets/map.css" />
     <link rel="stylesheet" type="text/css" href="../stylesheets/task.css" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/taskpage.css" />
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,7 +62,7 @@
                 <!-- Left-aligned -->
                 <div class="media char">
                   <div class="media-left">
-                    <img src="../images/img_avatar1.png" class="media-object" style="width:60px">
+                    <img src="../images/npc1.png" class="media-object" style="width:60px">
                   </div>
                   <div class="media-body">
                     <h4 class="media-heading">Java Wizard</h4>
