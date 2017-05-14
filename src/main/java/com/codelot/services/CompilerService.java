@@ -77,9 +77,32 @@ public class CompilerService {
         if(result.has("compilemessage")){
             String message = result.getString("compilemessage");
             if(!message.equals("")){
-                result.put("compilemessage", message);
-                result.put("outcome", "false");
-                return result;
+                response.put("compilemessage", message);
+                response.put("outcome", "false");
+                return response;
+            }
+        }
+
+        if(result.has("stderr")){
+            JSONArray stderr = result.getJSONArray("stderr");
+
+            //set outcome to false if we have any stderr messages
+            for(int i = 0; i < stderr.length(); i++){
+                Object stderrObj = stderr.get(i);
+
+                //if there is no standard error, the first item will be a boolean value of false
+                if(stderrObj instanceof Boolean){
+                    if(!(Boolean)stderrObj){
+                        break;
+                    }
+                }
+
+                //if there is a standard error, the item will be a string
+                else if(stderrObj instanceof String){
+                    response.put("outcome", "false");
+                    response.put("stderr", stderr);
+                    return response;
+                }
             }
         }
 
