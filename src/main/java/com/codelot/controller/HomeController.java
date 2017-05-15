@@ -62,7 +62,7 @@ public class HomeController {
         CodelotUser profile = CodelotUserService.getCurrentUserProfile();
 
         //direct to map select page
-        ModelAndView model = new ModelAndView("WEB-INF/pages/mapSelect");
+        ModelAndView model = new ModelAndView("WEB-INF/pages/MapSelect");
 
         if(profile != null){
             model.addObject("fullName", profile.getFullname());
