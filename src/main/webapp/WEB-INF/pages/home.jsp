@@ -40,7 +40,6 @@
         </div>
         <div class="logos-section">
             <div>
-                <p class="paragraph-5">Student information can go down here, along with contact and social media.</p>
             </div>
         </div>
 
@@ -67,7 +66,7 @@
 
     <div class="footer-bottom">
         <div class="footer-bottom-wrap">
-            <div class="legal">Information about the group and other footer content. Design made using Webflow.</div>
+            <div class="legal">Codelot. CSE 308 Maroon. Awaes Choudhary, Tiffany Ramroop, Brandon Cuadrado, Jane Thomas.</div>
         </div>
     </div>
     <div class="w-embed">
