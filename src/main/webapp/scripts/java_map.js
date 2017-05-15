@@ -329,11 +329,7 @@ var mainstate = {
         }
         //check if in final
         if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) ) {
-            console.log(progress);
-            popup1.visible = true;
-            openWindow(popup1);
-            player.body.x = player.x;
-            player.body.y = player.y +50;
+            post('/tasks/task', {languageCode: '3', numBuilding: '3', floorNum: '-1'});
 
         }
 
