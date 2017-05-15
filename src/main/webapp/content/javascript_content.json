@@ -98,10 +98,10 @@
           ]
         },
         {
-          "lesson": "For loops are used to execute code for a number of times while a temporary variable is within a certain range. You can construct a for statement by using the following syntax. The code within the 'for' block will execute so long as the variable within the statement is within the specified range. One way to define a range for a variable to iterate over is by using the range function. Here is an example on how you can create a loop that iterates 5 times: \n\n\tfor i in range(0,5):\n\t\t// code to execute in the loop\n\t}.\nNote that the range function does not include the last index",
+          "lesson": "For loops are used to execute code for a number of times while a temporary variable is within a certain range. You can construct a for statement by using the following syntax. The code within the 'for' block will execute so long as the variable within the statement is within the specified range. One way to define a range for a variable to iterate over is by using the range function. Here is an example on how you can create a loop that iterates 5 times: \n\n\tfor (var i = 0; i < 5; i++) {\n\t\t// code to execute in the loop\n\t}.\n",
           "description": "Using a for loop, write a program that prints \"x is \" followed by the value of x for all values from 7 to 12",
           "hints": [
-            "To run the loop for all necessary values, loop through the range 7 to 13."
+            "To run the loop for all necessary values, loop starting with 7 and while x is less than 13."
           ],
           "baseCode": "",
           "expectedOutputs": [
@@ -109,30 +109,31 @@
           ]
         },
         {
-          "lesson": "The list is the most versatile datatype available in Python, which can be written as a list of comma-separated values (items) between square brackets. Heres an example of how you would declare a list of integers between 1 and 3:\n\ta = [1, 2, 3];\nThe indexes of a elements within a list begin at 0 and continue to the length of the list minus 1. That being said, in order to access an element within a list, we use an expression with the following syntax: myList[index of element], where myList is a list variable. You can use the len function to get the length of a list like so: len(myList).",
+          "lesson": "An array is a list of variables used in Javascript. \nFor example, a list of 3 integers can be defined with the following code:\n\tvar a = [1, 2, 3];\nTo access a value in the list, the indexes begin counting at 0 and continue to the length of the list minus 1. As such, the first element of array a is a[0] and the last element is a[2]. To get the length of an array, use a.length to get the value 3.",
           "description": "Write a program that prints every element in the integer list a.",
           "hints": [
-            "Use the range function to loop from 0 to the length of the list in your for loop"
+            "Use a.length to loop from 0 to the length of the list in your for loop"
           ],
-          "baseCode": "def printList(a):\n\t#your code goes under here\n\na = [1,2,3,4]\n\nprintList(a)\n\nb = [6,8,9,2,1]\n\nprintList(b)",
+          "baseCode": "var printList = function (a) {\n\t// your code goes under here\n}\n\nvar a = [1,2,3,4];\n\nprintList(a);\n\nvar b = [6,8,9,2,1];\n\nprintList(b);",
           "expectedOutputs": [
             "1\n2\n3\n4\n6\n8\n9\n2\n1\n"
           ]
         },
         {
-          "lesson": "You can define a variable outside of a loop in order to use it and update the value during subsequent executions of the code. In this example, you will need to keep a running sum of each value in an array.",
+          "lesson": "You can define a variable outside of a loop in order to use it and update the value during subsequent executions of the code. In this example, you will need to calculate the sum of every value in an array.",
           "description": "Write a program that prints \"The total is \" followed by the total of the values within an integer array.",
           "hints": [
             "Remember that the indices of a list begin with 0 and end with one less than the length of the list.",
             "You can use a variable to hold the index of the element that you would like to access in list a.",
             "You can use a variable to hold the total as you go through every element in list a."
           ],
-          "baseCode": "def addList(a):\n\t#your code is under here\n\na = [1, 2, 3, 4]\n\naddList(a)\n\nb = [6,8,9,2,1]\n\naddList(b)",
+          "baseCode": "var addList = function (a) {\n\t// your code is under here\n}\n\nvar a = [1, 2, 3, 4];\n\naddList(a);\n\nvar b = [6,8,9,2,1];\n\naddList(b);",
           "expectedOutputs": [
             "The total is 10\nThe total is 26\n"
           ]
         }
       ]
-    }
+    },
+
   ]
 }
