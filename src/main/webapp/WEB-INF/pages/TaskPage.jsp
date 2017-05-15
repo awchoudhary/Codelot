@@ -65,7 +65,7 @@
                     <img src="../images/npc1.png" class="media-object" style="width:60px">
                   </div>
                   <div class="media-body">
-                    <h4 class="media-heading">Java Wizard</h4>
+                    <h4 class="media-heading">Codelot Wizard</h4>
                       <p style="font-size:75%"><em>${warning}</em></p>
                     <p>${taskDesc}</p>
                   </div>
