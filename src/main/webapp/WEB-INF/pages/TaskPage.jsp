@@ -55,7 +55,7 @@
         <div class="content-row">
             <%-- Main Pane --%>
             <div class="column-4 wood-bg w-col w-col-10">
-                <h2>${buildingName}</h2>
+                <h2 class="buildingName">${buildingName}</h2>
                 <hr />
 
                 <%--center content--%>
