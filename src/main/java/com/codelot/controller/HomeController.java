@@ -160,6 +160,7 @@ public class HomeController {
             model.addObject("age", profile.getAge());
         }
 
+
         model.addObject("display", display);
         model.addObject("note", note);
         return model;

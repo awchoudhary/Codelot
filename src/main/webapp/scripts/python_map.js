@@ -1,7 +1,7 @@
 //Variables used in game
 
 //Create canvas to display the game,'game' will refer to this canvas element
-var game = new Phaser.Game(1200,1200,Phaser.CANVAS,'gameDiv');
+var game = new Phaser.Game(1000,600,Phaser.CANVAS,'gameDiv');
 var player;
 
 
@@ -253,7 +253,8 @@ var mainstate = {
             game.world.addAt(dragonS,2);
         }
 
-        game.camera.follow(player);
+
+        game.camera.follow(player,Phaser.Camera.FOLLOW_LOCKON,0.1,0.1);
 
 
         //Handle collisions
@@ -330,6 +331,11 @@ var mainstate = {
         //check if in final
         if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) ) {
             post('/tasks/task', {languageCode: '30', numBuilding: '3', floorNum: '-1'});
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3bb7ff00a0a4950499eb717a141c737af5823857
         }
 
         if (npcLoc1.contains(player.x+player.width/2,player.y+player.height/2) ) {
