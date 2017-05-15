@@ -95,6 +95,13 @@ public class TasksController {
 
         //if floor number is -1, we are navigating from the map page and should therefore get the current floor for the user
         if(floorNum == -1){
+            //if a building is locked return error
+            if(getBuildings(languageCode).get(numBuilding).isLocked()){
+                ModelAndView model = new ModelAndView("WEB-INF/pages/TaskPage");
+                model.addObject("isBuildingLocked", "true");
+                model.addObject("languageCode", languageCode);
+                return model;
+            }
             floorNum = getBuildings(languageCode).get(numBuilding).getCurrentFloor();
         }
 
