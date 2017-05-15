@@ -168,7 +168,7 @@ public class HomeController {
 
     // Function to determine if string is null or is or starts with a space char
     public boolean isValid (String str){
-        if (str.isEmpty() || str.equals("") || str.indexOf(0)==' '){
+        if (str == null || str.isEmpty() || str.equals("") || str.indexOf(0)==' '){
             return false;
         }
         return true;
