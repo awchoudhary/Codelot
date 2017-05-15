@@ -1,7 +1,7 @@
 //Variables used in game
 
 //Create canvas to display the game,'game' will refer to this canvas element
-var game = new Phaser.Game(1200,1200,Phaser.CANVAS,'gameDiv');
+var game = new Phaser.Game(1000,600,Phaser.CANVAS,'gameDiv');
 var player;
 
 
@@ -79,7 +79,7 @@ var mainstate = {
         }
         //else load the incompleted boxes+ dragon sprite
         else {
-            completed = false;
+            completed =false;
             //dialog boxes
             game.load.image('dialog1','../images/dialog1_incomplete.png');
             game.load.image('dialog2','../images/dialog2_incomplete.png');
@@ -253,8 +253,7 @@ var mainstate = {
             game.world.addAt(dragonS,2);
         }
 
-        game.camera.follow(player);
-
+        game.camera.follow(player,Phaser.Camera.FOLLOW_LOCKON,0.1,0.1);
 
         //Handle collisions
         game.physics.startSystem(Phaser.Physics.P2JS);
@@ -329,11 +328,7 @@ var mainstate = {
         }
         //check if in final
         if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) ) {
-            console.log(progress);
-            popup1.visible = true;
-            openWindow(popup1);
-            player.body.x = player.x;
-            player.body.y = player.y +50;
+            post('/tasks/task', {languageCode: '3', numBuilding: '3', floorNum: '-1'});
 
         }
 
