@@ -5,7 +5,7 @@
       "floors": [
         {
           "lesson": "Lets learn one of the most essential aspects of any programming language: how to print!\n In Python, you can use the print function to write to standard output.",
-          "description": "Type print() with the String \"Hello World\" in between the parentheses.",
+          "description": "Type print() with the String \"Hello World!\" in between the parentheses.",
           "hints": [
             "The statement to print Hey! would be print(\"Hey!\")"
           ],
