@@ -159,7 +159,7 @@ public class HomeController {
             model.addObject("email", profile.getUser_email());
             model.addObject("age", profile.getAge());
         }
-       
+
 
         model.addObject("display", display);
         model.addObject("note", note);
