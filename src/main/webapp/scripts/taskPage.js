@@ -53,7 +53,15 @@ $(function() {
     var code = parseInt($("#languageCode").val());
     editor.getSession().setMode("ace/mode/" + languageCodes[code]);
 
-    $("#lessonModal").modal();
+
+    //if the building is locked, display the error modal
+    if($("#isBuildingLocked").val() == "true"){
+        $("#taskDescription").html("Building is locked. Competed all previous buildings to unlock this building.");
+        $("#btn_execute").hide();
+    }
+    else{
+        $("#lessonModal").modal();
+    }
 });
 
 function execute(){
