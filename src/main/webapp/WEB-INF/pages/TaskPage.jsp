@@ -55,7 +55,7 @@
         <div class="content-row">
             <%-- Main Pane --%>
             <div class="column-4 wood-bg w-col w-col-10">
-                <h2>${buildingName}</h2>
+                <h2 class="buildingName">${buildingName}</h2>
                 <hr />
 
                 <%--center content--%>
@@ -116,7 +116,7 @@
 
     <div class="footer-bottom">
         <div class="footer-bottom-wrap">
-            <div class="legal">Information about the group and other footer content. Design made using Webflow.</div>
+            <div class="legal">Codelot. CSE 308 Maroon. Awaes Choudhary, Tiffany Ramroop, Brandon Cuadrado, Jane Thomas.</div>
         </div>
     </div>
 

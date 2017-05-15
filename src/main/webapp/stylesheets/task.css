@@ -8,6 +8,10 @@
 
 }
 
+.buildingName {
+    color: white;
+}
+
 #floorsTable {
     width: 100%;
 }
