@@ -39,7 +39,7 @@ public final class CodelotUserService {
         List<CodelotUser> profiles =  ObjectifyService.ofy()
                                 .load()
                                 .type(CodelotUser.class)
-                                .filter("user_id",user.getUserId())
+                                .filter("user_id", user.getUserId())
                                 .list();
 
         if(profiles.size() > 0){

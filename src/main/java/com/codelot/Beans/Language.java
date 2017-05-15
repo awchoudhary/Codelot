@@ -65,22 +65,30 @@ public abstract class Language {
             while (i < json_buildings.size()){
                 Building building = new Building();
 
+                // get json building
                 JSONObject json_building = (JSONObject) json_buildings.get(i);
+                // get name of building from json
                 String name = (String) json_building.get("name");
+                // set name of building
                 building.setName(name);
+                // unlock the first building
                 if(i == 0){
                     building.setLocked(false);
                 }
 
+                // get floors for this building
                 JSONArray floors = (JSONArray) json_building.get("floors");
                 int n = 0;
+                // get floor info and save it
                 while (n < floors.size()){
                     Floor floor = new Floor();
+                    // unlock first floor
                     if(n == 0){
                         floor.setLocked(false);
                     }
 
                     JSONObject json_floor = (JSONObject) floors.get(n);
+                    // Get and save lesson, description, base code for this floor and save.
                     String lesson = (String) json_floor.get("lesson");
                     floor.setLesson(lesson);
                     String desc = (String) json_floor.get("description");
@@ -88,6 +96,7 @@ public abstract class Language {
                     String baseCode = (String) json_floor.get("baseCode");
                     floor.setBaseCode(baseCode);
 
+                    // Get hints for this floor and save to list. Then save list.
                     JSONArray hints = (JSONArray) json_floor.get("hints");
                     ArrayList<String> save_hints = new ArrayList<String>();
                     for (Object hint: hints) {
@@ -95,6 +104,7 @@ public abstract class Language {
                     }
                     floor.setHints(save_hints);
 
+                    // Get expected outputs for this floor and save to list. Then save list.
                     JSONArray outputs = (JSONArray) json_floor.get("expectedOutputs");
                     ArrayList<String> save_outputs = new ArrayList<String>();
                     for (Object output: outputs) {
@@ -112,6 +122,7 @@ public abstract class Language {
                     n++;
                 }
 
+                // Add populated building into list of buildings
                 buildings.add(building);
                 building.setIndex(buildings.indexOf(building));
                 i++;

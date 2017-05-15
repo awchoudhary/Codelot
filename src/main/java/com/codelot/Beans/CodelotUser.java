@@ -7,7 +7,7 @@ import com.googlecode.objectify.annotation.Index;
 @Entity
 public class CodelotUser {
     @Id public Long id;
-    @Index private String user_id;
+    @Index public String user_id;
     public String user_email;
     public String fullname;
     public int age;
