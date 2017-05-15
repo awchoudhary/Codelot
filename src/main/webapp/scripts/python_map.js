@@ -223,7 +223,7 @@ var mainstate = {
 
 
         //3rd Box
-        popup3 = game.add.sprite(sprite2.x,sprite2.y,'dialog3');
+        popup3 = game.add.sprite(sprite3.x,sprite3.y,'dialog3');
         popup3.alpha = 0.8;
         popup3.anchor.set(0.5);
         popup3.inputEnabled = true;
