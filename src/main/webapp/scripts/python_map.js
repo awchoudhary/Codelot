@@ -331,11 +331,6 @@ var mainstate = {
         //check if in final
         if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) ) {
             post('/tasks/task', {languageCode: '30', numBuilding: '3', floorNum: '-1'});
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 3bb7ff00a0a4950499eb717a141c737af5823857
         }
 
         if (npcLoc1.contains(player.x+player.width/2,player.y+player.height/2) ) {
