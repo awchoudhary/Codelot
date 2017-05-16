@@ -21,10 +21,14 @@
     <script src="../scripts/base.js"></script>
     <script src="../scripts/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 
-
-
-    <style></style>
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Inknut+Antiqua|Lobster|Metamorphous|Playfair+Display:700" rel="stylesheet">
 </head>
+
+<style>
+    body{
+        font-family: 'Droid Serif', serif;
+    }
+</style>
 
 <body>
     <%-- Navigation Bar --%>
