@@ -52,10 +52,10 @@
                 <td><label for="avtr">Avatar:</label></td>
                 <td>
                     <select class="form-control" name="avatar" id="avtr" onchange="switchImage();" >
-                        <option  value="../../images/sprites/amg4.png" selected>Avatar 1</option>
-                        <option  value="../../images/sprites/avt2.png">Avatar 2</option>
-                        <option  value="../../images/sprites/knt1.png">Avatar 3</option>
-                        <option  value="../../images/sprites/knt4.png">Avatar 4</option>
+                        <option  value="../../images/sprites/amg4.png" selected>Female Mage</option>
+                        <option  value="../../images/sprites/avt2.png">Male Mage</option>
+                        <option  value="../../images/sprites/knt1.png">Male Knight</option>
+                        <option  value="../../images/sprites/knt4.png">Female Knight</option>
                     </select>
                 </td>
                 </tr>
@@ -79,21 +79,14 @@
 
                 <tr style="${display};">
                     <td colspan="2">
-                        <div style="padding-top: 10px;">
-                            <p style="text-align: center">If you would like to reset progress for all languages</p>
-                        </div>
-                    </td>
-                </tr>
-                <tr style="${display}">
-                    <td colspan="2">
-                        <div>
-                        <div class="resetWrapper">
-                            <form method="post">
-                                <a class="button w-button" id="resetLink">Reset All</a>
-                                <button style="display:none" id="submitReset" title="Reset" type="submit"
-                                        onclick="form.action='/resetRedirect';">Reset</button>
-                            </form>
-                        </div>
+                        <div class="resetText"><a id="showReset">Reset progress for all languages</a>
+                            <div id="resetWrapper">
+                                <form method="post">
+                                    <a class="button w-button" id="resetLink">Reset All</a>
+                                    <button style="display:none" id="submitReset" title="Reset" type="submit"
+                                            onclick="form.action='/resetRedirect';">Reset</button>
+                                </form>
+                            </div>
                         </div>
                     </td>
                 </tr>

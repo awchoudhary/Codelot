@@ -46,6 +46,27 @@ body {
     text-align: right;
 }
 
-.resetWrapper{
+#resetWrapper{
     margin: 0 auto;
+    display: none;
+}
+
+.resetText {
+    margin-top: 20px;h
+    text-align: center;
+    font-weight: bold;
+    color: #ff6b6b;
+    background-color: #33393c;
+    border: #ccc solid 1px;
+    border-width: 1px 0;
+    text-align: center;
+}
+
+#showReset {
+    color: #ff6b6b;
+}
+
+#showReset:hover {
+    text-decoration: none;
+    cursor: pointer;
 }
