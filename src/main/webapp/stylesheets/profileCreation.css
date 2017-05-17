@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Droid+Serif|Inknut+Antiqua|Lobster|Metamorphous|Playfair+Display:700');
+
 body {
+    font-family: 'Droid Serif', serif;
     background-color: #34363b!important;
 }
 
@@ -22,6 +25,7 @@ body {
 }
 
 .formTitle {
+    font-family: Metamorphous, cursive;
     font-weight: bold;
 }
 
@@ -42,6 +46,27 @@ body {
     text-align: right;
 }
 
-.resetWrapper{
+#resetWrapper{
     margin: 0 auto;
+    display: none;
+}
+
+.resetText {
+    margin-top: 20px;h
+    text-align: center;
+    font-weight: bold;
+    color: #ff6b6b;
+    background-color: #33393c;
+    border: #ccc solid 1px;
+    border-width: 1px 0;
+    text-align: center;
+}
+
+#showReset {
+    color: #ff6b6b;
+}
+
+#showReset:hover {
+    text-decoration: none;
+    cursor: pointer;
 }

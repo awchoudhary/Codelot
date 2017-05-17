@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-    <application>codelot-167700</application>
+    <application>codelot-build1</application>
     <version>${appengine.app.version}</version>
     <threadsafe>true</threadsafe>
 

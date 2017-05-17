@@ -3,6 +3,8 @@
     <head>
         <title>Codelot</title>
         <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
+        <link rel="stylesheet" type="text/css" href="../stylesheets/home.css" />
+
         <link rel="stylesheet" type="text/css" href="../stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
@@ -12,7 +14,12 @@
         <script src="../scripts/home.js"></script>
         <script src="../scripts/base.js"></script>
 
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Inknut+Antiqua|Lobster|Metamorphous|Playfair+Display:700" rel="stylesheet">
     </head>
+
+    <style>
+
+    </style>
 
     <body>
         <nav class="navbar nav-main navbar-fixed-top">
@@ -36,6 +43,12 @@
                     </p>
                     <a class="button w-button" onclick="location.href='/signin'"><strong>Play</strong></a>
                 </div>
+                <video loop muted autoplay poster="img/wood_cartoon.jpg"
+                       class="fullscreen-bg__video">
+                    <%--<source src="video/big_buck_bunny.webm" type="video/webm">--%>
+                    <source src="videos/codelot_demo.mp4" type="video/mp4">
+                    <%--<source src="video/big_buck_bunny.ogv" type="video/ogg">--%>
+                </video>
             </div>
         </div>
         <div class="logos-section">
