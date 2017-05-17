@@ -107,7 +107,7 @@
                 {
                  "height":60.6855,
                  "id":10,
-                 "name":"sprite",
+                 "name":"intro_sprite",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -118,7 +118,7 @@
                 {
                  "height":58,
                  "id":16,
-                 "name":"sprite",
+                 "name":"loops_sprite",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -129,7 +129,7 @@
                 {
                  "height":73,
                  "id":17,
-                 "name":"sprite",
+                 "name":"basics_sprite",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -140,7 +140,7 @@
                 {
                  "height":60.6855,
                  "id":19,
-                 "name":"sprite",
+                 "name":"conditionals_sprite",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -151,7 +151,7 @@
                 {
                  "height":58,
                  "id":20,
-                 "name":"sprite",
+                 "name":"final_sprite",
                  "rotation":0,
                  "type":"",
                  "visible":true,
