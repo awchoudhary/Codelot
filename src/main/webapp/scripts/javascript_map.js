@@ -383,19 +383,19 @@ var mainstate = {
 
         //Check if in basics
         if (basicsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
-            post('/tasks/task', {languageCode: '3', numBuilding: '0', floorNum: '-1'});
+            post('/tasks/task', {languageCode: '20', numBuilding: '0', floorNum: '-1'});
         }
         //check if in conditionals
         if (conditionalsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
-            post('/tasks/task', {languageCode: '3', numBuilding: '1', floorNum: '-1'});
+            post('/tasks/task', {languageCode: '20', numBuilding: '1', floorNum: '-1'});
         }
         //check if in loops
         if (loopsZone.contains(player.x+player.width/2,player.y+player.height/2)) {
-            post('/tasks/task', {languageCode: '3', numBuilding: '2', floorNum: '-1'});
+            post('/tasks/task', {languageCode: '20', numBuilding: '2', floorNum: '-1'});
         }
         //check if in final
         if (finalZone.contains(player.x+player.width/2,player.y+player.height/2) ) {
-            post('/tasks/task', {languageCode: '3', numBuilding: '3', floorNum: '-1'});
+            post('/tasks/task', {languageCode: '20', numBuilding: '3', floorNum: '-1'});
 
         }
 
