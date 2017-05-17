@@ -60,6 +60,7 @@ $(function() {
         $("#btn_execute").hide();
     }
     else{
+        $("#taskDescription").html($("#taskDescription").html().replace(/(?:\r\n|\r|\n)/g, '<br />'));
         $("#lessonModal").modal();
     }
 });
