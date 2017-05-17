@@ -39,17 +39,6 @@
                 </div>
             </div>
         </nav>
-        <%--<div id="Home" class="wood-bg section hero-section">--%>
-            <%--<div class="hero-wrap">--%>
-                <%--<div class="hero-left">--%>
-                    <%--<h1 class="heading-1"><strong>Codelot: Virtual Coding Kingdom</strong></h1>--%>
-                    <%--<p class="subhead-1">--%>
-                        <%--Learn to code and study core programming concepts as easily as playing a game!--%>
-                    <%--</p>--%>
-                    <%--<a class="button w-button" onclick="location.href='/signin'"><strong>Play</strong></a>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
         <div id="Home" class="wood-bg section hero-section">
             <div class="hero-wrap">
                 <div class="hero-left">
