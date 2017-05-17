@@ -63,12 +63,12 @@
                     <p class="paragraph-2">If you want to learn how to code and love playing games then Codelot is for you !! Complete an adventure within the Codelot Kingdom with your chosen avatar and learn how to code in a variety of coding languages at the same time. </p>
                 </div>
                 <div class="right-1"><img class="screenshot" sizes="(max-width: 767px) 63vw, (max-width: 991px) 35vw, 300px" src="images/pythonworld_overview.png" srcset="images/pythonworld_overview.png 500w" width="300">
-                    <p class="caption-2">Image from Codelot.</p>
+                    <p class="caption-2">The tropical Python village</p>
                 </div>
             </div>
             <div class="b wrap-2">
                 <div class="left-2"><img class="screenshot" sizes="(max-width: 479px) 80vw, 300px" src="images/javascriptworld_overview.png" srcset="images/javascriptworld_overview.png 500w" width="300">
-                    <p class="caption-3">Image from Codelot.</p>
+                    <p class="caption-3">The icy JavaScript village</p>
                 </div>
             <div class="right-2">
                 <h2 class="heading-2">Virtual Coding Kingdom</h2>
