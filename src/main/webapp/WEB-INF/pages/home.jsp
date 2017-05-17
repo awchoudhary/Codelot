@@ -3,6 +3,8 @@
     <head>
         <title>Codelot</title>
         <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
+        <link rel="stylesheet" type="text/css" href="../stylesheets/home.css" />
+
         <link rel="stylesheet" type="text/css" href="../stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
@@ -16,13 +18,6 @@
     </head>
 
     <style>
-        body{
-            font-family: 'Droid Serif', serif;
-        }
-        video {
-            width: 75% !important;
-            height: 100% !important;
-        }
 
     </style>
 

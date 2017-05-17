@@ -1,0 +1,8 @@
+body{
+    font-family: 'Droid Serif', serif;
+}
+video {
+    padding: 10px;
+    width: 75% !important;
+    height: 100% !important;
+}
