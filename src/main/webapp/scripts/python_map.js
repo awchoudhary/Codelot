@@ -259,7 +259,7 @@ var mainstate = {
 
         //Handle collisions
         game.physics.startSystem(Phaser.Physics.P2JS);
-        map.setCollision(3812,true,"Collision");
+        map.setCollision(2611,true,"Collision");
         game.physics.p2.convertTilemap(map, "Collision");
         game.physics.p2.enable(player);
         player.body.fixedRotation = true;

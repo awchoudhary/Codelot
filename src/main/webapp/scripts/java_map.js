@@ -68,6 +68,7 @@ var mainstate = {
 
         //if progress = 100 then load completed dialog boxes
         if (progress=="100") {
+            completed = true;
             //dialog boxes
             game.load.image('dialog1','../images/dialog1_completed.png');
             game.load.image('dialog2','../images/dialog2_completed.png');
@@ -339,7 +340,7 @@ var mainstate = {
             player.body.x = player.x;
             player.body.y = player.y +50;
             if (completed!=true) {
-                if (i>dragonLocations.length)  {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x + 50;
@@ -358,7 +359,7 @@ var mainstate = {
             player.body.x = player.x;
             player.body.y = player.y +50;
             if (completed!=true) {
-                if (i>dragonLocations.length)  {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x + 60 ;
@@ -376,8 +377,8 @@ var mainstate = {
             openWindow(popup3);
             player.body.x = player.x;
             player.body.y = player.y +50;
-            if (completed!=true) {
-                if (i>dragonLocations.length)  {
+            if (completed==false) {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x+ 50 ;

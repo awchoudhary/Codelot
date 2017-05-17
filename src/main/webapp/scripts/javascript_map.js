@@ -259,7 +259,7 @@ var mainstate = {
 
         //Handle collisions
         game.physics.startSystem(Phaser.Physics.P2JS);
-        map.setCollision(3812,true,"Collision");
+        map.setCollision(1711,true,"Collision");
         game.physics.p2.convertTilemap(map, "Collision");
         game.physics.p2.enable(player);
         player.body.fixedRotation = true;
@@ -341,7 +341,7 @@ var mainstate = {
             player.body.x = player.x;
             player.body.y = player.y +50;
             if (completed!=true) {
-                if (i>dragonLocations.length)  {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x + 50;
@@ -360,7 +360,7 @@ var mainstate = {
             player.body.x = player.x;
             player.body.y = player.y +50;
             if (completed!=true) {
-                if (i>dragonLocations.length)  {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x + 60 ;
@@ -379,7 +379,7 @@ var mainstate = {
             player.body.x = player.x;
             player.body.y = player.y +50;
             if (completed!=true) {
-                if (i>dragonLocations.length)  {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x+ 50 ;
