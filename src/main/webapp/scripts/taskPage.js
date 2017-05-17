@@ -111,7 +111,7 @@ function execute(){
         success: function (data) {
             //print compile message if there is a compiler error
             if(data.compilemessage){
-                $("#compileMessage").html("Error: " + data.compilemessage);
+                $("#compileMessage").html("Error: " + data.compilemessage.replace(/(?:\r\n|\r|\n)/g, '<br />'));
                 $("#resultTitle").text("Compiler Error");
             }
             else if(data.stderr){
@@ -119,7 +119,7 @@ function execute(){
                 for(var i = 0; i < data.stderr.length; i++){
                     stderr += data.stderr[i];
                 }
-                $("#stderr").html(stderr);
+                $("#stderr").html(stderr.replace(/(?:\r\n|\r|\n)/g, '<br />'));
                 $("#resultTitle").text("Runtime Exception");
             }
             else{
@@ -132,8 +132,8 @@ function execute(){
                 }
 
                 //show the program output and expected output. TODO: Print out all outputs
-                $("#output").html("Your Output: " + data.stdout[0]);
-                $("#expectedOutput").html("Expected Output: " + data.expectedOutputs[0]);
+                $("#output").html("Your Output: " + data.stdout[0].replace(/(?:\r\n|\r|\n)/g, '<br />'));
+                $("#expectedOutput").html("Expected Output: " + data.expectedOutputs[0].replace(/(?:\r\n|\r|\n)/g, '<br />'));
             }
             $("#compileModal").modal();
             $("#btn_execute").button("reset");
