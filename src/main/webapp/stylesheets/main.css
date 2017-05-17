@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Droid+Serif|Inknut+Antiqua|Lobster|Metamorphous|Playfair+Display:700');
+
 body {
-  font-family: Roboto, sans-serif;
+    font-family: 'Droid Serif', serif;
   color: #333;
   font-size: 14px;
   line-height: 20px;
@@ -51,16 +53,19 @@ p {
   -ms-flex-pack: center;
   justify-content: center;
   background-color: #34363b;
+    font-family: 'Droid Serif', serif;
 }
 
 .nav-container {
     width: 80%!important;
+    font-family: 'Droid Serif', serif;
 }
 
 .nav-links {
     float: right;
     height: 100%;
     display: table;
+    font-family: 'Droid Serif', serif;
 }
 
 .nav-links a, nav-links button {
@@ -87,6 +92,7 @@ p {
   max-width: none;
   margin-right: 0px;
   margin-left: 0px;
+    font-family: 'Droid Serif', serif;
 }
 
 .nav-main-menu {
@@ -99,6 +105,7 @@ p {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+    font-family: 'Droid Serif', serif;
 }
 
 .logo {
@@ -136,6 +143,7 @@ p {
   -ms-flex-align: center;
   align-items: center;
   background-color: #f9bac5;
+    font-family: 'Droid Serif', serif;
 }
 
 .wood-bg {
@@ -149,7 +157,7 @@ p {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 80%;
+  width: 90%;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
@@ -239,6 +247,7 @@ p {
 }
 
 .heading-1 {
+    font-family: Metamorphous, cursive;
   color: #fff;
 }
 
@@ -269,7 +278,7 @@ p {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 50%;
+  width: 35%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -316,7 +325,7 @@ p {
   border-radius: 2px;
   background-color: #4279ac;
   box-shadow: inset 0 1px 0 0 #5889b6, 0 1px 0 0 rgba(0, 0, 0, .2);
-  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-family: Palatino, serif;
   color: #fff;
   font-size: 12px;
 }
@@ -638,7 +647,7 @@ p {
 }
 
 .heading-2 {
-  font-family: Roboto, sans-serif;
+    font-family: Metamorphous, cursive;
   color: #000;
   font-size: 32px;
   line-height: 36px;
@@ -808,7 +817,7 @@ p {
 }
 
 .content-wrapper {
-
+    font-family: 'Droid Serif', serif;
 }
 
 .column-3 {
@@ -848,6 +857,7 @@ p {
     text-align: center;
     display: inline-block;
     font-size: 16px;
+    font-family: 'Droid Serif', serif;
 }
 
 .map {
@@ -905,6 +915,7 @@ p {
 }
 
 .heading-6 {
+    font-family: Metamorphous, cursive;
   text-align: center;
 }
 

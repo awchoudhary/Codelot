@@ -12,7 +12,19 @@
         <script src="../scripts/home.js"></script>
         <script src="../scripts/base.js"></script>
 
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Inknut+Antiqua|Lobster|Metamorphous|Playfair+Display:700" rel="stylesheet">
     </head>
+
+    <style>
+        body{
+            font-family: 'Droid Serif', serif;
+        }
+        video {
+            width: 75% !important;
+            height: 100% !important;
+        }
+
+    </style>
 
     <body>
         <nav class="navbar nav-main navbar-fixed-top">
@@ -36,6 +48,12 @@
                     </p>
                     <a class="button w-button" onclick="location.href='/signin'"><strong>Play</strong></a>
                 </div>
+                <video loop muted autoplay poster="img/wood_cartoon.jpg"
+                       class="fullscreen-bg__video">
+                    <%--<source src="video/big_buck_bunny.webm" type="video/webm">--%>
+                    <source src="videos/codelot_demo.mp4" type="video/mp4">
+                    <%--<source src="video/big_buck_bunny.ogv" type="video/ogg">--%>
+                </video>
             </div>
         </div>
         <div class="logos-section">

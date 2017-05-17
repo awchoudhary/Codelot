@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Droid+Serif|Inknut+Antiqua|Lobster|Metamorphous|Playfair+Display:700');
+
 body {
+    font-family: 'Droid Serif', serif;
     background-color: #34363b!important;
 }
 
@@ -22,6 +25,7 @@ body {
 }
 
 .formTitle {
+    font-family: Metamorphous, cursive;
     font-weight: bold;
 }
 
