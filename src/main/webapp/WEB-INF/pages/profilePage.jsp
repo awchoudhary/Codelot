@@ -79,7 +79,8 @@
 
                 <tr style="${display};">
                     <td colspan="2">
-                        <div class="resetText"><a id="showReset">Reset progress for all languages</a>
+                        <div class="resetText">
+                            <a id="showReset">Reset progress for all languages</a>
                             <div id="resetWrapper">
                                 <form method="post">
                                     <a class="button w-button" id="resetLink">Reset All</a>

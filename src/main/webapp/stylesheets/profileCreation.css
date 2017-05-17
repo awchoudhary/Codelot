@@ -49,21 +49,25 @@ body {
 #resetWrapper{
     margin: 0 auto;
     display: none;
+    padding: 12px;
 }
 
 .resetText {
-    margin-top: 20px;h
+    margin-top: 20px;
     text-align: center;
     font-weight: bold;
-    color: #ff6b6b;
-    background-color: #33393c;
+    color: white;
+    background-color: maroon;
     border: #ccc solid 1px;
     border-width: 1px 0;
     text-align: center;
+    width : 100%;
+    padding: 20px;
 }
 
 #showReset {
-    color: #ff6b6b;
+    padding: 12px;
+    color: white;
 }
 
 #showReset:hover {
