@@ -7,7 +7,10 @@ import com.googlecode.objectify.annotation.Index;
 @Entity
 public class CodelotUser {
     @Id public Long id;
+
+
     @Index public String user_id;
+
     public String user_email;
     public String fullname;
     public int age;
@@ -32,7 +35,7 @@ public class CodelotUser {
     }
 
     public void setUser (String email, String user_id) {
-        this.user_email = user_email;
+        this.user_email = email;
         this.user_id = user_id;
     }
 

@@ -23,6 +23,8 @@ var start;
 var popup1;
 var popup2;
 var popup3;
+var popup4;
+var popup5;
 
 var tween = null;
 var progress;
@@ -32,6 +34,8 @@ var completed;
 var npcLoc1;
 var npcLoc2;
 var npcLoc3;
+var npcLoc4;
+var npcLoc5;
 
 //dragon sprite,spawn only if didnt complete map
 var dragonS;
@@ -57,9 +61,11 @@ var mainstate = {
         game.load.spritesheet('sprite', spritesheet, 32,32);
 
         //npc spritesheets
-        game.load.spritesheet('npc1','../images/npc1_sprite.png',32,32);
-        game.load.spritesheet('npc2','../images/npc3_sprite.png',32,32);
-        game.load.spritesheet('npc3','../images/npc3_sprite.png',32,32);
+        game.load.spritesheet('npc1','../images/npc1_sprite.png',26,32);
+        game.load.spritesheet('npc2','../images/npc2_sprite.png',51,57);
+        game.load.spritesheet('npc3','../images/npc3_sprite.png',32,44);
+        game.load.spritesheet('npc4','../images/npc4_sprite.png',32,37);
+        game.load.spritesheet('npc5','../images/npc5_sprite.png',32,40);
 
 
         //get the progress of the user
@@ -68,10 +74,13 @@ var mainstate = {
 
         //if progress = 100 then load completed dialog boxes
         if (progress=="100") {
+            completed = true;
             //dialog boxes
-            game.load.image('dialog1','../images/dialog1_completed.png');
-            game.load.image('dialog2','../images/dialog2_completed.png');
-            game.load.image('dialog3','../images/dialog3_completed.png');
+            game.load.image('dialog1','../images/dialog1_complete.jpg');
+            game.load.image('dialog2','../images/dialog2_complete.jpg');
+            game.load.image('dialog3','../images/dialog3_complete.jpg');
+            game.load.image('dialog4','../images/dialog4_complete.jpg');
+            game.load.image('dialog5','../images/dialog5_complete.jpg');
             game.load.image('close', '../images/orb-red.png');
 
 
@@ -82,8 +91,10 @@ var mainstate = {
             completed =false;
             //dialog boxes
             game.load.image('dialog1','../images/dialog1_incomplete.png');
-            game.load.image('dialog2','../images/dialog2_incomplete.png');
-            game.load.image('dialog3','../images/dialog3_incomplete.png');
+            game.load.image('dialog2','../images/dialog2_incomplete.jpg');
+            game.load.image('dialog3','../images/dialog3_incomplete.jpg');
+            game.load.image('dialog4','../images/dialog4_incomplete.jpg');
+            game.load.image('dialog5','../images/dialog5_incomplete.jpg');
             game.load.image('close', '../images/orb-red.png');
 
             game.load.spritesheet('dragon','../images/dragon_sprite.png',161,123);
@@ -134,10 +145,16 @@ var mainstate = {
         var sprite1 = map.objects["tasks"][5];
 
         //2nd npc location
-        var sprite2 = map.objects["tasks"][6];
+        var sprite5 = map.objects["tasks"][6];
 
         //3rd npc location
         var sprite3 = map.objects["tasks"][7];
+
+        //4rd npc location
+        var sprite4 = map.objects["tasks"][8];
+
+        //5rd npc location
+        var sprite2 = map.objects["tasks"][9];
 
 
 
@@ -164,6 +181,12 @@ var mainstate = {
         //define npc3 location
         npcLoc3 = new Phaser.Rectangle(sprite3.x,sprite3.y,sprite3.width,sprite3.height);
 
+        //define npc4 location
+        npcLoc4 = new Phaser.Rectangle(sprite4.x,sprite4.y,sprite4.width,sprite4.height);
+
+        //define npc5 location
+        npcLoc5 = new Phaser.Rectangle(sprite5.x,sprite5.y,sprite5.width,sprite5.height);
+
 
 
         //get player
@@ -172,13 +195,21 @@ var mainstate = {
 
         /// add npc
         var npc1 = new Phaser.Sprite(game,sprite1.x,sprite1.y,"npc1");
-        npc1.scale.setTo(1.2, 1.2);
+        npc1.scale.setTo(1.2,1,2);
 
         var npc2 = new Phaser.Sprite(game,sprite2.x,sprite2.y,"npc2");
-        npc2.scale.setTo(1.2, 1.2);
+        npc2.scale.setTo(0.9, 0.9);
 
         var npc3 = new Phaser.Sprite(game,sprite3.x,sprite3.y,"npc3");
-        npc3.scale.setTo(1.2, 1.2);
+        npc3.scale.setTo(0.9, 0.9);
+
+        var npc4 = new Phaser.Sprite(game,sprite4.x,sprite4.y,"npc4");
+        npc4.scale.setTo(1.2, 1.2);
+
+        var npc5 = new Phaser.Sprite(game,sprite5.x,sprite5.y,"npc5");
+        npc5.scale.setTo(1.2, 1.2);
+
+
 
         //if not completed add dragon sprite to game
         if(completed == false) {
@@ -223,7 +254,7 @@ var mainstate = {
 
 
         //3rd Box
-        popup3 = game.add.sprite(sprite2.x,sprite2.y,'dialog3');
+        popup3 = game.add.sprite(sprite3.x,sprite3.y,'dialog3');
         popup3.alpha = 0.8;
         popup3.anchor.set(0.5);
         popup3.inputEnabled = true;
@@ -239,6 +270,40 @@ var mainstate = {
         closeButton3.events.onInputDown.add(closeWindow3,this);
         popup3.addChild(closeButton3);
 
+        //4rd Box
+        popup4 = game.add.sprite(sprite4.x,sprite4.y,'dialog4');
+        popup4.alpha = 0.8;
+        popup4.anchor.set(0.5);
+        popup4.inputEnabled = true;
+        popup4.input.enableDrag();
+        popup4.visible = false;
+
+        var pw4 = (popup1.width /2) -30;
+        var ph4 = (popup1.height/ 2) - 8;
+        var closeButton4 = game.make.sprite(pw4,-ph4,'close');
+        closeButton4.inputEnabled = true;
+        closeButton4.input.priorityID = 1;
+        closeButton4.input.useHandCursor = true;
+        closeButton4.events.onInputDown.add(closeWindow4,this);
+        popup4.addChild(closeButton4);
+
+        //5th Box
+        popup5 = game.add.sprite(sprite5.x,sprite5.y,'dialog5');
+        popup5.alpha = 0.8;
+        popup5.anchor.set(0.5);
+        popup5.inputEnabled = true;
+        popup5.input.enableDrag();
+        popup5.visible = false;
+
+        var pw5 = (popup1.width /2) -30;
+        var ph5 = (popup1.height/ 2) - 8;
+        var closeButton5 = game.make.sprite(pw5,-ph5,'close');
+        closeButton5.inputEnabled = true;
+        closeButton5.input.priorityID = 1;
+        closeButton5.input.useHandCursor = true;
+        closeButton5.events.onInputDown.add(closeWindow5,this);
+        popup5.addChild(closeButton5);
+
 
 
         //add player
@@ -248,6 +313,8 @@ var mainstate = {
         game.world.addAt(npc1,2);
         game.world.addAt(npc2,2);
         game.world.addAt(npc3,2);
+        game.world.addAt(npc4,2);
+        game.world.addAt(npc5,2);
 
         if (completed==false) {
             game.world.addAt(dragonS,2);
@@ -339,7 +406,7 @@ var mainstate = {
             player.body.x = player.x;
             player.body.y = player.y +50;
             if (completed!=true) {
-                if (i>dragonLocations.length)  {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x + 50;
@@ -358,7 +425,7 @@ var mainstate = {
             player.body.x = player.x;
             player.body.y = player.y +50;
             if (completed!=true) {
-                if (i>dragonLocations.length)  {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x + 60 ;
@@ -376,8 +443,44 @@ var mainstate = {
             openWindow(popup3);
             player.body.x = player.x;
             player.body.y = player.y +50;
-            if (completed!=true) {
-                if (i>dragonLocations.length)  {
+            if (completed==false) {
+                if (i>=dragonLocations.length)  {
+                    i = 0;
+                }
+                dragonS.x = dragonLocations[i].x+ 50 ;
+                dragonS.y = dragonLocations[i].y;
+                i = i + 1;
+            }
+
+
+        }
+
+        if (npcLoc4.contains(player.x+player.width/2,player.y+player.height/2) ) {
+            console.log(progress);
+            popup4.visible = true;
+            openWindow(popup4);
+            player.body.x = player.x;
+            player.body.y = player.y +50;
+            if (completed==false) {
+                if (i>=dragonLocations.length)  {
+                    i = 0;
+                }
+                dragonS.x = dragonLocations[i].x+ 50 ;
+                dragonS.y = dragonLocations[i].y;
+                i = i + 1;
+            }
+
+
+        }
+
+        if (npcLoc5.contains(player.x+player.width/2,player.y+player.height/2) ) {
+            console.log(progress);
+            popup5.visible = true;
+            openWindow(popup5);
+            player.body.x = player.x;
+            player.body.y = player.y +50;
+            if (completed==false) {
+                if (i>=dragonLocations.length)  {
                     i = 0;
                 }
                 dragonS.x = dragonLocations[i].x+ 50 ;
@@ -435,6 +538,30 @@ function closeWindow3() {
     //  Create a tween that will close the window, but only if it's not already tweening or closed
     tween = game.add.tween(popup3.scale).to( { x: 0.1, y: 0.1 }, 500, Phaser.Easing.Elastic.In, true);
     popup3.visible = false;
+
+}
+
+function closeWindow4() {
+    if (tween && tween.isRunning || popup4.scale.x === 0.1)
+    {
+        return;
+    }
+
+    //  Create a tween that will close the window, but only if it's not already tweening or closed
+    tween = game.add.tween(popup4.scale).to( { x: 0.1, y: 0.1 }, 500, Phaser.Easing.Elastic.In, true);
+    popup4.visible = false;
+
+}
+
+function closeWindow5() {
+    if (tween && tween.isRunning || popup5.scale.x === 0.1)
+    {
+        return;
+    }
+
+    //  Create a tween that will close the window, but only if it's not already tweening or closed
+    tween = game.add.tween(popup5.scale).to( { x: 0.1, y: 0.1 }, 500, Phaser.Easing.Elastic.In, true);
+    popup5.visible = false;
 
 }
 
