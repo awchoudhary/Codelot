@@ -43,7 +43,7 @@
           "hints": [
             "You can store the difference between a and b in a new variable similar to how we created y in the lesson description and print it out exactly like we printed a string variable in floor 3."
           ],
-          "baseCode": "import java.util.*;\n public class Solution{\n\tpublic static void main(String[] args){\n\t\tScanner sc = new Scanner(System.in);\n\t\twhile(sc.hasNextLine()){\n\t\t\tString line = sc.nextLine();\n\t\t\tString[] nums = line.split(\",\");\n\t\t\tint a = Integer.parseInt(nums[0]);\n\t\t\tint b = Integer.parseInt(nums[1]);\n\t\t\taddTwoNums(a, b);\n\t\t}\n\t}\n\tpublic static void addTwoNums(int a, int b){\n\t\t//Your code goes under here\n\t}\n}",
+          "baseCode": "import java.util.*;\n public class Solution{\n\tpublic static void main(String[] args){\n\t\tScanner sc = new Scanner(System.in);\n\t\twhile(sc.hasNextLine()){\n\t\t\tString line = sc.nextLine();\n\t\t\tString[] nums = line.split(\",\");\n\t\t\tint a = Integer.parseInt(nums[0]);\n\t\t\tint b = Integer.parseInt(nums[1]);\n\t\t\taddTwoNums(a, b);\n\t\t}\n\t}\n\tpublic static void subTwoNums(int a, int b){\n\t\t//Your code goes under here\n\t}\n}",
           "expectedOutputs": [
             "5"
           ],

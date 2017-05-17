@@ -67,7 +67,7 @@
                   <div class="media-body">
                     <h4 class="media-heading">Codelot Wizard</h4>
                       <p style="font-size:75%"><em>${warning}</em></p>
-                    <p>${taskDesc}</p>
+                    <p id="taskDescription">${taskDesc}</p>
                   </div>
                 </div>
 
@@ -228,6 +228,7 @@
         </div>
     </div>
         <input type="hidden" id="languageCode" value="${languageCode}"/>
+        <input type="hidden" id="isBuildingLocked" value="${isBuildingLocked}"/>
 
 </body>
 </html>

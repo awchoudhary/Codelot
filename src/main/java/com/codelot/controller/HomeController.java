@@ -62,7 +62,7 @@ public class HomeController {
         CodelotUser profile = CodelotUserService.getCurrentUserProfile();
 
         //direct to map select page
-        ModelAndView model = new ModelAndView("WEB-INF/pages/mapSelect");
+        ModelAndView model = new ModelAndView("WEB-INF/pages/MapSelect");
 
         if(profile != null){
             model.addObject("fullName", profile.getFullname());
@@ -168,7 +168,7 @@ public class HomeController {
 
     // Function to determine if string is null or is or starts with a space char
     public boolean isValid (String str){
-        if (str.isEmpty() || str.equals("") || str.indexOf(0)==' '){
+        if (str == null || str.isEmpty() || str.equals("") || str.indexOf(0)==' '){
             return false;
         }
         return true;
