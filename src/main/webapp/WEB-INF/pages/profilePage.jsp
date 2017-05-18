@@ -57,18 +57,14 @@
                         <option  value="../../images/sprites/knt1.png">Male Knight</option>
                         <option  value="../../images/sprites/knt4.png">Female Knight</option>
                     </select>
+                    <input type="hidden" value="${avatar}" id="currentAvatar"/>
+
                 </td>
                 </tr>
 
                 <tr>
                     <td id="avatar-td">
                         <img id="image" src ="${avatar}"/>
-                        <script>
-                            function switchImage() {
-                                var selectedImage = document.getElementById('avtr').value;
-                                document.getElementById('image').src = selectedImage;
-                            }
-                        </script>
 
                     </td>
                     <td>
