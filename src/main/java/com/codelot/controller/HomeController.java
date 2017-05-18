@@ -57,6 +57,20 @@ public class HomeController {
         return model;
     }
 
+    // Takes in list of buildings, calculates completed/total * 100 to get progress percent
+    public int getProgress(ArrayList<Building> buildings){
+        int numCompleted = 0;
+        // calculate user progress for map
+        for(int x=0; x<buildings.size(); x++){
+            if (buildings.get(x).isCompleted()){
+                numCompleted += 1;
+            }
+        }
+        int progress = (int)((((double) numCompleted)/buildings.size()) * 100);
+
+        return progress;
+    }
+
     @RequestMapping("/languageSelection")
     public ModelAndView languageSelection() {
         CodelotUser profile = CodelotUserService.getCurrentUserProfile();
@@ -64,13 +78,29 @@ public class HomeController {
         //direct to map select page
         ModelAndView model = new ModelAndView("WEB-INF/pages/MapSelect");
 
+        // get progress for java map
+        ArrayList<Building> javaBuildings = profile.getJavaCodelot().getBuildings();
+        int javaProgress = getProgress(javaBuildings);
+
+        // get progress for python map
+        ArrayList<Building> pythonBuildings = profile.getPythonCodelot().getBuildings();
+        int pythonProgress = getProgress(pythonBuildings);
+
+        // get progress for JavaScript map
+        ArrayList<Building> jsBuildings = profile.getJavaScriptCodelot().getBuildings();
+        int jsProgress = getProgress(jsBuildings);
+
         if(profile != null){
             model.addObject("fullName", profile.getFullname());
             model.addObject("username", profile.getUsername());
             model.addObject("avatar", profile.avatarImage);
             model.addObject("email", profile.getUser_email());
             model.addObject("age", profile.getAge());
+            model.addObject("javaProgress", javaProgress);
+            model.addObject("pythonProgress", pythonProgress);
+            model.addObject("jsProgress", jsProgress);
         }
+
         return model;
     }
 
@@ -80,18 +110,6 @@ public class HomeController {
         CodelotUser c_user = CodelotUserService.getCurrentUserProfile();
 
         System.out.println("selectedLang = "+lang);
-
-//        // Figure out selected language based on langugage code
-//        Language currentLang;
-//        if (lang.equals("20")){ // code for javascript
-//            currentLang = c_user.getJavaScriptCodelot();
-//        }
-//        else if (lang.equals("30")){ // code for python
-//            currentLang = c_user.getPythonCodelot();
-//        }
-//        else{ // code for javascript
-//            currentLang = c_user.getJavaCodelot();
-//        }
 
         if(c_user != null){
 
@@ -112,15 +130,7 @@ public class HomeController {
                 buildings = c_user.getJavaCodelot().getBuildings();
             }
 
-            int numCompleted = 0;
-
-            // calculate user progress for map
-            for(int x=0; x<buildings.size(); x++){
-                if (buildings.get(x).isCompleted()){
-                    numCompleted += 1;
-                }
-            }
-            int progress = (int)((((double) numCompleted)/buildings.size()) * 100);
+            int progress = getProgress(buildings);
 
             model.addObject("lang", langMap);
             model.addObject("fullName", c_user.getFullname());

@@ -57,16 +57,53 @@
         <div class="column-4 wood-bg w-col w-col-10">
             <h1 class="heading-6"><strong>Choose a language</strong></h1>
             <div class="row w-row">
-                <div id="java" class="mapWrapper w-col w-col-4"><img class="map" src="../images/javaworld_overview.png" width="330">
+                <div id="java" class="mapWrapper w-col w-col-4">
+
+                    <div class="progress-wrapper">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="${javaProgress}"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:${javaProgress}%; background-color:maroon;">
+                                <span class="sr-only">${javaProgress}%</span>
+                            </div>
+                            <p class="progress-message">${javaProgress}%</p>
+                        </div>
+                    </div>
+
+                    <img class="map" src="../images/javaworld_overview.png" width="330">
                     <div class="caption-1">Java-Ville</div>
                 </div>
-                <div id="python" class="mapWrapper w-col w-col-4"><img class="map" src="../images/pythonworld_overview.png" width="330">
+                <div id="python" class="mapWrapper w-col w-col-4">
+
+                    <div class="progress-wrapper">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="${pythonProgress}"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:${pythonProgress}%; background-color:maroon;">
+                                <span class="sr-only">${pythonProgress}%</span>
+                            </div>
+                            <p class="progress-message">${pythonProgress}%</p>
+                        </div>
+                    </div>
+
+                    <img class="map" src="../images/pythonworld_overview.png" width="330">
                     <div class="caption-1">Python-Valley</div>
                 </div>
-                <div id="javascript" class="mapWrapper w-col w-col-4"><img class="map" src="../images/javascriptworld_overview.png" width="330">
+                <div id="javascript" class="mapWrapper w-col w-col-4">
+
+                    <div class="progress-wrapper">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="${jsProgress}"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:${jsProgress}%; background-color:maroon;">
+                                <span class="sr-only">${jsProgress}%</span>
+                            </div>
+                            <p class="progress-message">${jsProgress}%</p>
+                        </div>
+                    </div>
+
+                    <img class="map" src="../images/javascriptworld_overview.png" width="330">
                     <div class="caption-1">JavaScript-Cove</div>
                 </div>
             </div>
+
             <div class="div-block">
                 <form method="post">
                     <button title="Map" type="submit" class="button w-button" onclick="form.action='/map';">
