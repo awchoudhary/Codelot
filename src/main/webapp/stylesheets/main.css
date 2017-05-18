@@ -962,6 +962,14 @@ p {
     flex: 0 auto;
   }
 }
+
+.progress-wrapper{
+    padding-top: 15px;
+}
+.progress-message{
+    padding-top: -5px;
+}
+
 /*
 @media (max-width: 767px) {
   .hero-section {
