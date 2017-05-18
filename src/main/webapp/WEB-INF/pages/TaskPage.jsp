@@ -47,7 +47,7 @@
                     <a id="lessonLink">Review Lesson</a>
                     <a id="hintLink">Hint</a>
                     <a id="attemptLink">Attempts</a>
-                    <a id="mapLink">Quit</a>
+                    <a id="mapLink">Back</a>
                     <button style="display:none" id="submitMap" title="Map" type="submit"
                             onclick="form.action='/map';">Map</button>
                     <input type="hidden" value="${languageCode}" name="selectedLang"/>
